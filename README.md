@@ -18,6 +18,7 @@ Criar uma plataforma para facilitar o contato entre entidades e apoiadores em ca
 - [Eslint](https://eslint.org/)
 - [Toastify](https://github.com/fkhadra/react-toastify#readme)
 - [Standart Version](https://github.com/conventional-changelog/standard-version)
+- [Chart.js](https://www.chartjs.org/docs/latest/charts/doughnut.html)
 
 ## Criadores:
 
