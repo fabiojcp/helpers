@@ -26,4 +26,4 @@ Criar uma plataforma para facilitar o contato entre entidades e apoiadores em ca
 - [Fábio Casanova](https://github.com/fabiojcp)
 - [Felipe Calori](https://github.com/felipecalori)
 - [Gabriek Nascimento](https://github.com/gabinpoa)
-- [Matheus Vieira] (https://github.com/th-matheus)
+- [Matheus Vieira](https://github.com/th-matheus)
