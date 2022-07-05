@@ -5,16 +5,19 @@ import "react-toastify/dist/ReactToastify.css";
 import AppContainer from "./AppStyle";
 import { CampaignsProvider } from "./providers/campaigns";
 import { UserProvider } from "./providers/user";
+import { modalProfileProvider } from "./providers/modalProfile";
 
 export default function App() {
   return (
     <BrowserRouter>
       <CampaignsProvider>
         <UserProvider>
-          <AppContainer>
-            <RouteMap />
-            <ToastContainer />
-          </AppContainer>
+          <modalProfileProvider>
+            <AppContainer>
+              <RouteMap />
+              <ToastContainer />
+            </AppContainer>
+          </modalProfileProvider>
         </UserProvider>
       </CampaignsProvider>
     </BrowserRouter>

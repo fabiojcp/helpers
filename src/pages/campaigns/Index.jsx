@@ -1,3 +1,9 @@
-export default function Campaigns () {
-    return <></>
+import StaticHeader from "../../components/StaticHeader";
+
+export default function Campaigns() {
+  return (
+    <>
+      <StaticHeader />
+    </>
+  );
 }
