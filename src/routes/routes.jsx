@@ -8,6 +8,7 @@ import Login from "../Pages/login/Index";
 import Registration from "../Pages/registration/Index";
 import { Routes, Route } from "react-router-dom";
 
+
 export default function RoutesMap () {
     return (
         <Routes>
@@ -18,7 +19,7 @@ export default function RoutesMap () {
             <Route path="/home" element={<Home/>} />
             <Route exact path="/" component={<Landing/>} />
             <Route path="/login" component={<Login/>} />
-            <Route path="/register" component={<Registration/>} />           
+            <Route path="/register" component={<Registration/>} />  
         </Routes>
     )
 }
