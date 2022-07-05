@@ -72,6 +72,7 @@ export const UserProvider = ({ children }) => {
         users,
         isLogged,
         error,
+        setError,
         getUsers,
         loginUser,
         registerUser,
