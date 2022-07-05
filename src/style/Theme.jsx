@@ -1,6 +1,6 @@
 const lightTheme = {
-    color: "#0e14e",
-    backgroundColor: "#D3D4E6",
+    color: "#fffff",
+    backgroundColor: "#000000",
     button: {
       textColor: "#D3D4E6",
       borderColor: "#151A69",
