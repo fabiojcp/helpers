@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import homeImg from "../../assets/HomeImg.png";
+import homeImg from "../../assets/imgs/HomeImg.png";
 
 export const Fundo = styled.div`
   height: 100vh;

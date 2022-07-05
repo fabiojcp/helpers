@@ -1,5 +1,6 @@
 import Button from "../../components/button";
 import Input from "../../components/input";
+import Logo from "../../assets/imgs/LogotipoBranca.svg"
 import {
   Container,
   FormBox,
