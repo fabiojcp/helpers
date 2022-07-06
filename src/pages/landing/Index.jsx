@@ -26,16 +26,16 @@ export default function Landing() {
 
   return (
     <>
+      <Header>
+        <Logo src={logo} alt="logo" />
+        <Nav>
+          <Smooth href="#second">Sobre o projeto</Smooth>
+          <Smooth href="#third">Deduzindo impostos</Smooth>
+          <Smooth href="#fourth">Campanhas populares</Smooth>
+          <Smooth href="#fifth">Sobre a equipe</Smooth>
+        </Nav>
+      </Header>
       <First id="first">
-        <Header tabIndex="1">
-          <Logo src={logo} alt="logo" />
-          <Nav>
-            <Smooth href="#second">Sobre o projeto</Smooth>
-            <Smooth href="#third">Deduzindo impostos</Smooth>
-            <Smooth href="#fourth">Campanha populares</Smooth>
-            <Smooth>Sobre a equipe</Smooth>
-          </Nav>
-        </Header>
         <Container>
           <ImgBox />
           <FormBox>
@@ -97,7 +97,11 @@ export default function Landing() {
         <SecondText>Seja um Helper você também!</SecondText>
       </Second>
       <Second>
-        <SecondTitle id="fourth">Campanha populares</SecondTitle>
+        <SecondTitle id="fourth">Campanhas populares</SecondTitle>
+        <SecondText></SecondText>
+      </Second>
+      <Second>
+        <SecondTitle id="fifth">Sobre a equipe</SecondTitle>
         <SecondText></SecondText>
       </Second>
     </>

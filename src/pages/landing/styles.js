@@ -5,7 +5,8 @@ export const First = styled.div`
   height: 100vh;
   width: 100vw;
   background-color: #246097;
-  padding: 7vh 10vw 0 10vw;
+  padding: 9vh 10vw 0 10vw;
+  margin: -11vh 0 0 0;
 `;
 export const Header = styled.div`
   display: flex;
@@ -13,11 +14,13 @@ export const Header = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  background-color: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.4);
   border-radius: 8px;
-  padding: 10px 20px;
+  padding: 1vh 20px;
   color: white;
   height: 7vh;
+  width: 80vw;
+  margin: 2vh 10vw 0 10vw;
   position: sticky;
   top: 0;
 `;
@@ -34,6 +37,7 @@ export const Nav = styled.nav`
 
 export const Smooth = styled.a`
   cursor: pointer;
+  color: white;
   text-decoration: none;
   :visited {
     color: white;
