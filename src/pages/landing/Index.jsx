@@ -20,7 +20,6 @@ import {
 import { Link } from "react-router-dom";
 import { FiArrowDownCircle } from "react-icons/fi";
 import { useCampaigns } from "../../providers/campaigns";
-import Footer from "../../components/footer";
 
 export default function Landing() {
   const campaings = useCampaigns();
@@ -105,7 +104,6 @@ export default function Landing() {
         <SecondTitle id="fifth">Sobre a equipe</SecondTitle>
         <SecondText></SecondText>
       </Second>
-      <Footer isLined />
     </>
   );
 }
