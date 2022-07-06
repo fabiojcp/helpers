@@ -13,7 +13,6 @@ root.render(
     <AnimatePresence>
       <ResetCSS />
       <GlobalStyles />
-
       <ThemeProvider theme={themes["light"]}>
         <App />
       </ThemeProvider>

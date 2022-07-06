@@ -1,27 +1,45 @@
 import styled from "styled-components";
 import homeImg from "../../assets/imgs/HomeImg.png";
 
-export const Fundo = styled.div`
+export const First = styled.div`
   height: 100vh;
+  width: 100vw;
   background-color: #246097;
-  padding: 20px;
+  padding: 7vh 10vw 0 10vw;
 `;
 export const Header = styled.div`
   display: flex;
   margin: 0 auto;
   justify-content: space-between;
   align-items: center;
-  width: 80vw;
+  flex-direction: row;
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 8px;
   padding: 10px 20px;
   color: white;
-  margin-top: 20px;
+  height: 7vh;
+  position: sticky;
+  top: 0;
+`;
 
-  ul {
-    display: flex;
-    list-style: none;
-    gap: 25px;
+export const Logo = styled.img`
+  height: 80%;
+`;
+export const Nav = styled.nav`
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const Smooth = styled.a`
+  cursor: pointer;
+  text-decoration: none;
+  :visited {
+    color: white;
+  }
+  :hover {
+    color: black;
   }
 `;
 
@@ -35,7 +53,7 @@ export const Container = styled.div`
 `;
 
 export const ImgBox = styled.section`
-  width: 60%;
+  width: 50%;
   height: 70vh;
   background: url(${homeImg}) no-repeat center;
   background-size: 70%;
@@ -44,11 +62,12 @@ export const ImgBox = styled.section`
 export const FormBox = styled.section`
   display: flex;
   align-items: center;
-  width: 40%; ;
+  width: 50%;
+  padding: 0 10%;
 `;
 
 export const StyledForm = styled.form`
-  width: 80%;
+  width: 100%;
   color: white;
   display: flex;
   flex-direction: column;
@@ -59,13 +78,49 @@ export const StyledForm = styled.form`
   padding-top: 15px;
   padding-bottom: 30px;
   border-radius: 12px;
-
-  input {
-    width: 80%;
-    padding: 15px;
-  }
-
+  padding: 2vh 10%;
   p {
     font-size: 8px;
   }
 `;
+
+export const GoDowntSection = styled.a`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  margin: 0 40%;
+  color: white;
+  text-decoration: none;
+  :visited {
+    color: white;
+  }
+  :hover {
+    color: black;
+  }
+`;
+
+export const P = styled.p`
+  margin: 0 0 1vh 0;
+`;
+export const Second = styled.div`
+  height: 40vh;
+  background: #eef5ff;
+  padding: 5vh 10vw 0 10vw;
+  color: #123571;
+`;
+
+export const SecondTitle = styled.p`
+  font-weight: 600;
+  font-size: 2rem;
+  margin: 0 0 1vh 0;
+`;
+
+export const SecondText = styled.p`
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin: 0 0 1vh 0;
+`;
+
+export const Third = styled.div``;

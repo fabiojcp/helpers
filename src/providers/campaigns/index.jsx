@@ -59,4 +59,4 @@ export const CampaignsProvider = ({ children }) => {
   );
 };
 
-export const Campaigns = () => useContext(CampaignsContext);
+export const useCampaigns = () => useContext(CampaignsContext);
