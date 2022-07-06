@@ -20,7 +20,7 @@ import {
 import { Link } from "react-router-dom";
 import { FiArrowDownCircle } from "react-icons/fi";
 import { useCampaigns } from "../../providers/campaigns";
-
+import { FormLogin } from "../../components/formLogin";
 export default function Landing() {
   const campaings = useCampaigns();
 
@@ -40,20 +40,7 @@ export default function Landing() {
           <ImgBox />
           <FormBox>
             <StyledForm>
-              <h2>Entre ou crie sua conta</h2>
-
-              <Input>
-                <label>Nome</label>
-                <input type="text"></input>
-              </Input>
-              <Input>
-                <label>Senha</label>
-                <input tupe="password"></input>
-              </Input>
-              <Button>Entrar</Button>
-              <span>
-                Não tem uma conta? <Link to={"/register"}>Cadastrar-se</Link>
-              </span>
+              <FormLogin/>
             </StyledForm>
           </FormBox>
         </Container>
