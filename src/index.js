@@ -5,11 +5,15 @@ import reportWebVitals from "./reportWebVitals";
 import { AnimatePresence } from "framer-motion";
 import { ThemeProvider } from "styled-components";
 import { themes } from "./style/Theme";
+import { GlobalStyles, ResetCSS } from "./style/globalStyles";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <AnimatePresence>
+      <ResetCSS />
+      <GlobalStyles />
+
       <ThemeProvider theme={themes["light"]}>
         <App />
       </ThemeProvider>
