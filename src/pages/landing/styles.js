@@ -24,13 +24,13 @@ export const Header = styled.div`
   position: sticky;
   top: 0;
   @media screen and (max-width: 700px) {
-    position:: fixed;
+    position: fixed;
     justify-content: center;
     margin: 0;
     border-radius: 0;
     width: 100%;
   }
-`;
+`
 
 export const Logo = styled.img`
   height: 80%;

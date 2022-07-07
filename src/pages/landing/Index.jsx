@@ -5,7 +5,6 @@ import {
   Container,
   FormBox,
   First,
-  Header,
   Logo,
   Nav,
   Smooth,
@@ -21,6 +20,8 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { FiArrowDownCircle } from "react-icons/fi";
 import { useCampaigns } from "../../providers/campaigns";
+import Footer from "../../components/footer";
+import { Header } from "../../components/header";
 import { FormLogin } from "../../components/formLogin";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
