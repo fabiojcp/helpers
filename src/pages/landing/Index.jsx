@@ -16,24 +16,69 @@ import {
   Second,
   SecondTitle,
   SecondText,
+  PopularCampaign,
 } from "./styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiArrowDownCircle } from "react-icons/fi";
 import { useCampaigns } from "../../providers/campaigns";
 import { FormLogin } from "../../components/formLogin";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { User, UserContext } from "../../providers/user";
+import { useContext, useEffect, useState } from "react";
+import { Carousel } from "rsuite";
+
+/* Quanto ao codigo comentado na seção de campanhas populares, o campaign não
+   estava me retornando nada por alguma razão e quebrava todo o código
+*/
+
+
 export default function Landing() {
-  const campaings = useCampaigns();
+  const { loginUser } = useContext(UserContext);
+
+  const navigate = useNavigate();
+
+  const [windowWidth, setwindowWidth] = useState(window.innerWidth);
+  const handleResize = () => {
+    setwindowWidth(window.innerWidth);
+  }; /* Aqui eu seto um state pro width da tela e um event listener pro evento
+  de resize, quando disparar o evento ele seta novamente o state pro novo valor
+  do width da tela*/
+  window.addEventListener("resize", handleResize);
+
+  const { campaigns, getCampaigns } = useCampaigns();
+
+  const formSchema = yup.object().shape({
+    email: yup.string().email().required(),
+    password: yup.string().required(),
+  });
+
+  const { register, handleSubmit } = useForm({
+    resolver: yupResolver(formSchema),
+  });
+
+  const onSubmit = (data) => {
+    loginUser(data); // eu não tenho certeza se a função de login esta funcionando
+    navigate("/campaings");
+  };
+
+  useEffect(() => {
+    getCampaigns();
+  }, []);
 
   return (
     <>
       <Header>
         <Logo src={logo} alt="logo" />
-        <Nav>
-          <Smooth href="#second">Sobre o projeto</Smooth>
-          <Smooth href="#third">Deduzindo impostos</Smooth>
-          <Smooth href="#fourth">Campanhas populares</Smooth>
-          <Smooth href="#fifth">Sobre a equipe</Smooth>
-        </Nav>
+        {windowWidth > 700 ? (
+          <Nav>
+            <Smooth href="#second">Sobre o projeto</Smooth>
+            <Smooth href="#third">Deduzindo impostos</Smooth>
+            <Smooth href="#fourth">Campanhas populares</Smooth>
+            <Smooth href="#fifth">Sobre a equipe</Smooth>
+          </Nav>
+        ) : null}
       </Header>
       <First id="first">
         <Container>
@@ -41,6 +86,20 @@ export default function Landing() {
           <FormBox>
             <StyledForm>
               <FormLogin/>
+            <StyledForm onSubmit={handleSubmit(onSubmit)}>
+              <h2>Entre ou crie sua conta</h2>
+              <Input>
+                <label>Email</label>
+                <input type="email" {...register("email")}></input>
+              </Input>
+              <Input>
+                <label>Senha</label>
+                <input type="password" {...register("password")}></input>
+              </Input>
+              <Button type="submit">Entrar</Button>
+              <span>
+                Não tem uma conta? <Link to={"/register"}>Cadastrar-se</Link>
+              </span>
             </StyledForm>
           </FormBox>
         </Container>
@@ -85,7 +144,23 @@ export default function Landing() {
       </Second>
       <Second>
         <SecondTitle id="fourth">Campanhas populares</SecondTitle>
-        <SecondText></SecondText>
+        <Carousel className="custom-slider">
+          <img
+            src="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
+            alt="h"
+          />
+          <img
+            src="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
+            alt="h"
+          />
+          {/*                   
+          {campaigns.map((campaign, index) => {
+            <PopularCampaign>
+              <img src={campaign.img[0]} alt={campaign.description} />
+              <p>{campaign.description}</p>
+            </PopularCampaign>;
+          })} */}
+        </Carousel>
       </Second>
       <Second>
         <SecondTitle id="fifth">Sobre a equipe</SecondTitle>
