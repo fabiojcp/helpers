@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import Api from "../../services/Api";
-const CampaignsContext = createContext();
+export const CampaignsContext = createContext();
 
 export const CampaignsProvider = ({ children }) => {
   const campaignsLocal = localStorage.getItem("campaigns") || [];
@@ -59,4 +59,4 @@ export const CampaignsProvider = ({ children }) => {
   );
 };
 
-export const useCampaigns = () => useContext(CampaignsContext);
+
