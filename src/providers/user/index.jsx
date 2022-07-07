@@ -15,6 +15,10 @@ export const UserProvider = ({ children }) => {
   const [isLogged, setIsLogged] = useState(false);
   const [error, setError] = useState("");
 
+  // Modal
+  const [modalOpen, setModalOpen] = useState(false);
+  const [canCloseModal, setCanCloseModal] = useState(true);
+
   const headers = {
     "Content-type": "application/JSON",
     Authorization: `Bearer ${token}`,
@@ -76,6 +80,20 @@ export const UserProvider = ({ children }) => {
       });
   };
 
+  const modal = {
+    isOpen: modalOpen,
+    isCloseable: canCloseModal,
+    open: () => {
+      setModalOpen(true);
+    },
+    close: () => {
+      setModalOpen(false);
+    },
+    closeable: (value) => {
+      setCanCloseModal(value);
+    },
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -90,6 +108,7 @@ export const UserProvider = ({ children }) => {
         registerUser,
         editUser,
         deleteUser,
+        modal,
       }}
     >
       {children}
@@ -98,3 +117,4 @@ export const UserProvider = ({ children }) => {
 };
 
 export const User = () => useContext(UserProvider);
+export { UserContext };
