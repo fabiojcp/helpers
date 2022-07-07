@@ -5,7 +5,6 @@ import {
   Container,
   FormBox,
   First,
-  Header,
   Logo,
   Nav,
   Smooth,
@@ -21,6 +20,7 @@ import { Link } from "react-router-dom";
 import { FiArrowDownCircle } from "react-icons/fi";
 import { useCampaigns } from "../../providers/campaigns";
 import Footer from "../../components/footer";
+import { Header } from "../../components/header";
 
 export default function Landing() {
   const campaings = useCampaigns();

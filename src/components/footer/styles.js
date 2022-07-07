@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: #eef5ff;
+  background-color: ${(props) => (props.light ? "#eef5ff" : "white")};
   color: #123571;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@ export const Container = styled.div`
 `;
 
 export const Line = styled.div`
-  background-color: ${(props) => (props.isLined ? "#123571" : "#eef5ff")};
+  background-color: ${(props) => (props.isLined ? "#123571" : "#white")};
   width: 85%;
   height: 1px;
 `;
