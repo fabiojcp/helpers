@@ -8,6 +8,8 @@ import { themes } from "./style/Theme";
 import { GlobalStyles, ResetCSS } from "./style/globalStyles";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const modalRoot = document.getElementById("modal-root");
+
 root.render(
   <React.StrictMode>
     <AnimatePresence>
@@ -24,3 +26,5 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+export { modalRoot };

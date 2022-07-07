@@ -8,6 +8,29 @@ export const First = styled.div`
   padding: 9vh 10vw 0 10vw;
   margin: -11vh 0 0 0;
 `;
+export const Header = styled.div`
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  padding: 1vh 20px;
+  color: white;
+  height: 7vh;
+  width: 80vw;
+  margin: 2vh 10vw 0 10vw;
+  position: sticky;
+  top: 0;
+  @media screen and (max-width: 700px) {
+    position: fixed;
+    justify-content: center;
+    margin: 0;
+    border-radius: 0;
+    width: 100%;
+  }
+`
 
 export const Logo = styled.img`
   height: 80%;
@@ -38,6 +61,8 @@ export const Container = styled.div`
   margin-top: 30px;
   width: 82vw;
   justify-content: space-between;
+  @media screen and (max-width: 700px) {
+  }
 `;
 
 export const ImgBox = styled.section`
@@ -45,6 +70,10 @@ export const ImgBox = styled.section`
   height: 70vh;
   background: url(${homeImg}) no-repeat center;
   background-size: 70%;
+  @media screen and (max-width: 700px) {
+    position: absolute;
+    width: 120vw;
+  }
 `;
 
 export const FormBox = styled.section`
@@ -52,6 +81,13 @@ export const FormBox = styled.section`
   align-items: center;
   width: 50%;
   padding: 0 10%;
+  @media screen and (max-width: 700px) {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    z-index: 1;
+  }
 `;
 
 export const StyledForm = styled.form`
@@ -70,6 +106,11 @@ export const StyledForm = styled.form`
   p {
     font-size: 8px;
   }
+  @media screen and (max-width: 700px) {
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px);
+    margin-top: 48px;
+  }
 `;
 
 export const GoDowntSection = styled.a`
@@ -87,16 +128,23 @@ export const GoDowntSection = styled.a`
   :hover {
     color: black;
   }
+  @media screen and (max-width: 700px) {
+    width: auto;
+    margin: 0;
+  }
 `;
 
 export const P = styled.p`
   margin: 0 0 1vh 0;
 `;
 export const Second = styled.div`
-  height: 40vh;
+  height: 40h;
   background: #eef5ff;
   padding: 5vh 10vw 0 10vw;
   color: #123571;
+  @media screen and (max-width: 700px) {
+    height: auto;
+  }
 `;
 
 export const SecondTitle = styled.p`
@@ -110,5 +158,7 @@ export const SecondText = styled.p`
   font-size: 1.5rem;
   margin: 0 0 1vh 0;
 `;
+
+export const PopularCampaign = styled.div``;
 
 export const Third = styled.div``;
