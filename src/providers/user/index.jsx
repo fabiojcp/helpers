@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 import Api from "../../services/Api";
 export const UserContext = createContext();
 
@@ -115,6 +115,3 @@ export const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
-
-export const User = () => useContext(UserProvider);
-export { UserContext };

@@ -52,7 +52,7 @@ export default function Landing() {
 
   const formSchema = yup.object().shape({
     email: yup.string().email().required(),
-    password: yup.string().required(),
+    password: yup.string().min(4).required(),
   });
 
   const { register, handleSubmit } = useForm({
@@ -85,8 +85,6 @@ export default function Landing() {
         <Container>
           <ImgBox />
           <FormBox>
-            <StyledForm>
-              <FormLogin/>
             <StyledForm onSubmit={handleSubmit(onSubmit)}>
               <h2>Entre ou crie sua conta</h2>
               <Input>
