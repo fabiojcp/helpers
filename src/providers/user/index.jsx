@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import Api from "../../services/Api";
-const UserContext = createContext();
+export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const userLocal = localStorage.getItem("user") || { accessToken: "" };
