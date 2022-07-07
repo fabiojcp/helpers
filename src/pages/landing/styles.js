@@ -159,6 +159,15 @@ export const SecondText = styled.p`
   margin: 0 0 1vh 0;
 `;
 
-export const PopularCampaign = styled.div``;
+export const PopularCampaigns = styled.div`
+  width: 310px;
+  ul {
+    display: flex;
+  }
+  img {
+    height: 200px;
+    width: auto;
+  }
+`;
 
 export const Third = styled.div``;

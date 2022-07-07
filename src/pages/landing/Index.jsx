@@ -16,7 +16,7 @@ import {
   Second,
   SecondTitle,
   SecondText,
-  PopularCampaign,
+  PopularCampaigns,
 } from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import { FiArrowDownCircle } from "react-icons/fi";
@@ -24,13 +24,9 @@ import { useCampaigns } from "../../providers/campaigns";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { User, UserContext } from "../../providers/user";
+import { UserContext } from "../../providers/user";
 import { useContext, useEffect, useState } from "react";
 import { Carousel } from "rsuite";
-
-/* Quanto ao codigo comentado na seção de campanhas populares, o campaign não
-   estava me retornando nada por alguma razão e quebrava todo o código
-*/
 
 export default function Landing() {
   const { loginUser } = useContext(UserContext);
@@ -58,13 +54,12 @@ export default function Landing() {
 
   const onSubmit = (data) => {
     loginUser(data); // eu não tenho certeza se a função de login esta funcionando
-    navigate("/campaings");
+    navigate("/dashboard");
   };
 
   useEffect(() => {
     getCampaigns();
   }, []);
-
   return (
     <>
       <Header>
@@ -104,8 +99,8 @@ export default function Landing() {
           <FiArrowDownCircle style={{ height: "2em", width: "2em" }} />
         </GoDowntSection>
       </First>
-      <Second>
-        <SecondTitle id="second">Sobre o projeto</SecondTitle>
+      <Second id="second">
+        <SecondTitle>Sobre o projeto</SecondTitle>
         <SecondText>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
           dolor neque, fermentum quis tellus sit amet, porta convallis dolor.
@@ -121,8 +116,8 @@ export default function Landing() {
           mollis.
         </SecondText>
       </Second>
-      <Second>
-        <SecondTitle id="third">Deduzindo impostos</SecondTitle>
+      <Second id="third">
+        <SecondTitle>Deduzindo impostos</SecondTitle>
         <SecondText>
           Além de ser um Helper de projetos sociais e fazer a vida de várias
           pessoas melhor, doar quantias em dinheiro ainda pode ser um jeito de
@@ -138,28 +133,24 @@ export default function Landing() {
         </SecondText>
         <SecondText>Seja um Helper você também!</SecondText>
       </Second>
-      <Second>
-        <SecondTitle id="fourth">Campanhas populares</SecondTitle>
-        <Carousel className="custom-slider">
-          <img
-            src="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-            alt="h"
-          />
-          <img
-            src="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-            alt="h"
-          />
-          {/*                   
-          {campaigns.map((campaign, index) => {
-            <PopularCampaign>
-              <img src={campaign.img[0]} alt={campaign.description} />
-              <p>{campaign.description}</p>
-            </PopularCampaign>;
-          })} */}
-        </Carousel>
+      <Second id="fourth">
+        <SecondTitle>Campanhas populares</SecondTitle>
+        <PopularCampaigns>
+          <Carousel>
+            {campaigns.data.map((campaign, index) => {
+              return (
+                <img
+                  key={index}
+                  src={campaign.img[0]}
+                  alt={campaign.description}
+                />
+              );
+            })}
+          </Carousel>
+        </PopularCampaigns>
       </Second>
-      <Second>
-        <SecondTitle id="fifth">Sobre a equipe</SecondTitle>
+      <Second id="fifth">
+        <SecondTitle>Sobre a equipe</SecondTitle>
         <SecondText></SecondText>
       </Second>
     </>
