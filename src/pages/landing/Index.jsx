@@ -21,6 +21,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { FiArrowDownCircle } from "react-icons/fi";
 import { useCampaigns } from "../../providers/campaigns";
+import { FormLogin } from "../../components/formLogin";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -31,6 +32,7 @@ import { Carousel } from "rsuite";
 /* Quanto ao codigo comentado na seção de campanhas populares, o campaign não
    estava me retornando nada por alguma razão e quebrava todo o código
 */
+
 
 export default function Landing() {
   const { loginUser } = useContext(UserContext);
@@ -82,6 +84,8 @@ export default function Landing() {
         <Container>
           <ImgBox />
           <FormBox>
+            <StyledForm>
+              <FormLogin/>
             <StyledForm onSubmit={handleSubmit(onSubmit)}>
               <h2>Entre ou crie sua conta</h2>
               <Input>
