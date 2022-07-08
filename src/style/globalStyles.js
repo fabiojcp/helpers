@@ -17,8 +17,8 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   html {
-  scroll-behavior: smooth;
-}
+    scroll-behavior: smooth;
+  }
 `;
 
 export const ResetCSS = createGlobalStyle`
