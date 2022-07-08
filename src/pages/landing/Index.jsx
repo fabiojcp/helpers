@@ -5,7 +5,6 @@ import {
   Container,
   FormBox,
   First,
-  Header,
   Logo,
   Nav,
   Smooth,
@@ -16,41 +15,81 @@ import {
   Second,
   SecondTitle,
   SecondText,
+  PopularCampaigns,
 } from "./styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiArrowDownCircle } from "react-icons/fi";
 import { useCampaigns } from "../../providers/campaigns";
+import Footer from "../../components/footer";
+import { Header } from "../../components/header";
+import { FormLogin } from "../../components/formLogin";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { UserContext } from "../../providers/user";
+import { useContext, useEffect, useState } from "react";
+import { Carousel } from "rsuite";
 
 export default function Landing() {
-  const campaings = useCampaigns();
+  const { loginUser } = useContext(UserContext);
 
+  const navigate = useNavigate();
+
+  const [windowWidth, setwindowWidth] = useState(window.innerWidth);
+  const handleResize = () => {
+    setwindowWidth(window.innerWidth);
+  }; /* Aqui eu seto um state pro width da tela e um event listener pro evento
+  de resize, quando disparar o evento ele seta novamente o state pro novo valor
+  do width da tela*/
+  window.addEventListener("resize", handleResize);
+
+  const { campaigns, getCampaigns } = useCampaigns();
+
+  const formSchema = yup.object().shape({
+    email: yup.string().email().required(),
+    password: yup.string().min(4).required(),
+  });
+
+  const { register, handleSubmit } = useForm({
+    resolver: yupResolver(formSchema),
+  });
+
+  const onSubmit = (data) => {
+    loginUser(data); // eu não tenho certeza se a função de login esta funcionando
+    navigate("/dashboard");
+  };
+
+  useEffect(() => {
+    getCampaigns();
+  }, []);
   return (
     <>
       <Header>
         <Logo src={logo} alt="logo" />
-        <Nav>
-          <Smooth href="#second">Sobre o projeto</Smooth>
-          <Smooth href="#third">Deduzindo impostos</Smooth>
-          <Smooth href="#fourth">Campanhas populares</Smooth>
-          <Smooth href="#fifth">Sobre a equipe</Smooth>
-        </Nav>
+        {windowWidth > 700 ? (
+          <Nav>
+            <Smooth href="#second">Sobre o projeto</Smooth>
+            <Smooth href="#third">Deduzindo impostos</Smooth>
+            <Smooth href="#fourth">Campanhas populares</Smooth>
+            <Smooth href="#fifth">Sobre a equipe</Smooth>
+          </Nav>
+        ) : null}
       </Header>
       <First id="first">
         <Container>
           <ImgBox />
           <FormBox>
-            <StyledForm>
+            <StyledForm onSubmit={handleSubmit(onSubmit)}>
               <h2>Entre ou crie sua conta</h2>
-
               <Input>
-                <label>Nome</label>
-                <input type="text"></input>
+                <label>Email</label>
+                <input type="email" {...register("email")}></input>
               </Input>
               <Input>
                 <label>Senha</label>
-                <input tupe="password"></input>
+                <input type="password" {...register("password")}></input>
               </Input>
-              <Button>Entrar</Button>
+              <Button type="submit">Entrar</Button>
               <span>
                 Não tem uma conta? <Link to={"/register"}>Cadastrar-se</Link>
               </span>
@@ -62,8 +101,8 @@ export default function Landing() {
           <FiArrowDownCircle style={{ height: "2em", width: "2em" }} />
         </GoDowntSection>
       </First>
-      <Second>
-        <SecondTitle id="second">Sobre o projeto</SecondTitle>
+      <Second id="second">
+        <SecondTitle>Sobre o projeto</SecondTitle>
         <SecondText>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
           dolor neque, fermentum quis tellus sit amet, porta convallis dolor.
@@ -79,8 +118,8 @@ export default function Landing() {
           mollis.
         </SecondText>
       </Second>
-      <Second>
-        <SecondTitle id="third">Deduzindo impostos</SecondTitle>
+      <Second id="third">
+        <SecondTitle>Deduzindo impostos</SecondTitle>
         <SecondText>
           Além de ser um Helper de projetos sociais e fazer a vida de várias
           pessoas melhor, doar quantias em dinheiro ainda pode ser um jeito de
@@ -96,12 +135,24 @@ export default function Landing() {
         </SecondText>
         <SecondText>Seja um Helper você também!</SecondText>
       </Second>
-      <Second>
-        <SecondTitle id="fourth">Campanhas populares</SecondTitle>
-        <SecondText></SecondText>
+      <Second id="fourth">
+        <SecondTitle>Campanhas populares</SecondTitle>
+        <PopularCampaigns>
+          <Carousel>
+            {campaigns.data.map((campaign, index) => {
+              return (
+                <img
+                  key={index}
+                  src={campaign.img[0]}
+                  alt={campaign.description}
+                />
+              );
+            })}
+          </Carousel>
+        </PopularCampaigns>
       </Second>
-      <Second>
-        <SecondTitle id="fifth">Sobre a equipe</SecondTitle>
+      <Second id="fifth">
+        <SecondTitle>Sobre a equipe</SecondTitle>
         <SecondText></SecondText>
       </Second>
     </>

@@ -17,6 +17,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   html {
+
   scroll-behavior: smooth;
 
   .anticon {
@@ -39,6 +40,9 @@ export const GlobalStyles = createGlobalStyle`
     color: white;
   }
 }
+    scroll-behavior: smooth;
+  }
+
 `;
 
 export const ResetCSS = createGlobalStyle`

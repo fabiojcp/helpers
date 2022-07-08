@@ -1,12 +1,12 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 import Api from "../../services/Api";
-const CampaignsContext = createContext();
+export const CampaignsContext = createContext();
 
 export const CampaignsProvider = ({ children }) => {
   const campaignsLocal = localStorage.getItem("campaigns") || [];
   const [campaigns, setCampaigns] = useState(campaignsLocal);
 
-  const user = localStorage.getItem("user") || {accessToken:""};
+  const user = localStorage.getItem("user") || { accessToken: "" };
 
   const token = user.accessToken || "";
 
@@ -58,5 +58,3 @@ export const CampaignsProvider = ({ children }) => {
     </CampaignsContext.Provider>
   );
 };
-
-export const useCampaigns = () => useContext(CampaignsContext);
