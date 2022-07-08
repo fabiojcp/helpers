@@ -3,7 +3,7 @@ import Api from "../../services/Api";
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const userLocal = localStorage.getItem("user") || { accessToken: "" };
+  const userLocal = JSON.parse(localStorage.getItem("user")) || { accessToken: "" };
   const [user, setUser] = useState(userLocal);
 
   const usersLocal = localStorage.getItem("users") || [];
@@ -33,9 +33,9 @@ export const UserProvider = ({ children }) => {
   const loginUser = (data) => {
     Api.post(`login`, data)
       .then((response) => {
-        localStorage.setItem("user", JSON.stringify(response));
-        setUser(response);
-        setToken(response.accessToken);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        setUser(response.data.user);
+        setToken(response.data.accessToken);
         setIsLogged(true);
       })
       .catch((error) => {
@@ -46,9 +46,9 @@ export const UserProvider = ({ children }) => {
   const registerUser = (data) => {
     Api.post(`register`, data)
       .then((response) => {
-        localStorage.setItem("user", JSON.stringify(response));
-        setUser(response);
-        setToken(response.accessToken);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        setUser(response.data.user);
+        setToken(response.data.accessToken);
         setIsLogged(true);
       })
       .catch((error) => {
@@ -59,8 +59,8 @@ export const UserProvider = ({ children }) => {
   const editUser = (data) => {
     Api.patch(`user/${user.id}`, data, { headers: headers })
       .then((response) => {
-        localStorage.setItem("user", JSON.stringify(response));
-        setUser(response);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        setUser(response.data.user);
       })
       .catch((error) => {
         setError(error);

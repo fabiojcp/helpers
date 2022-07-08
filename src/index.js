@@ -4,7 +4,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { AnimatePresence } from "framer-motion";
 import { ThemeProvider } from "styled-components";
-import { themes } from "./style/Theme";
+import { themes } from "./style/theme";
 import { GlobalStyles, ResetCSS } from "./style/globalStyles";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

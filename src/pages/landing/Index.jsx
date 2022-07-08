@@ -19,10 +19,9 @@ import {
 } from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import { FiArrowDownCircle } from "react-icons/fi";
-import { useCampaigns } from "../../providers/campaigns";
+import { CampaignsContext } from "../../providers/campaigns";
 import Footer from "../../components/footer";
 import { Header } from "../../components/header";
-import { FormLogin } from "../../components/formLogin";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -43,7 +42,7 @@ export default function Landing() {
   do width da tela*/
   window.addEventListener("resize", handleResize);
 
-  const { campaigns, getCampaigns } = useCampaigns();
+  const { campaigns, getCampaigns } = useContext(CampaignsContext);
 
   const formSchema = yup.object().shape({
     email: yup.string().email().required(),
@@ -62,6 +61,7 @@ export default function Landing() {
   useEffect(() => {
     getCampaigns();
   }, []);
+
   return (
     <>
       <Header>
@@ -138,8 +138,8 @@ export default function Landing() {
       <Second id="fourth">
         <SecondTitle>Campanhas populares</SecondTitle>
         <PopularCampaigns>
-          <Carousel>
-            {campaigns.data.map((campaign, index) => {
+        <Carousel>
+            {campaigns.map((campaign, index) => {
               return (
                 <img
                   key={index}
@@ -149,12 +149,14 @@ export default function Landing() {
               );
             })}
           </Carousel>
+
         </PopularCampaigns>
       </Second>
       <Second id="fifth">
         <SecondTitle>Sobre a equipe</SecondTitle>
         <SecondText></SecondText>
       </Second>
+      <Footer isLined/>
     </>
   );
 }
