@@ -12,9 +12,12 @@ export const Container = styled.div`
     border-radius: 8px;
     border: 2px solid white;
     background-color: rgba(255, 255, 255, 0.3);
-    padding: 15px 10%; 
+    padding: 15px 10%;
   }
   label {
     margin: 0 0 10px 0;
+  }
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
   }
 `;

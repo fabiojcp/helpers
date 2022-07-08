@@ -18,6 +18,26 @@ export const GlobalStyles = createGlobalStyle`
 
   html {
   scroll-behavior: smooth;
+
+  .anticon {
+    position: absolute;
+    margin-left: 60%;
+    margin-top: -7.8vh;
+    color: white;
+    cursor: pointer;
+  }
+  
+  @media (min-width: 540px) {
+    .anticon {
+      margin-left: 13%;
+      margin-top: 45px;
+      color: white;
+      cursor: pointer;
+    }
+  }
+  .PasswordStrengthBar > p {
+    color: white;
+  }
 }
 `;
 

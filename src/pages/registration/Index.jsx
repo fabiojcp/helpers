@@ -10,14 +10,12 @@ import {
   P,
   Form,
   FormTitle,
-  DivPassword,
-  Select,
-  Option,
-  Bio,
 } from "./style";
 import { Logo } from "../landing/styles";
 import { Link } from "react-router-dom";
-import Input from "../../components/input";
+import RegisterEntity from "../../components/registerForm/Entity";
+import RegisterPF from "../../components/registerForm/PF";
+import RegisterPJ from "../../components/registerForm/PJ";
 
 export default function Registration() {
   const [type, setType] = useState("");
@@ -34,7 +32,7 @@ export default function Registration() {
           </Link>
           <P>Crie a sua conta abaixo</P>
         </FormHeader>
-        <Form>
+        <Form onSubmit={event => event.preventDefault()}>
           {type === "" && (
             <>
               <FormTitle>ESCOLHA O TIPO DE CONTA</FormTitle>
@@ -49,156 +47,11 @@ export default function Registration() {
               </Button>
             </>
           )}
-          {type === "fisica" && (
-            <>
-              <Input>
-                <label>Nome completo</label>
-                <input type="text"></input>
-              </Input>
-              <Input>
-                <label>E-mail</label>
-                <input type="text"></input>
-              </Input>
-              <DivPassword>
-                <Input>
-                  <label>Senha</label>
-                  <input type="text"></input>
-                </Input>
-                <Input>
-                  <label>Repita senha</label>
-                  <input type="text"></input>
-                </Input>
-              </DivPassword>
-              <Input>
-                <label>Avatar (url)</label>
-                <input type="text"></input>
-              </Input>  
-              <Input>
-                <label>Telefone para contato</label>
-                <input type="text"></input>
-              </Input>
-              <Select>
-                <Option>Homem cis</Option>
-                <Option>Homem trans</Option>
-                <Option>Mulher cis</Option>
-                <Option>Mulher cis</Option>
-                <Option>Prefiro não declarar / Outro</Option>
-              </Select>
-              <Bio >
-                <label>Bio</label>
-                <textarea type="text" rows="8"></textarea>
-              </Bio>
-              <Button>Criar conta</Button>
-            </>
-          )}
+          {type === "fisica" && <RegisterPF /> }
 
-          {type === "juridica" && (
-            <>
-              <Input>
-                <label>Nome fantasia</label>
-                <input type="text"></input>
-              </Input>
-              <Input>
-                <label>E-mail</label>
-                <input type="text"></input>
-              </Input>
-              <DivPassword>
-                <Input>
-                  <label>Senha</label>
-                  <input type="text"></input>
-                </Input>
-                <Input>
-                  <label>Repita senha</label>
-                  <input type="text"></input>
-                </Input>
-              </DivPassword>
-              <Input>
-                <label>Avatar (url)</label>
-                <input type="text"></input>
-              </Input>
-              <Input>
-                <label>Pessoa de contato</label>
-                <input type="text"></input>
-              </Input>
-              <Input>
-                <label>Telefone para contato</label>
-                <input type="text"></input>
-              </Input>
-              <Bio >
-                <label>Bio</label>
-                <textarea type="text" rows="8"></textarea>
-              </Bio>
-              <Button>Criar conta</Button>
-            </>
-          )}
+          {type === "juridica" && <RegisterPJ/>}
 
-          {type === "entidade" && (
-            <>
-              <Input>
-                <label>Nome fantasia</label>
-                <input type="text"></input>
-              </Input>
-              <Input>
-                <label>E-mail</label>
-                <input type="text"></input>
-              </Input>
-              <DivPassword>
-                <Input>
-                  <label>Senha</label>
-                  <input type="text"></input>
-                </Input>
-                <Input>
-                  <label>Repita senha</label>
-                  <input type="text"></input>
-                </Input>
-              </DivPassword>
-              <Input>
-                <label>Avatar (url)</label>
-                <input type="text"></input>
-              </Input>
-              <Input>
-                <label>Pessoa de contato</label>
-                <input type="text"></input>
-              </Input>
-              <Input>
-                <label>Telefone para contato</label>
-                <input type="text"></input>
-              </Input>
-              <FormTitle>Dados bancários</FormTitle>
-              <DivPassword>
-                <Input>
-                  <label>Agência</label>
-                  <input type="text"></input>
-                </Input>
-                <Input>
-                  <label>Conta</label>
-                  <input type="text"></input>
-                </Input>
-              </DivPassword>
-
-              <Input>
-                <label>Banco</label>
-                <input type="text"></input>
-              </Input>
-              <Input>
-                <label for="tipo">Tipo</label>
-                <Select name="tipo">
-                  <Option>Corrente</Option>
-                  <Option>Poupança</Option>
-                </Select>
-              </Input>
-
-              <Input>
-                <label>Chave pix</label>
-                <input type="text"></input>
-              </Input>
-              <Bio >
-                <label>Bio</label>
-                <textarea type="text" rows="8"></textarea>
-              </Bio>
-              <Button>Criar conta</Button>
-            </>
-          )}
+          {type === "entidade" && <RegisterEntity/>}
         </Form>
       </DivForm>
     </DivMain>
