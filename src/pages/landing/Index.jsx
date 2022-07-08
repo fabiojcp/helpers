@@ -5,7 +5,6 @@ import {
   Container,
   FormBox,
   First,
-  Header,
   Logo,
   Nav,
   Smooth,
@@ -21,6 +20,9 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { FiArrowDownCircle } from "react-icons/fi";
 import { useCampaigns } from "../../providers/campaigns";
+import Footer from "../../components/footer";
+import { Header } from "../../components/header";
+import { FormLogin } from "../../components/formLogin";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -45,7 +47,7 @@ export default function Landing() {
 
   const formSchema = yup.object().shape({
     email: yup.string().email().required(),
-    password: yup.string().required(),
+    password: yup.string().min(4).required(),
   });
 
   const { register, handleSubmit } = useForm({

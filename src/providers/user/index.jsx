@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 import Api from "../../services/Api";
 export const UserContext = createContext();
 
@@ -14,6 +14,10 @@ export const UserProvider = ({ children }) => {
 
   const [isLogged, setIsLogged] = useState(false);
   const [error, setError] = useState("");
+
+  // Modal
+  const [modalOpen, setModalOpen] = useState(false);
+  const [canCloseModal, setCanCloseModal] = useState(true);
 
   const headers = {
     "Content-type": "application/JSON",
@@ -76,6 +80,20 @@ export const UserProvider = ({ children }) => {
       });
   };
 
+  const modal = {
+    isOpen: modalOpen,
+    isCloseable: canCloseModal,
+    open: () => {
+      setModalOpen(true);
+    },
+    close: () => {
+      setModalOpen(false);
+    },
+    closeable: (value) => {
+      setCanCloseModal(value);
+    },
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -90,11 +108,10 @@ export const UserProvider = ({ children }) => {
         registerUser,
         editUser,
         deleteUser,
+        modal,
       }}
     >
       {children}
     </UserContext.Provider>
   );
 };
-
-export const User = () => useContext(UserProvider);
