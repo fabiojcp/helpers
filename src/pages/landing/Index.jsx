@@ -19,7 +19,7 @@ import {
 } from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import { FiArrowDownCircle } from "react-icons/fi";
-import { useCampaigns } from "../../providers/campaigns";
+import { CampaignsContext } from "../../providers/campaigns";
 import Footer from "../../components/footer";
 import { Header } from "../../components/header";
 import { FormLogin } from "../../components/formLogin";
@@ -43,7 +43,10 @@ export default function Landing() {
   do width da tela*/
   window.addEventListener("resize", handleResize);
 
-  const { campaigns, getCampaigns } = useCampaigns();
+  const { campaigns, getCampaigns } = useContext(CampaignsContext);
+  const [campaignsArray, setCampaignsArray] = useState(
+    JSON.parse(campaigns).data
+  );
 
   const formSchema = yup.object().shape({
     email: yup.string().email().required(),
@@ -60,7 +63,10 @@ export default function Landing() {
   };
 
   useEffect(() => {
-    getCampaigns();
+    if (typeof campaigns !== "string") {
+      getCampaigns();
+      setCampaignsArray(campaigns.data);
+    }
   }, []);
   return (
     <>
@@ -139,7 +145,7 @@ export default function Landing() {
         <SecondTitle>Campanhas populares</SecondTitle>
         <PopularCampaigns>
           <Carousel>
-            {campaigns.data.map((campaign, index) => {
+            {campaignsArray.map((campaign, index) => {
               return (
                 <img
                   key={index}
