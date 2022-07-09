@@ -107,7 +107,8 @@ export const ListBox = styled.div`
     div {
       position: absolute;
       padding: 12px;
-      z-index: 1;
+      border-radius: 16px;
+      width: 100%;
       background: linear-gradient(
         0deg,
         rgba(0, 0, 0, 1) 3%,
