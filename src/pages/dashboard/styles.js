@@ -24,6 +24,11 @@ export const UserBox = styled.div`
   height: 45px;
   border-radius: 50%;
   background-color: white;
+  overflow: hidden;
+  img {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 export const Container = styled.div`

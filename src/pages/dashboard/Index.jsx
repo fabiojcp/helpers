@@ -32,7 +32,7 @@ export default function Dashboard() {
         <Menu src={menu} alt="" />
         <Logo src={logo} alt="logo" />
         <UserBox>
-          <img src="" alt="user" />
+          <img src={user.img} alt="user" />
         </UserBox>
       </Header>
       <Container>
