@@ -21,9 +21,9 @@ import Modal from "../../components/modal";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import DashboardEntity from "../../components/dashboardEntity";
+import  DashboardGraphics  from "../../components/dashboardGraphics";
 
-export default function Dashboard() {
+export default function DashboardEntity() {
   const formSchema = yup.object().shape({
     name: yup.string().min(6).required(),
     email: yup.string().email().required(),
@@ -39,11 +39,6 @@ export default function Dashboard() {
   const { user, modal, editUser } = useContext(UserContext);
   const { campaigns } = useContext(CampaignsContext);
 
-  const helpedCampaigns = campaigns.filter(
-    (campaign) =>
-      campaign.helpers.filter((helper) => helper.id === user.id).length > 0
-  );
-
   const onSubmit = (data) => {
     const { phone } = data;
     const newData = { ...data, contacts: { phone: phone } };
@@ -54,24 +49,20 @@ export default function Dashboard() {
   console.log(user);
 
   if (user.type === "entity"){
-    return (
-      <DashboardEntity/>
-    )
-  }
-  return (
-    <>
-      <Header>
-        <Menu src={menu} alt="" />
-        <Logo src={logo} alt="logo" />
-        <UserBox
+    return(
+      <>
+        <Header>
+          <Menu src={menu} alt="" />
+          <Logo src={logo} alt="logo" />
+          <UserBox
           onClick={() => {
             modal.open();
           }}
-        >
+        > 
           <img src={user.img} alt="user" />
         </UserBox>
-      </Header>
-      <Modal
+        </Header>
+        <Modal
         closeable={true}
         header={
           <HeaderModal>
@@ -131,8 +122,7 @@ export default function Dashboard() {
           </StyledForm>
         }
       />
-      <Container>
-        {user.type !== "entity" ? null : (
+        <Container>
           <ListUser>
             <h2>Minhas Campanhas</h2>
             <ScrollBox>
@@ -141,42 +131,24 @@ export default function Dashboard() {
                   <FiPlus style={{ height: "2em", width: "2em" }} />
                   <p>Nova Campanha</p>
                 </li>
-                <li></li>
-                <li></li>
-                <li></li>
+               {campaigns.map(campaign => {
+                if (campaign.ownerID === user.id){
+                  return (
+                    <li>
+                      <img src={campaign.img[0]} alt={campaign.name}/>
+                      <h4>{campaign.name}</h4>
+                    </li>
+                  )
+                }
+               })}
               </ul>
             </ScrollBox>
           </ListUser>
-        )}
-
-        <ListBox>
-          {user.type !== "entity" ? (
-            <h2>Campanhas ajudadas</h2>
-          ) : (
-            <h2>Campanhas criadas recentemente</h2>
-          )}
-          <ScrollBox>
-            <ul>
-              {helpedCampaigns.map((campaign, index) => {
-                return (
-                  <li>
-                    <img
-                      key={index}
-                      src={campaign.img[0]}
-                      alt="imagem da campanha"
-                    />
-                    <div>
-                      <p>{campaign.description}</p>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-          </ScrollBox>
-        </ListBox>
-      </Container>
-
-      <Footer light />
-    </>
-  );
+          <DashboardGraphics/>
+        </Container>
+  
+        <Footer light />
+      </>
+    )
+   }
 }
