@@ -44,6 +44,12 @@ export const UserProvider = ({ children }) => {
     });
   };
 
+  const getUserById = (id) => {
+    return Api.get(`/users/${id}`).then(({ data }) => {
+      return data;
+    });
+  };
+
   const loginUser = (data) => {
     Api.post(`login`, data)
       .then((response) => {
@@ -124,6 +130,7 @@ export const UserProvider = ({ children }) => {
         error,
         setError,
         getUsers,
+        getUserById,
         loginUser,
         registerUser,
         editUser,

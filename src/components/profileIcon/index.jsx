@@ -1,6 +1,6 @@
 import { Image, Initials, ProfileIconContainer } from "./styles";
 
-export default function ProfileIcon({ image, name = "" }) {
+export default function ProfileIcon({ size, image, name = "" }) {
   function getNameInitials(name) {
     const splittedName = name.split(" ");
 
@@ -15,11 +15,11 @@ export default function ProfileIcon({ image, name = "" }) {
   }
 
   return (
-    <ProfileIconContainer>
+    <ProfileIconContainer size={size}>
       {image ? (
         <Image src={image} alt={name} draggable={false} />
       ) : (
-        <Initials>{getNameInitials(name)}</Initials>
+        <Initials size={size}>{getNameInitials(name)}</Initials>
       )}
     </ProfileIconContainer>
   );

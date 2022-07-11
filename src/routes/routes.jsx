@@ -12,7 +12,7 @@ export default function RoutesMap() {
   return (
     <Routes>
       <Route path="/aboutUs" element={<AboutUs />} />
-      <Route path="/campaign" element={<Campaign />} />
+      <Route path="/campaign/:id" element={<Campaign />} />
       <Route path="/campaigns" element={<Campaigns />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/home" element={<Home />} />

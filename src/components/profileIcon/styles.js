@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const ProfileIconContainer = styled.figure`
-  width: 54px;
-  height: 54px;
+  width: ${({ size }) => size || 54}px;
+  height: ${({ size }) => size || 54}px;
 
   display: flex;
   flex-direction: column;
@@ -19,7 +19,7 @@ export const Image = styled.img`
 `;
 
 export const Initials = styled.span`
-  font-size: 24px;
+  font-size: ${({ size }) => size - 20 || 24}px;
   font-weight: 700;
 
   color: #fff;

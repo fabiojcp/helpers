@@ -1,18 +1,48 @@
 import styled from "styled-components";
+import ContentContainer from "../contentContainer";
 
-export const Container = styled.div`
+export const HeaderNavbar = styled.header`
+  position: ${({ $fixed }) => ($fixed ? "fixed" : "relative")};
+  width: 100%;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
+
+  svg.logo {
+    margin-left: 20px;
+
+    width: fit-content;
+    height: 35px;
+  }
+
+  z-index: 5000;
+`;
+
+export const NavbarContent = styled(ContentContainer)`
   display: flex;
-  margin: 0 auto;
-  justify-content: space-between;
   align-items: center;
-  flex-direction: row;
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 8px;
-  padding: 1vh 20px;
-  color: white;
-  height: 7vh;
-  width: 80vw;
-  margin: 2vh 10vw 0 10vw;
-  position: sticky;
-  top: 0;
+  justify-content: space-between;
+
+  padding: 10px 0;
+`;
+
+export const SideNavButton = styled.button`
+  display: inline-flex;
+
+  background-color: transparent;
+  border: none;
+  color: #fff;
+
+  padding: 10px 20px;
+
+  svg {
+    font-size: 30px;
+  }
+`;
+
+export const SideNavActions = styled.div`
+  padding: 0 20px;
+
+  display: flex;
+  justify-content: flex-end;
 `;
