@@ -40,7 +40,7 @@ export default function Dashboard() {
     resolver: yupResolver(formSchema),
   });
 
-  const { user, modal, editUser } = useContext(UserContext);
+  const { user, modal, editUser, theme } = useContext(UserContext);
   const { campaigns } = useContext(CampaignsContext);
 
   const helpedCampaigns = campaigns.filter(
@@ -87,8 +87,8 @@ export default function Dashboard() {
           <button onClick={logout}>Sair da conta</button>
           <form>
             <p>TEMA DE CORES</p>
-            <button>Tema claro</button>
-            <button>Tema escuro</button>
+            <button onClick={theme.setLightTheme}>Tema claro</button>
+            <button onClick={theme.setDarkTheme}>Tema escuro</button>
           </form>
         </ModalUser>
       )}

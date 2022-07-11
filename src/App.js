@@ -3,20 +3,21 @@ import RouteMap from "./routes/routes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AppContainer from "./AppStyle";
-import { CampaignsProvider } from "./providers/campaigns";
-import { UserProvider } from "./providers/user";
+import { UserContext } from "./providers/user";
+import { ThemeProvider } from "styled-components";
+import { themes } from "./style/theme";
+import { useContext } from "react";
 
 export default function App() {
+  const { theme } = useContext(UserContext);
   return (
     <BrowserRouter>
-      <CampaignsProvider>
-        <UserProvider>
-          <AppContainer>
-            <RouteMap />
-            <ToastContainer />
-          </AppContainer>
-        </UserProvider>
-      </CampaignsProvider>
+      <ThemeProvider theme={themes[theme.current]}>
+        <AppContainer>
+          <RouteMap />
+          <ToastContainer />
+        </AppContainer>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }

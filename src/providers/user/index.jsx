@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 
 export const UserContext = createContext();
 
-
 const toastStyle = {
   position: "top-right",
   autoClose: 2000,
@@ -17,7 +16,9 @@ const toastStyle = {
 };
 
 export const UserProvider = ({ children }) => {
-  const userLocal = JSON.parse(localStorage.getItem("user")) || { accessToken: "" };
+  const userLocal = JSON.parse(localStorage.getItem("user")) || {
+    accessToken: "",
+  };
   const [user, setUser] = useState(userLocal);
 
   const usersLocal = localStorage.getItem("users") || [];
@@ -32,6 +33,8 @@ export const UserProvider = ({ children }) => {
   // Modal
   const [modalOpen, setModalOpen] = useState(false);
   const [canCloseModal, setCanCloseModal] = useState(true);
+
+  const [themeState, setThemeState] = useState("light");
 
   const headers = {
     "Content-type": "application/JSON",
@@ -54,15 +57,21 @@ export const UserProvider = ({ children }) => {
     Api.post(`login`, data)
       .then((response) => {
         localStorage.setItem("user", JSON.stringify(response.data.user));
-        localStorage.setItem("Token", JSON.stringify(response.data.accessToken));
+        localStorage.setItem(
+          "Token",
+          JSON.stringify(response.data.accessToken)
+        );
         setUser(response.data.user);
         setToken(response.data.accessToken);
         setIsLogged(true);
       })
       .catch((error) => {
         setError(error);
-        error.response.data === "Cannot find user" && toast.error("Usuário não encontrado", toastStyle);
-        error.response.data === "Incorrect password" ? toast.error("Senha inválida", toastStyle) : toast.error("Erro ao fazer login", toastStyle);
+        error.response.data === "Cannot find user" &&
+          toast.error("Usuário não encontrado", toastStyle);
+        error.response.data === "Incorrect password"
+          ? toast.error("Senha inválida", toastStyle)
+          : toast.error("Erro ao fazer login", toastStyle);
       });
   };
 
@@ -76,9 +85,9 @@ export const UserProvider = ({ children }) => {
       })
       .catch((error) => {
         setError(error);
-        console.log(error.response.data)
+        console.log(error.response.data);
 
-        toast.error("Este email já está cadastrado!", toastStyle)
+        toast.error("Este email já está cadastrado!", toastStyle);
       });
   };
 
@@ -120,6 +129,16 @@ export const UserProvider = ({ children }) => {
     },
   };
 
+  const theme = {
+    current: themeState,
+    setDarkTheme: () => {
+      setThemeState("dark");
+    },
+    setLightTheme: () => {
+      setThemeState("light");
+    },
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -136,6 +155,7 @@ export const UserProvider = ({ children }) => {
         editUser,
         deleteUser,
         modal,
+        theme,
       }}
     >
       {children}

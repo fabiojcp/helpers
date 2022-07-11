@@ -3,9 +3,9 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { AnimatePresence } from "framer-motion";
-import { ThemeProvider } from "styled-components";
-import { themes } from "./style/theme";
 import { GlobalStyles, ResetCSS } from "./style/globalStyles";
+import { CampaignsProvider } from "./providers/campaigns";
+import { UserProvider } from "./providers/user";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const modalRoot = document.getElementById("modal-root");
@@ -15,9 +15,11 @@ root.render(
     <AnimatePresence>
       <ResetCSS />
       <GlobalStyles />
-      <ThemeProvider theme={themes["light"]}>
-        <App />
-      </ThemeProvider>
+      <CampaignsProvider>
+        <UserProvider>
+          <App />
+        </UserProvider>
+      </CampaignsProvider>
     </AnimatePresence>
   </React.StrictMode>
 );

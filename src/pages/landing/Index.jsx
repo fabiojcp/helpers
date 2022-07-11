@@ -16,7 +16,7 @@ import {
   SecondTitle,
   SecondText,
   PopularCampaigns,
-  Header
+  Header,
 } from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import { FiArrowDownCircle } from "react-icons/fi";
@@ -44,7 +44,6 @@ export default function Landing() {
 
   const { campaigns, getCampaigns } = useContext(CampaignsContext);
 
-
   const formSchema = yup.object().shape({
     email: yup.string().email().required(),
     password: yup.string().min(4).required(),
@@ -62,8 +61,6 @@ export default function Landing() {
   useEffect(() => {
     getCampaigns();
   }, []);
-
-  console.log(campaigns);
 
   return (
     <div>
@@ -142,15 +139,16 @@ export default function Landing() {
         <SecondTitle>Campanhas populares</SecondTitle>
         <PopularCampaigns>
           <Carousel>
-            {campaigns.map((campaign, index) => {
-              return (
-                <img
-                  key={index}
-                  src={campaign.img[0]}
-                  alt={campaign.description}
-                />
-              );
-            })}
+            {campaigns &&
+              campaigns.map((campaign, index) => {
+                return (
+                  <img
+                    key={index}
+                    src={campaign.img[0]}
+                    alt={campaign.description}
+                  />
+                );
+              })}
           </Carousel>
         </PopularCampaigns>
       </Second>
