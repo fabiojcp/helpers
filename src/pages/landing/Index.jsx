@@ -30,7 +30,7 @@ import { useContext, useEffect, useState } from "react";
 import { Carousel } from "rsuite";
 
 export default function Landing() {
-  const { loginUser } = useContext(UserContext);
+  const { loginUser, isLogged } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -44,6 +44,7 @@ export default function Landing() {
 
   const { campaigns, getCampaigns } = useContext(CampaignsContext);
 
+
   const formSchema = yup.object().shape({
     email: yup.string().email().required(),
     password: yup.string().min(4).required(),
@@ -55,7 +56,7 @@ export default function Landing() {
 
   const onSubmit = (data) => {
     loginUser(data); // eu não tenho certeza se a função de login esta funcionando
-    navigate("/dashboard");
+    isLogged && navigate("/dashboard");
   };
 
   useEffect(() => {

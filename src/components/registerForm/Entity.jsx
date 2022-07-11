@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Button from "../../components/button";
 import { FormTitle, DivPassword, Select, Option, Bio } from "./style";
 import Input from "../../components/input";
@@ -7,6 +7,8 @@ import { EyeFilled, EyeInvisibleFilled } from "@ant-design/icons";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { UserContext } from "../../providers/user";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterEntity() {
   const [passwordType, setpasswordType] = useState("password");
@@ -28,7 +30,7 @@ export default function RegisterEntity() {
       .string()
       .oneOf([yup.ref("password")], "Senhas não conferem")
       .required("Confirmação obrigatória!"),
-    avatar: yup.string().url("Não é uma URL válida"),
+    img: yup.string().url("Não é uma URL válida"),
     answerable: yup.string().required("Nome obrigatório!"),
     phone: yup
       .number()
@@ -50,8 +52,30 @@ export default function RegisterEntity() {
     resolver: yupResolver(schema),
   });
 
+  const { registerUser, loginUser, isLogged } = useContext(UserContext);
+  const navigate = useNavigate();
   function onSubmitFunction(data) {
-    console.log(data);
+    registerUser({
+      email: data.email,
+      name: data.name,
+      password: data.password,
+      type: "entity",
+      img: data.img,
+      description: data.bio,
+      contacts : {
+        phone: data.phone,
+        contactPerson: data.answerable,
+        email: data.email
+      },
+      bankDetails: {
+        bankName: data.bank,
+        agency: data.ag,
+        account: data.cc,
+        accountType: data.accountType
+      }
+    });
+    loginUser({ email: data.email, password: data.password });
+    isLogged && navigate("/dashboard");
   }
 
   return (
@@ -90,8 +114,14 @@ export default function RegisterEntity() {
             <EyeInvisibleFilled onClick={changePasswordType} />
           )}
           <label htmlFor="confirmpassword">Repita senha</label>
-          <input type={passwordType} id="confirmpassword" {...register("passwordConfirm")}></input>
-          {errors.passwordConfirm && <span>{errors.passwordConfirm.message}</span>}
+          <input
+            type={passwordType}
+            id="confirmpassword"
+            {...register("passwordConfirm")}
+          ></input>
+          {errors.passwordConfirm && (
+            <span>{errors.passwordConfirm.message}</span>
+          )}
         </Input>
       </DivPassword>
 
@@ -104,30 +134,32 @@ export default function RegisterEntity() {
         scoreWordStyle={{ color: "white" }}
       />
       <Input>
-        <label htmlFor="avatar"  {...register("avatar")}>Avatar (url)</label>
+        <label htmlFor="avatar" {...register("img")}>
+          Avatar (url)
+        </label>
         <input type="text" id="avatar"></input>
-        {errors.avatar && <span>{errors.avatar.message}</span>}
+        {errors.img && <span>{errors.img.message}</span>}
       </Input>
       <Input>
-        <label htmlFor="answerable" >Pessoa de contato</label>
+        <label htmlFor="answerable">Pessoa de contato</label>
         <input type="text" id="answerable" {...register("answerable")}></input>
         {errors.answerable && <span>{errors.answerable.message}</span>}
       </Input>
       <Input>
         <label htmlFor="phone">Telefone para contato</label>
-        <input type="text" id="phone"  {...register("phone")}></input>
+        <input type="text" id="phone" {...register("phone")}></input>
         {errors.phone && <span>{errors.phone.message}</span>}
       </Input>
       <FormTitle>Dados bancários</FormTitle>
       <DivPassword>
         <Input>
           <label htmlFor="ag">Agência</label>
-          <input type="text" id="ag" {...register("ag")} ></input>
+          <input type="text" id="ag" {...register("ag")}></input>
           {errors.ag && <span>{errors.ag.message}</span>}
         </Input>
         <Input>
           <label htmlFor="cc">Conta</label>
-          <input type="text" id="cc"  {...register("cc")}></input>
+          <input type="text" id="cc" {...register("cc")}></input>
           {errors.cc && <span>{errors.cc.message}</span>}
         </Input>
       </DivPassword>

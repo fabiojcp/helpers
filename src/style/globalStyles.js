@@ -26,6 +26,7 @@ export const GlobalStyles = createGlobalStyle`
     margin-top: -7.8vh;
     color: white;
     cursor: pointer;
+    overflow: none;
   }
   
   @media (min-width: 540px) {
@@ -36,10 +37,14 @@ export const GlobalStyles = createGlobalStyle`
       cursor: pointer;
     }
   }
+
+  path {
+    overflow: hidden;
+  }
   .PasswordStrengthBar > p {
     color: white;
   }
-}
+
     scroll-behavior: smooth;
   }
 

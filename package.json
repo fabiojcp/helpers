@@ -4,12 +4,12 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "@hookform/resolvers": "^2.9.4",
     "@hookform/resolvers": "^2.9.3",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "axios": "^0.27.2",
+    "clsx": "^1.2.1",
     "framer-motion": "^6.3.16",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Button from "../../components/button";
 import { DivPassword, Bio } from "./style";
 import Input from "../../components/input";
@@ -7,6 +7,8 @@ import { EyeFilled, EyeInvisibleFilled } from "@ant-design/icons";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { UserContext } from "../../providers/user";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterPJ() {
   const [passwordType, setpasswordType] = useState("password");
@@ -46,9 +48,24 @@ export default function RegisterPJ() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
+  const { registerUser, loginUser, isLogged } = useContext(UserContext)
+  const navigate = useNavigate();
   function onSubmitFunction(data) {
-    console.log(data);
+    registerUser({
+      email: data.email,
+      name: data.name,
+      password: data.password,
+      type: "juridica",
+      img: data.img,
+      description: data.bio,
+      contacts : {
+        phone: data.phone,
+        contactPerson: data.answerable,
+        email: data.email
+      }
+    });
+    loginUser({email: data.email, password: data.password});
+    isLogged && navigate("/dashboard");
   }
 
   return (
