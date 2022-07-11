@@ -24,6 +24,11 @@ export const UserBox = styled.div`
   height: 45px;
   border-radius: 50%;
   background-color: white;
+  overflow: hidden;
+  img {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 export const Container = styled.div`
@@ -76,8 +81,6 @@ export const ScrollBox = styled.div`
 `;
 
 export const ListBox = styled.div`
-  height: 28vh;
-
   h2 {
     font-size: 30px;
     font-weight: bold;
@@ -89,7 +92,6 @@ export const ListBox = styled.div`
     height: 80%;
     gap: 20px;
   }
-
   li {
     margin-top: 15px;
     height: 90%;
@@ -101,5 +103,30 @@ export const ListBox = styled.div`
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    position: relative;
+    div {
+      position: absolute;
+      padding: 12px;
+      border-radius: 16px;
+      width: 100%;
+      background: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 1) 3%,
+        rgba(0, 0, 0, 0.5) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      bottom: 0px;
+      color: white;
+    }
+  }
+  li:hover {
+    div {
+      display: initial;
+    }
+  }
+  img {
+    height: 100%;
+    width: 100%;
+    border-radius: 16px;
   }
 `;
