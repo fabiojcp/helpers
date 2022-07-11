@@ -138,7 +138,7 @@ export default function Landing() {
       <Second id="fourth">
         <SecondTitle>Campanhas populares</SecondTitle>
         <PopularCampaigns>
-        <Carousel>
+          <Carousel>
             {campaigns.map((campaign, index) => {
               return (
                 <img
@@ -149,14 +149,13 @@ export default function Landing() {
               );
             })}
           </Carousel>
-
         </PopularCampaigns>
       </Second>
       <Second id="fifth">
         <SecondTitle>Sobre a equipe</SecondTitle>
         <SecondText></SecondText>
       </Second>
-      <Footer isLined/>
+      <Footer isLined />
     </>
   );
 }

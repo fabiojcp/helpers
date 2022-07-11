@@ -16,11 +16,11 @@ export const CampaignsProvider = ({ children }) => {
   };
 
   const getCampaigns = () => {
-     Api.get("/campaigns").then((response) => {
+    Api.get("/campaigns").then((response) => {
       localStorage.setItem("campaigns", JSON.stringify(response.data));
       setCampaigns(response.data);
     });
-    return campaigns
+    return campaigns;
   };
 
   const addCampaign = (data) => {

@@ -1,9 +1,9 @@
 import { Container, Line } from "./styles";
 
-const Footer = ({ isLined = false, light = false }) => {
+const Footer = ({ isLined = false }) => {
   return (
     <Container>
-      <Line isLined={isLined} light={light}></Line>
+      <Line isLined={isLined}></Line>
       <p>2022 (c) Todos os direitos reservados</p>
     </Container>
   );

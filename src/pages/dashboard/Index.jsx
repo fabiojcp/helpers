@@ -1,58 +1,155 @@
 import logo from "../../assets/imgs/LogotipoBranca.svg";
-import menu from "../../assets/imgs/MenuIcon.svg";
 import Footer from "../../components/footer";
-import { FiPlus } from "react-icons/fi";
 import {
+  CardLi,
+  CardLiAll,
+  CardUl,
   Container,
   Header,
   ListBox,
+  ListContainer,
   ListUser,
   Logo,
-  Menu,
   ScrollBox,
-  UserBox,
+  Tilte,
+  TilteAll,
 } from "./styles";
+import CampaignCard from "../../components/campaignCard";
+import ProfileIcon from "../../components/profileIcon";
+import { useContext, useEffect } from "react";
+import { CampaignsContext } from "../../providers/campaigns";
+import { UserContext } from "../../providers/user";
 
 export default function Dashboard() {
+  const { campaigns, getCampaigns } = useContext(CampaignsContext);
+  const { user } = useContext(UserContext);
+
+  useEffect(() => {
+    getCampaigns();
+  }, []);
+
   return (
-    <>
+    <C>
       <Header>
-        <Menu src={menu} alt="" />
         <Logo src={logo} alt="logo" />
-        <UserBox>
-          <img src="" alt="user" />
-        </UserBox>
+        <ProfileIcon name={user.name} image={user.img} />
       </Header>
-      <Container>
+      <ListContainer>
         <ListUser>
-          <h2>Minhas Campanhas</h2>
+          <Tilte>Minhas Campanhas</Tilte>
           <ScrollBox>
-            <ul>
-              <li>
-                <FiPlus style={{ height: "2em", width: "2em" }} />
-                <p>Nova Campanha</p>
-              </li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
+            <CardUl>
+              <CardLi>
+                <CampaignCard
+                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
+                  title="teste"
+                />
+              </CardLi>
+              <CardLi>
+                <CampaignCard
+                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
+                  title="teste"
+                />
+              </CardLi>
+              <CardLi>
+                <CampaignCard
+                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
+                  title="teste"
+                />
+              </CardLi>
+              <CardLi>
+                <CampaignCard
+                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
+                  title="teste"
+                />
+              </CardLi>
+              <CardLi>
+                <CampaignCard
+                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
+                  title="teste"
+                />
+              </CardLi>
+              <CardLi>
+                <CampaignCard
+                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
+                  title="teste"
+                />
+              </CardLi>
+              <CardLi>
+                <CampaignCard
+                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
+                  title="teste"
+                />
+              </CardLi>
+            </CardUl>
           </ScrollBox>
         </ListUser>
 
         <ListBox>
-          <h2>Campanhas criadas recentemente</h2>
+          <TilteAll>Campanhas criadas recentemente</TilteAll>
           <ScrollBox>
-            <ul>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
+            <CardUl>
+              {campaigns.map((campaign, index) => {
+                return (
+                  <CardLiAll key={campaign.id}>
+                    <CampaignCard
+                      image={campaign.img[0]}
+                      title={campaign.description}
+                      isVolunteer={campaign.type.material}
+                      isDonation={campaign.type.financial}
+                      description={campaign.description}
+                      requirements={[
+                        "requirements1",
+                        "requirements2",
+                        "requirements3",
+                      ]}
+                    />
+                  </CardLiAll>
+                );
+              })}
+              <CardLi>
+                <CampaignCard
+                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
+                  title="teste"
+                  isVolunteer
+                  description="Testando um texto muito grandetestando um texto muito grande testando um texto muito grande testando um texto muito grande"
+                  requirements={[
+                    "requirements1",
+                    "requirements2",
+                    "requirements3",
+                  ]}
+                />
+              </CardLi>
+              <CardLi>
+                <CampaignCard
+                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
+                  title="teste"
+                  isVolunteer
+                  description="campanha muito da hora"
+                />
+              </CardLi>
+              <CardLi>
+                <CampaignCard
+                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
+                  title="teste"
+                  isVolunteer
+                  description="campanha muito da hora"
+                />
+              </CardLi>
+              <CardLi>
+                <CampaignCard
+                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
+                  title="teste"
+                  isVolunteer
+                  description="campanha muito da hora"
+                />
+              </CardLi>
+            </CardUl>
           </ScrollBox>
         </ListBox>
-      </Container>
+      </ListContainer>
 
-      <Footer light />
-    </>
+      <Footer />
+    </C>
   );
 }

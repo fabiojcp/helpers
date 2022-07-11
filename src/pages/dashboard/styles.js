@@ -1,4 +1,18 @@
 import styled from "styled-components";
+import device from "../../style/devices";
+
+export const Container = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  @media screen and (${device.mobile}) {
+  }
+
+  @media screen and (${device.laptop}) {
+  }
+
+  @media screen and (${device.desktop}) {
+  }
+`;
 
 export const Header = styled.div`
   background: #123571;
@@ -7,10 +21,6 @@ export const Header = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-`;
-
-export const Menu = styled.img`
-  height: 60%;
 `;
 
 export const Logo = styled.img`
@@ -26,80 +36,84 @@ export const UserBox = styled.div`
   background-color: white;
 `;
 
-export const Container = styled.div`
+export const ListContainer = styled.div`
   height: 75vh;
   width: 100vw;
-  padding-left: 20px;
   margin-top: 3vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
   color: #123571;
-  gap: 50px;
+  gap: 20px;
 `;
 
 export const ListUser = styled.div`
   width: 90vw;
   border-radius: 16px;
-  background-color: #82c3ff;
-  padding: 10px;
-  height: 28vh;
-
-  h2 {
-    font-size: 30px;
-    font-weight: bold;
-  }
-
-  ul {
-    min-width: 100vw;
-    display: flex;
-    height: 80%;
-    gap: 20px;
-  }
-
-  li {
-    margin-top: 15px;
-    height: 90%;
-    border: 3px dotted #123571;
-    min-width: 250px;
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-  }
+  background: #bee0ff;
+  padding: 10px 0;
+  height: 40%;
+  border: 2px solid #82c3ff;
 `;
 
 export const ScrollBox = styled.div`
-  overflow: scroll;
+  overflow-x: scroll;
   height: 100%;
 `;
 
+export const CardLi = styled.li`
+  margin-top: 20px;
+  height: 100%;
+  min-width: 310px;
+  width: 310px;
+
+  :first-child {
+    margin-left: 20px;
+  }
+`;
+
 export const ListBox = styled.div`
-  height: 28vh;
+  width: 100vw;
+`;
 
-  h2 {
-    font-size: 30px;
-    font-weight: bold;
+export const CardUl = styled.li`
+  list-style: none;
+  min-width: 100vw;
+  display: flex;
+  height: 80%;
+  gap: 20px;
+`;
+
+export const Tilte = styled.h2`
+  padding-left: 20px;
+  font-size: 30px;
+  font-weight: bold;
+`;
+
+export const CardLiAll = styled.li`
+  margin-top: 20px;
+  height: 100%;
+  min-width: 310px;
+  width: 310px;
+
+  :first-child {
+    margin-left: 20px;
+
+    @media (min-width: 780px) {
+      margin-left: 100px;
+    }
+  }
+`;
+
+export const TilteAll = styled.h2`
+  padding-left: 20px;
+  font-size: 30px;
+  font-weight: bold;
+
+  @media screen and (${device.laptop}) {
   }
 
-  ul {
-    min-width: 100vw;
-    display: flex;
-    height: 80%;
-    gap: 20px;
-  }
-
-  li {
-    margin-top: 15px;
-    height: 90%;
-    border: 3px solid #123571;
-    min-width: 250px;
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
+  @media screen and (${device.desktop}) {
+    padding-left: 100px;
   }
 `;
