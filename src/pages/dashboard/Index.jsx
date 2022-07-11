@@ -10,6 +10,7 @@ import {
   ListUser,
   Logo,
   Menu,
+  ModalUser,
   ScrollBox,
   StyledForm,
   UserBox,
@@ -21,6 +22,8 @@ import Modal from "../../components/modal";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Dashboard() {
   const formSchema = yup.object().shape({
@@ -30,6 +33,8 @@ export default function Dashboard() {
     gender: yup.string().min(4).required(),
     description: yup.string().min(6).required(),
   });
+
+  const navigate = useNavigate();
 
   const { register, handleSubmit } = useForm({
     resolver: yupResolver(formSchema),
@@ -50,7 +55,12 @@ export default function Dashboard() {
     editUser(newData);
   };
 
-  console.log(user);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const logout = () => {
+    navigate("/");
+  };
+
   return (
     <>
       <Header>
@@ -58,12 +68,30 @@ export default function Dashboard() {
         <Logo src={logo} alt="logo" />
         <UserBox
           onClick={() => {
-            modal.open();
+            setModalIsOpen(true);
           }}
         >
           <img src={user.img} alt="user" />
         </UserBox>
       </Header>
+      {modalIsOpen && (
+        <ModalUser>
+          <button
+            onClick={() => {
+              setModalIsOpen(false);
+              modal.open();
+            }}
+          >
+            Editar perfil
+          </button>
+          <button onClick={logout}>Sair da conta</button>
+          <form>
+            <p>TEMA DE CORES</p>
+            <button>Tema claro</button>
+            <button>Tema escuro</button>
+          </form>
+        </ModalUser>
+      )}
       <Modal
         closeable={true}
         header={
