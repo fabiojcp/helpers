@@ -5,6 +5,7 @@ export const CampaignsContext = createContext();
 export const CampaignsProvider = ({ children }) => {
   const campaignsLocal = localStorage.getItem("campaigns") || [];
   const [campaigns, setCampaigns] = useState(campaignsLocal);
+  const [selectedCampaign, setSelectedCampaign] = useState({});
 
   const user = localStorage.getItem("user") || { accessToken: "" };
 
@@ -16,9 +17,16 @@ export const CampaignsProvider = ({ children }) => {
   };
 
   const getCampaigns = () => {
-    Api.get("/campaigns").then((response) => {
+    return Api.get("/campaigns").then((response) => {
       localStorage.setItem("campaigns", JSON.stringify(response));
       setCampaigns(response);
+    });
+  };
+
+  const getCampaign = (id) => {
+    return Api.get(`/campaigns/${id}`).then(({ data }) => {
+      setSelectedCampaign(data);
+      return data;
     });
   };
 
@@ -48,10 +56,12 @@ export const CampaignsProvider = ({ children }) => {
     <CampaignsContext.Provider
       value={{
         campaigns,
+        selectedCampaign,
         addCampaign,
         editCampaign,
         deleteCampaign,
         getCampaigns,
+        getCampaign,
       }}
     >
       {children}
