@@ -16,12 +16,12 @@ import {
   SecondTitle,
   SecondText,
   PopularCampaigns,
+  Header
 } from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import { FiArrowDownCircle } from "react-icons/fi";
 import { CampaignsContext } from "../../providers/campaigns";
 import Footer from "../../components/footer";
-import { Header } from "../../components/header";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -66,7 +66,7 @@ export default function Landing() {
   console.log(campaigns);
 
   return (
-    <>
+    <div>
       <Header>
         <Logo src={logo} alt="logo" />
         {windowWidth > 700 ? (
@@ -159,6 +159,6 @@ export default function Landing() {
         <SecondText></SecondText>
       </Second>
       <Footer isLined />
-    </>
+    </div>
   );
 }
