@@ -25,6 +25,7 @@ export const UserBox = styled.div`
   border-radius: 50%;
   background-color: white;
   overflow: hidden;
+  cursor: pointer;
   img {
     height: 100%;
     width: 100%;
@@ -129,4 +130,26 @@ export const ListBox = styled.div`
     width: 100%;
     border-radius: 16px;
   }
+`;
+
+export const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  input {
+    font-size: 16px;
+    padding: 3px;
+    border: 2px solid #123571;
+    border-radius: 6px;
+  }
+  div {
+    display: flex;
+    flex-direction: column;
+    margin: 4px;
+  }
+`;
+
+export const HeaderModal = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
 `;
