@@ -1,9 +1,23 @@
 import { createContext, useState } from "react";
 import Api from "../../services/Api";
+import { toast } from "react-toastify";
+
 export const UserContext = createContext();
 
+
+const toastStyle = {
+  position: "top-right",
+  autoClose: 2000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  toastId: 1,
+};
+
 export const UserProvider = ({ children }) => {
-  const userLocal = localStorage.getItem("user") || { accessToken: "" };
+  const userLocal = JSON.parse(localStorage.getItem("user")) || { accessToken: "" };
   const [user, setUser] = useState(userLocal);
 
   const usersLocal = localStorage.getItem("users") || [];
@@ -39,34 +53,40 @@ export const UserProvider = ({ children }) => {
   const loginUser = (data) => {
     Api.post(`login`, data)
       .then((response) => {
-        localStorage.setItem("user", JSON.stringify(response));
-        setUser(response);
-        setToken(response.accessToken);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        localStorage.setItem("Token", JSON.stringify(response.data.accessToken));
+        setUser(response.data.user);
+        setToken(response.data.accessToken);
         setIsLogged(true);
       })
       .catch((error) => {
         setError(error);
+        error.response.data === "Cannot find user" && toast.error("Usuário não encontrado", toastStyle);
+        error.response.data === "Incorrect password" ? toast.error("Senha inválida", toastStyle) : toast.error("Erro ao fazer login", toastStyle);
       });
   };
 
   const registerUser = (data) => {
     Api.post(`register`, data)
       .then((response) => {
-        localStorage.setItem("user", JSON.stringify(response));
-        setUser(response);
-        setToken(response.accessToken);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        setUser(response.data.user);
+        setToken(response.data.accessToken);
         setIsLogged(true);
       })
       .catch((error) => {
         setError(error);
+        console.log(error.response.data)
+
+        toast.error("Este email já está cadastrado!", toastStyle)
       });
   };
 
   const editUser = (data) => {
     Api.patch(`user/${user.id}`, data, { headers: headers })
       .then((response) => {
-        localStorage.setItem("user", JSON.stringify(response));
-        setUser(response);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        setUser(response.data.user);
       })
       .catch((error) => {
         setError(error);

@@ -3,11 +3,11 @@ import Api from "../../services/Api";
 export const CampaignsContext = createContext();
 
 export const CampaignsProvider = ({ children }) => {
-  const campaignsLocal = localStorage.getItem("campaigns") || [];
+  const campaignsLocal = JSON.parse(localStorage.getItem("campaigns")) || [];
   const [campaigns, setCampaigns] = useState(campaignsLocal);
   const [selectedCampaign, setSelectedCampaign] = useState({});
 
-  const user = localStorage.getItem("user") || { accessToken: "" };
+  const user = JSON.parse(localStorage.getItem("user")) || { accessToken: "" };
 
   const token = user.accessToken || "";
 
@@ -17,10 +17,11 @@ export const CampaignsProvider = ({ children }) => {
   };
 
   const getCampaigns = () => {
-    return Api.get("/campaigns").then((response) => {
-      localStorage.setItem("campaigns", JSON.stringify(response));
-      setCampaigns(response);
+     Api.get("/campaigns").then((response) => {
+      localStorage.setItem("campaigns", JSON.stringify(response.data));
+      setCampaigns(response.data);
     });
+    return campaigns
   };
 
   const getCampaign = (id) => {

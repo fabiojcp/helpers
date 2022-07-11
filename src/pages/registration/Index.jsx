@@ -13,6 +13,9 @@ import {
 } from "./style";
 import { Logo } from "../landing/styles";
 import { Link } from "react-router-dom";
+import RegisterEntity from "../../components/registerForm/Entity";
+import RegisterPF from "../../components/registerForm/PF";
+import RegisterPJ from "../../components/registerForm/PJ";
 
 export default function Registration() {
   const [type, setType] = useState("");
@@ -29,7 +32,7 @@ export default function Registration() {
           </Link>
           <P>Crie a sua conta abaixo</P>
         </FormHeader>
-        <Form>
+        <Form onSubmit={event => event.preventDefault()}>
           {type === "" && (
             <>
               <FormTitle>ESCOLHA O TIPO DE CONTA</FormTitle>
@@ -39,15 +42,16 @@ export default function Registration() {
               <Button onClick={() => setType("juridica")}>
                 Sou uma pessoa jurídica
               </Button>
-              <Button onClick={() => setType("entity")}>
+              <Button onClick={() => setType("entidade")}>
                 Sou uma organização
               </Button>
             </>
           )}
-          {type === "fisica" && (
-          <>
-          
-          </>)}
+          {type === "fisica" && <RegisterPF /> }
+
+          {type === "juridica" && <RegisterPJ/>}
+
+          {type === "entidade" && <RegisterEntity/>}
         </Form>
       </DivForm>
     </DivMain>

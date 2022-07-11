@@ -9,4 +9,8 @@ export const Container = styled.button`
   font-size: 16px;
   font-weight: bolder;
   width: 100%;
+  cursor: pointer;
+  :hover {
+    background: #82c3ff;
+  }
 `;
