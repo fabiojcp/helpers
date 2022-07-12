@@ -10,9 +10,11 @@ export function UserMenu({
   setModalType,
 }) {
   const navigate = useNavigate();
-  const { modal } = useContext(UserContext);
+  const { modal, setIsLogged } = useContext(UserContext);
   const logout = () => {
     navigate("/");
+    window.localStorage.clear();
+    setIsLogged(false);
   };
 
   return (

@@ -143,6 +143,7 @@ export const UserProvider = ({ children }) => {
         isLogged,
         error,
         setError,
+        setIsLogged,
         getUsers,
         getUserById,
         loginUser,
