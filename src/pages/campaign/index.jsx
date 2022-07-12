@@ -186,10 +186,9 @@ export default function Campaign() {
     } else {
       const helpers = [...thisCampaign.helpers, user];
 
-      editCampaign({
-        id: thisCampaign.id,
+      editCampaign(params.id, {helpers: [
         ...helpers,
-      });
+      ]});
     }
   }
 
@@ -200,13 +199,13 @@ export default function Campaign() {
       ...thisCampaign.raised,
       {
         ...user,
-        quantity,
+        total: quantity,
       },
     ];
 
-    editCampaign(thisCampaign.id, {
+    editCampaign(params.id, {raised: [
       ...raised,
-    });
+    ]});
   }
 
   const date = new Date(thisCampaign?.date);
