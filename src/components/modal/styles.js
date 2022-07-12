@@ -15,6 +15,8 @@ export const ModalContainer = styled.div`
 
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(20px);
+
+  z-index: 6000;
 `;
 
 export const ModalArea = styled.aside`
