@@ -5,7 +5,8 @@ export const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 5vw;
+  padding: 0 20px;
+  position: relative;
 `;
 export const Logo = styled.img`
   height: 2.2rem;
@@ -35,9 +36,42 @@ export const ListContainer = styled.div`
 export const ListUser = styled.div`
   width: 90vw;
   border-radius: 16px;
-  background: #BEE0FF;
-  padding: 0.5rem 0;
-  border: 2px solid #82C3FF;
+  background-color: #82c3ff;
+  padding: 10px;
+  height: 28vh;
+
+  h2 {
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  ul {
+    min-width: 100vw;
+    display: flex;
+    height: 80%;
+    gap: 20px;
+  }
+
+  li {
+    margin-top: 15px;
+    height: 90%;
+    border: 3px dotted #123571;
+    min-width: 250px;
+    max-width: 250px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    padding-bottom: 15px;
+  }
+
+  img {
+    width: 100%;
+    height: 50%;
+    border-radius: 16px;
+  }
 `;
 export const ScrollBox = styled.div`
   overflow-x: scroll;

@@ -16,22 +16,22 @@ export const Container = styled.div`
 
 export const Header = styled.div`
   background: #123571;
-  height: 9vh;
+  height: 8vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 5vw;
 `;
 
 export const Logo = styled.img`
-  height: 50%;
+  height: 3rem;
 `;
 
 export const UserBox = styled.div`
   display: flex;
   align-items: center;
-  width: 45px;
-  height: 45px;
+  width: 4rem;
+  height: 4rem;
   border-radius: 50%;
   background-color: white;
   overflow: hidden;
@@ -51,7 +51,7 @@ export const ListContainer = styled.div`
   flex-direction: column;
   align-items: center;
   color: #123571;
-  gap: 20px;
+  gap: 2vw;
 `;
 
 export const ListUser = styled.div`
@@ -59,7 +59,6 @@ export const ListUser = styled.div`
   border-radius: 16px;
   background: #bee0ff;
   padding: 10px 0;
-  height: 38%;
   border: 2px solid #82c3ff;
   @media (min-width: 780px) {
   }
@@ -67,22 +66,20 @@ export const ListUser = styled.div`
 
 export const ScrollBox = styled.div`
   overflow-x: scroll;
-  height: 100%;
 `;
 
 export const CardLi = styled.li`
-  margin-top: 20px;
+  margin-top: 2rem;
   height: 100%;
-  min-width: 310px;
-  width: 310px;
+  min-width: 25rem;
 
   :first-child {
-    margin-left: 20px;
+    margin-left: 2vw;
   }
 `;
 
 export const ListBox = styled.div`
-  width: 100vw;
+  width: 100%;
 `;
 
 export const CardUl = styled.li`
@@ -91,22 +88,21 @@ export const CardUl = styled.li`
   display: flex;
   height: 80%;
   gap: 20px;
+  cursor: pointer;
 `;
 
-export const Tilte = styled.h2`
-  padding-left: 20px;
-  font-size: 30px;
+export const Title = styled.h2`
+  padding-left: 2vw;
+  font-size: 2rem;
   font-weight: bold;
 `;
 
 export const CardLiAll = styled.li`
-  margin-top: 20px;
-  height: 100%;
-  min-width: 310px;
-  width: 310px;
+  margin-top: 2rem;
+  min-width: 25rem;
 
   :first-child {
-    margin-left: 20px;
+    margin-left: 2vw;
 
     @media (min-width: 780px) {
       margin-left: 5vw;
@@ -114,24 +110,23 @@ export const CardLiAll = styled.li`
   }
 `;
 
-export const TilteAll = styled.h2`
+export const TitleAll = styled.h2`
   text-align: center;
-  padding-left: 20px;
-  font-size: 30px;
+  font-size: 2rem;
   font-weight: bold;
-
-  @media screen and (${device.laptop}) {
-  }
-
-  @media screen and (${device.desktop}) {
-    padding-left: 100px;
-  }
 `;
 
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   input {
+    font-size: 16px;
+    padding: 3px;
+    border: 2px solid #123571;
+    border-radius: 6px;
+  }
+
+  select {
     font-size: 16px;
     padding: 3px;
     border: 2px solid #123571;

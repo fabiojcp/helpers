@@ -11,6 +11,13 @@ export const TeamProvider = ({ children }) => {
       GitHub: "https://github.com/andrrms",
     },
     {
+      name: "Clara Cavalcante",
+      title: "Quality assurance",
+      img: "https://i.imgur.com/Ba7YZPV.jpg",
+      LinkedIn: "https://www.linkedin.com/in/clara-mattos-2b63b4230/",
+      GitHub: "https://github.com/Clara-Carvalho",
+    },
+    {
       name: "Fábio Casanova",
       title: "Tech Lead",
       img: "https://i.imgur.com/ZCKn6l7.jpg",

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   font-weight: bold;
@@ -11,7 +11,7 @@ export const Container = styled.div`
   input {
     border-radius: 8px;
     border: 2px solid white;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: ${({ theme }) => theme.primary[950]}30;
     padding: 15px 10%;
   }
   label {
@@ -20,4 +20,16 @@ export const Container = styled.div`
   input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
+
+  ${({ $dark }) =>
+    $dark &&
+    css`
+      input {
+        border-color: ${({ theme }) => theme.primary[100]};
+      }
+
+      label {
+        color: ${({ theme }) => theme.primary[100]};
+      }
+    `}
 `;
