@@ -39,6 +39,7 @@ export default function DashboardPJ() {
   const [phone, setPhone] = useState(user.contacts.phone);
   const [description, setDescription] = useState(user.description);
   const [avatar, setAvatar] = useState(user.description);
+  const [contact, setContact] = useState(user.contacts.contactPerson);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -51,6 +52,7 @@ export default function DashboardPJ() {
       img: avatar,
       contacts: {
         phone: phone,
+        contactPerson: contact,
       },
     };
     editUser(newData);
@@ -62,7 +64,7 @@ export default function DashboardPJ() {
   );
 
   return (
-    <Container>
+    <>
       <Header>
         <Logo src={logo} alt="logo" />
         <div
@@ -102,7 +104,10 @@ export default function DashboardPJ() {
             <CardUl>
               {campaigns.map((campaign, index) => {
                 return (
-                  <CardLiAll key={campaign.id} onClick={() => navigate(`/campaign/${campaign.id}`)}>
+                  <CardLiAll
+                    key={campaign.id}
+                    onClick={() => navigate(`/campaign/${campaign.id}`)}
+                  >
                     <CampaignCard
                       image={campaign.img[0]}
                       title={campaign.name}
@@ -155,12 +160,12 @@ export default function DashboardPJ() {
               />
             </div>
             <div>
-              <label htmlFor="phone">Telefone de contato</label>
+              <label htmlFor="avatar">Avatar</label>
               <input
-                name="phone"
-                placeholder={user.contacts.phone}
+                name="avatar"
+                placeholder={user.img}
                 type="text"
-                onChange={(event) => setPhone(event.target.value)}
+                onChange={(event) => setAvatar(event.target.value)}
               />
             </div>
             <div>
@@ -172,12 +177,21 @@ export default function DashboardPJ() {
               />
             </div>
             <div>
-              <label htmlFor="avatar">Avatar</label>
+              <label htmlFor="phone">Telefone de contato</label>
               <input
-                name="avatar"
-                placeholder={user.img}
+                name="phone"
+                placeholder={user.contacts.phone}
                 type="text"
-                onChange={(event) => setAvatar(event.target.value)}
+                onChange={(event) => setPhone(event.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="contac">Responsável</label>
+              <input
+                name="contac"
+                placeholder={user.contacts.contactPerson}
+                type="text"
+                onChange={(event) => setContact(event.target.value)}
               />
             </div>
             <Button onClick={onSubmit} type="submit">
@@ -186,6 +200,6 @@ export default function DashboardPJ() {
           </StyledForm>
         }
       />
-    </Container>
+    </>
   );
 }

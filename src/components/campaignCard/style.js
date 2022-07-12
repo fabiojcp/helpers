@@ -34,7 +34,11 @@ export const FigureHolder = styled.figure`
 
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, ${({ theme }) => theme.primary[950]}00 51.04%, ${({ theme }) => theme.gray[700]} 100%);
+    background: linear-gradient(
+      180deg,
+      ${({ theme }) => theme.primary[950]}00 51.04%,
+      ${({ theme }) => theme.gray[700]} 100%
+    );
   }
 `;
 
@@ -76,7 +80,6 @@ export const Body = styled.section`
 
   display: flex;
   flex-direction: column;
-  gap: 10px;
 
   position: relative;
 `;
@@ -131,12 +134,9 @@ export const Requirement = styled.li`
 `;
 
 export const BadgesList = styled.ul`
-  position: absolute;
-  bottom: 0;
-  right: 0;
-
-  padding: 15px 20px;
-
+  align-self: flex-end;
+  padding: 10px 0;
+  margin-top: -3rem;
   display: flex;
   gap: 5px;
 `;
