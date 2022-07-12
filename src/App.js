@@ -5,16 +5,19 @@ import "react-toastify/dist/ReactToastify.css";
 import AppContainer from "./AppStyle";
 import { CampaignsProvider } from "./providers/campaigns";
 import { UserProvider } from "./providers/user";
+import { TeamProvider } from "./providers/team";
 
 export default function App() {
   return (
     <BrowserRouter>
       <CampaignsProvider>
         <UserProvider>
-          <AppContainer>
-            <RouteMap />
-            <ToastContainer />
-          </AppContainer>
+          <TeamProvider>
+            <AppContainer>
+              <RouteMap />
+              <ToastContainer />
+            </AppContainer>
+          </TeamProvider>
         </UserProvider>
       </CampaignsProvider>
     </BrowserRouter>

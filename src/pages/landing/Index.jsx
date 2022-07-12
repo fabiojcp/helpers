@@ -15,8 +15,20 @@ import {
   Second,
   SecondTitle,
   SecondText,
-  PopularCampaigns,
-  Header
+  Header,
+  Text,
+  ImgBoxChilds,
+  Third,
+  Fourth,
+  Card,
+  Title,
+  ScrollBox,
+  TeamCard,
+  TeamAvatar,
+  Alin,
+  Agit,
+  DivLink,
+  DivMain,
 } from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import { FiArrowDownCircle } from "react-icons/fi";
@@ -27,10 +39,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { UserContext } from "../../providers/user";
 import { useContext, useEffect, useState } from "react";
-import { Carousel } from "rsuite";
+import homeImg from "../../assets/imgs/HomeImg.png";
+import HelpersAbout from "../../assets/imgs/helpersAbout.png";
+import HelpersTax from "../../assets/imgs/helpersTax.png";
+import { TeamContext } from "../../providers/team";
+import { AiOutlineLinkedin, AiOutlineGithub } from "react-icons/ai";
 
 export default function Landing() {
   const { loginUser, isLogged } = useContext(UserContext);
+  const { team } = useContext(TeamContext);
 
   const navigate = useNavigate();
 
@@ -43,7 +60,6 @@ export default function Landing() {
   window.addEventListener("resize", handleResize);
 
   const { campaigns, getCampaigns } = useContext(CampaignsContext);
-
 
   const formSchema = yup.object().shape({
     email: yup.string().email().required(),
@@ -63,10 +79,8 @@ export default function Landing() {
     getCampaigns();
   }, []);
 
-  console.log(campaigns);
-
   return (
-    <div>
+    <DivMain>
       <Header>
         <Logo src={logo} alt="logo" />
         {windowWidth > 700 ? (
@@ -80,7 +94,7 @@ export default function Landing() {
       </Header>
       <First id="first">
         <Container>
-          <ImgBox />
+          <ImgBox background={homeImg} />
           <FormBox>
             <StyledForm onSubmit={handleSubmit(onSubmit)}>
               <h2>Entre ou crie sua conta</h2>
@@ -105,60 +119,88 @@ export default function Landing() {
         </GoDowntSection>
       </First>
       <Second id="second">
-        <SecondTitle>Sobre o projeto</SecondTitle>
-        <SecondText>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-          dolor neque, fermentum quis tellus sit amet, porta convallis dolor.
-          Proin in fringilla enim. Pellentesque habitant morbi tristique
-          senectus et netus et malesuada fames ac turpis egestas. Quisque id
-          ipsum bibendum, egestas diam eget, auctor erat. Cras condimentum diam
-          sed bibendum bibendum. Phasellus non varius sapien. Quisque vitae
-          scelerisque est. Integer lacinia mi lorem, at ultrices ipsum porta
-          quis. Integer ac condimentum nulla. Suspendisse sagittis magna eu
-          euismod pulvinar. Nam blandit viverra tempor. Praesent cursus leo vel
-          sapien dignissim, id tempor magna malesuada. Vestibulum efficitur
-          fermentum viverra. Nulla venenatis mi nibh, sed pretium tortor rhoncus
-          mollis.
-        </SecondText>
+        <Text>
+          <SecondTitle>Sobre o projeto</SecondTitle>
+          <SecondText>Somos a helpers!</SecondText>
+          <SecondText>
+            Uma plataforma que uni quem deseja ajudar entidades, formando assim
+            nossos Helpers!
+          </SecondText>
+          <SecondText>
+            Facilitando o acesso e distribuindo a informação para que o terceiro
+            setor seja mais assistido e mais eficiente.
+          </SecondText>
+          <SecondText>
+            Caso queira ter acesso a todos os Helpers e campanhas de ajuda,
+            basta clicar em <a href="#first">cadastro!</a>
+          </SecondText>
+        </Text>
+        <ImgBoxChilds background={HelpersAbout} />
       </Second>
-      <Second id="third">
-        <SecondTitle>Deduzindo impostos</SecondTitle>
-        <SecondText>
-          Além de ser um Helper de projetos sociais e fazer a vida de várias
-          pessoas melhor, doar quantias em dinheiro ainda pode ser um jeito de
-          pagar menos impostos.
-        </SecondText>
-        <SecondText>
-          Pessoas físicas podem abater até 6% do imposto devido com doações, e
-          empresas podem chegar a até 2% de imposto abatido. Os estudantes
-          também podem conseguir certificados de trabalho voluntário em
-          campanhas que envolvam atividades presencias! Ser um Helper é muito
-          mais do que simplesmente doar dinheiro ou tempo, é ajudar mudar a vida
-          de quem precisa!
-        </SecondText>
-        <SecondText>Seja um Helper você também!</SecondText>
-      </Second>
-      <Second id="fourth">
+      <Third id="third">
+        <ImgBoxChilds background={HelpersTax} />
+        <Text>
+          <SecondTitle>Deduzindo impostos</SecondTitle>
+          <SecondText>
+            Além de ser um Helper de projetos sociais e fazer a vida de várias
+            pessoas melhor, doar quantias em dinheiro ainda pode ser um jeito de
+            pagar menos impostos.
+          </SecondText>
+          <SecondText>
+            Pessoas físicas podem abater até 6% do imposto devido com doações, e
+            empresas podem chegar a até 2% de imposto abatido. Os estudantes
+            também podem conseguir certificados de trabalho voluntário em
+            campanhas que envolvam atividades presencias! Ser um Helper é muito
+            mais do que simplesmente doar dinheiro ou tempo, é ajudar mudar a
+            vida de quem precisa!
+          </SecondText>
+          <SecondText>Seja um Helper você também!</SecondText>
+        </Text>
+      </Third>
+      <Fourth id="fourth" style={{ display: "flex", flexDirection: "column" }}>
         <SecondTitle>Campanhas populares</SecondTitle>
-        <PopularCampaigns>
-          <Carousel>
-            {campaigns.map((campaign, index) => {
-              return (
-                <img
-                  key={index}
-                  src={campaign.img[0]}
-                  alt={campaign.description}
-                />
-              );
-            })}
-          </Carousel>
-        </PopularCampaigns>
-      </Second>
-      <Second id="fifth">
+        <ScrollBox>
+          {campaigns.map((campaign, index) => {
+            return (
+              <Card
+                key={index}
+                background={campaign.img[0]}
+                alt={campaign.name}
+                textC={({ theme }) => theme.primary[100]}
+                boxS={({ theme }) => theme.primary[950]}
+              >
+                <Title>{campaign.name}</Title>
+              </Card>
+            );
+          })}
+        </ScrollBox>
+      </Fourth>
+      <Fourth id="fifth">
         <SecondTitle>Sobre a equipe</SecondTitle>
-        <SecondText></SecondText>
-      </Second>
+        <ScrollBox>
+          {team.map((user, index) => {
+            return (
+              <TeamCard key={index}>
+                <DivLink>
+                  <TeamAvatar
+                    background={user.img}
+                    alt={user.name}
+                  ></TeamAvatar>
+                  <Alin href={user.LinkedIn} target="_blank">
+                    {AiOutlineLinkedin()}
+                  </Alin>
+                  <Agit href={user.GitHub} target="_blank">
+                    {AiOutlineGithub()}
+                  </Agit>
+                </DivLink>
+                <Title fontS={"1.8rem"}>{user.name}</Title>
+                <Title fontS={"1.4rem"}>{user.title}</Title>
+              </TeamCard>
+            );
+          })}
+        </ScrollBox>
+      </Fourth>
       <Footer isLined />
-    </div>
+    </DivMain>
   );
 }
