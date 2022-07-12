@@ -1,18 +1,14 @@
 import styled, { keyframes } from "styled-components";
 
 const animation = keyframes`
-  0% {
-    transform: translateY(-100%);
-    transform: scale(0)
-
+  from {
+    height: 0;
+    font-size: 0;
+    background: transparent;
+    color: transparent;
   }
-  80% {
-    transform: translateY(1.1);
-    transform: scale(1.1)
-  }
-  100% {
-    transform: translateY(1);
-    transform: scale(1)
+  to {
+    height: auto;
   }
 `;
 
@@ -30,6 +26,7 @@ export const ModalUser = styled.div`
   z-index: 1;
 
   p {
+    animation: ${animation} 1s;
     margin: 6px;
     color: #d9d9d9;
     font-size: 12px;
