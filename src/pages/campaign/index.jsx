@@ -57,7 +57,7 @@ export default function Campaign() {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [quantity, setQuantity] = useState(0);
 
-  const { getCampaign, editCampaign } = useContext(CampaignsContext);
+  const { campaigns, getCampaign, editCampaign } = useContext(CampaignsContext);
   const { user, getUserById, modal, isLogged } = useContext(UserContext);
   const navigate = useNavigate();
   const params = useParams();
@@ -70,6 +70,10 @@ export default function Campaign() {
       setThisCampaign(data);
     });
   }, []);
+
+  useEffect(() => {
+    setThisCampaign(campaigns.find((c) => c.id === thisCampaign.id));
+  }, [campaigns]);
 
   useEffect(() => {
     thisCampaign?.ownerID &&
@@ -186,9 +190,7 @@ export default function Campaign() {
     } else {
       const helpers = [...thisCampaign.helpers, user];
 
-      editCampaign(params.id, {helpers: [
-        ...helpers,
-      ]});
+      editCampaign(params.id, { helpers: [...helpers] });
     }
   }
 
@@ -203,9 +205,7 @@ export default function Campaign() {
       },
     ];
 
-    editCampaign(params.id, {raised: [
-      ...raised,
-    ]});
+    editCampaign(params.id, { raised: [...raised] });
   }
 
   const date = new Date(thisCampaign?.date);
