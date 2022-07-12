@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import device from "../../style/devices";
 
-export const DivMain = styled.div``;
+export const DivMain = styled.div`
+  background: ${({theme}) => theme.primary[950]};
+`;
 
 export const First = styled.div`
   height: 100vh;
   width: 100vw;
-  background-color: #246097;
+  background: ${({theme}) => theme.primary.gradient};
   padding: 9vh 10vw 0 10vw;
   @media (${device.laptop}) {
     margin: -11vh 0 0 0;
@@ -18,7 +20,7 @@ export const Header = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  background: rgba(0, 0, 0, 0.4);
+  background: ${({theme}) => theme.primary[950]}40;
   border-radius: 8px;
   padding: 1vh 20px;
   color: white;
@@ -108,7 +110,7 @@ export const StyledForm = styled.form`
   text-align: center;
   align-items: center;
   gap: 20px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: ${({theme}) => theme.primary[950]}30;
   padding-top: 15px;
   padding-bottom: 30px;
   border-radius: 12px;
@@ -117,7 +119,7 @@ export const StyledForm = styled.form`
     font-size: 8px;
   }
   @media screen and (max-width: 700px) {
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: ${({theme}) => theme.gray[700]}30;
     backdrop-filter: blur(20px);
     margin-top: 48px;
   }
@@ -148,9 +150,9 @@ export const P = styled.p`
   margin: 0 0 1vh 0;
 `;
 export const Second = styled.div`
-  background: #eef5ff;
+  background: ${({theme}) => theme.primary[950]};
   padding: 5vh 10vw 0 10vw;
-  color: #123571;
+  color: ${({theme}) => theme.primary[100]};
   display: grid;
   grid-template-columns: 60% 40%;
   align-items: center;
@@ -163,9 +165,9 @@ export const Second = styled.div`
 `;
 
 export const Third = styled.div`
-  background: #eef5ff;
+  background: ${({theme}) => theme.primary[950]};
   padding: 0 10vw 0 10vw;
-  color: #123571;
+  color: ${({theme}) => theme.primary[100]};
   display: grid;
   grid-template-columns: 30% 70%;
   align-items: center;
@@ -178,9 +180,10 @@ export const Third = styled.div`
 `;
 
 export const Fourth = styled.div`
-  background: #eef5ff;
+  background: ${({theme}) => theme.primary[950]};
   padding: 0 10vw 0 10vw;
-  color: #123571;
+  color: ${({theme}) => theme.primary[100]};
+  margin: 3vh 0 0 0;
 `;
 
 export const ImgBoxChilds = styled.div`
@@ -237,6 +240,7 @@ export const Card = styled.div`
   font-weight: 900;
   height: 30vh;
   min-width: 40vw;
+  cursor: pointer;
   @media (${device.laptop}) {
     height: 50vh;
     max-width: 20vw;

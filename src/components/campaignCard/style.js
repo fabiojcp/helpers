@@ -6,7 +6,7 @@ export const CampaignCardContainer = styled.article`
 
   overflow: hidden;
   border-radius: 15px;
-  background-color: #cae9ff;
+  background-color: ${({ theme }) => theme.primary[900]};
 
   position: relative;
 `;
@@ -34,7 +34,11 @@ export const FigureHolder = styled.figure`
 
     width: 100%;
     height: 100%;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 51.04%, #000000 100%);
+    background: linear-gradient(
+      180deg,
+      ${({ theme }) => theme.primary[950]}00 51.04%,
+      ${({ theme }) => theme.gray[700]} 100%
+    );
   }
 `;
 
@@ -59,7 +63,7 @@ export const Title = styled.h3`
   font-size: 28px;
   text-transform: uppercase;
 
-  color: #fff;
+  color: ${({ theme }) => theme.primary[950]};
 `;
 
 export const Subtitle = styled.h4`
@@ -68,7 +72,7 @@ export const Subtitle = styled.h4`
   font-size: 14px;
   text-transform: uppercase;
 
-  color: #49628f;
+  color: ${({ theme }) => theme.primary[250]};
 `;
 
 export const Body = styled.section`
@@ -76,7 +80,6 @@ export const Body = styled.section`
 
   display: flex;
   flex-direction: column;
-  gap: 10px;
 
   position: relative;
 `;
@@ -86,7 +89,7 @@ export const Description = styled.p`
   font-weight: 500;
   font-size: 16px;
 
-  color: #123571;
+  color: ${({ theme }) => theme.primary[100]};
 `;
 
 export const RequirementsList = styled.ul`
@@ -102,7 +105,7 @@ export const Requirement = styled.li`
   font-weight: 500;
   font-size: 16px;
 
-  color: #123571;
+  color: ${({ theme }) => theme.primary[100]};
 
   position: relative;
 
@@ -118,7 +121,7 @@ export const Requirement = styled.li`
         top: 25%;
         left: -10px;
 
-        background-color: #123571;
+        background-color: ${({ theme }) => theme.primary[100]};
         border-radius: 50%;
       }
     `}
@@ -126,17 +129,14 @@ export const Requirement = styled.li`
   ${({ others }) =>
     others &&
     css`
-      color: #49628f;
+      color: ${({ theme }) => theme.primary[100]};
     `}
 `;
 
 export const BadgesList = styled.ul`
-  position: absolute;
-  bottom: 0;
-  right: 0;
-
-  padding: 15px 20px;
-
+  align-self: flex-end;
+  padding: 10px 0;
+  margin-top: -3rem;
   display: flex;
   gap: 5px;
 `;

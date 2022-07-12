@@ -47,13 +47,6 @@ export const GlobalStyles = createGlobalStyle`
 
     scroll-behavior: smooth;
   }
-
-  *::-webkit-scrollbar-thumb {
-  background-color: blue;
-  border-radius: 20px;
-  border: 3px solid orange;
-}
-
 `;
 
 export const ResetCSS = createGlobalStyle`

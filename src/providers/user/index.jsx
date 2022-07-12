@@ -1,10 +1,11 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import Api from "../../services/Api";
 import { toast } from "react-toastify";
+import "../../assets/CSS/scrollbar.css";
 
 export const UserContext = createContext();
 
-const toastStyle = {
+export const toastStyle = {
   position: "top-right",
   autoClose: 2000,
   hideProgressBar: false,
@@ -33,6 +34,10 @@ export const UserProvider = ({ children }) => {
   // Modal
   const [modalOpen, setModalOpen] = useState(false);
   const [canCloseModal, setCanCloseModal] = useState(true);
+
+  useEffect(() => {
+    if (localStorage.getItem("Token")) setIsLogged(true);
+  }, []);
 
   const headers = {
     "Content-type": "application/JSON",
@@ -94,9 +99,11 @@ export const UserProvider = ({ children }) => {
       .then((response) => {
         localStorage.setItem("user", JSON.stringify(response.data));
         setUser(response.data);
+        toast.success("Cadastro alterado com sucesso!", toastStyle);
       })
       .catch((error) => {
         setError(error);
+        toast.error("Não foi possível alterar o cadastro!", toastStyle);
       });
   };
 

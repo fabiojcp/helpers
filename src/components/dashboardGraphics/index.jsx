@@ -64,7 +64,6 @@ export default function DashboardGraphics (){
             if( campaigns[i].ownerID === user.id){
                 value = value + campaigns[i].financialGoal
             }
-
         }
         setTotal(value)
     }
@@ -100,25 +99,23 @@ console.log(campaigns)
     const options2 = {
         title: "Arrecadação",
     };
-
       return(
        <StyledGraphics>
         <Chart
         chartType="PieChart"
         data={data}
         options={options}
-        width={"50%"}
+        width={"35rem"}
         height={"400px"}
         />
 
         <Chart chartType="ColumnChart" 
-        width="50%" 
-        height="300px" 
+        width={"20rem"} 
+        height={"300px"}
         data={data2} 
         options={options2}
         />
        </StyledGraphics>
-     
       )
     
 }

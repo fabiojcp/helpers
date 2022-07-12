@@ -4,7 +4,6 @@ import {
   CardLi,
   CardLiAll,
   CardUl,
-  Container,
   Header,
   HeaderModal,
   ListBox,
@@ -13,8 +12,8 @@ import {
   Logo,
   ScrollBox,
   StyledForm,
-  Tilte,
-  TilteAll,
+  Title,
+  TitleAll,
   UserBox,
 } from "./styles";
 import CampaignCard from "../../components/campaignCard";
@@ -24,16 +23,23 @@ import { CampaignsContext } from "../../providers/campaigns";
 import { UserContext } from "../../providers/user";
 import Modal from "../modal";
 import Button from "../button";
+import { UserMenu } from "../userMenu";
+import { useNavigate } from "react-router-dom";
 
 export default function DashboardPF() {
   const { campaigns, getCampaigns } = useContext(CampaignsContext);
   const { user, modal, editUser } = useContext(UserContext);
+
+  const navigate = useNavigate();
 
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
   const [phone, setPhone] = useState(user.contacts.phone);
   const [gender, setGender] = useState(user.gender);
   const [description, setDescription] = useState(user.description);
+  const [avatar, setAvatar] = useState(user.img);
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const onSubmit = (data) => {
     const newData = {
@@ -41,6 +47,7 @@ export default function DashboardPF() {
       name: name,
       description: description,
       gender: gender,
+      img: avatar,
       contacts: {
         phone: phone,
       },
@@ -54,25 +61,29 @@ export default function DashboardPF() {
   );
 
   return (
-    <Container>
+    <>
       <Header>
         <Logo src={logo} alt="logo" />
         <div
           onClick={() => {
-            modal.open();
+            setIsMenuOpen(true);
           }}
         >
           <ProfileIcon name={user.name} image={user.img} />
         </div>
       </Header>
+      <UserMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <ListContainer>
         <ListUser>
-          <Tilte>Minhas Campanhas</Tilte>
+          <Title>Minhas Campanhas</Title>
           <ScrollBox>
             <CardUl>
               {helpedCampaigns.map((campaign, index) => {
                 return (
-                  <CardLi key={campaign.id}>
+                  <CardLi
+                    onClick={() => navigate(`/campaign/${campaign.id}`)}
+                    key={campaign.id}
+                  >
                     <CampaignCard
                       image={campaign.img[0]}
                       title={campaign.name}
@@ -80,106 +91,30 @@ export default function DashboardPF() {
                   </CardLi>
                 );
               })}
-
-              <CardLi>
-                <CampaignCard
-                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-                  title="teste"
-                />
-              </CardLi>
-              <CardLi>
-                <CampaignCard
-                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-                  title="teste"
-                />
-              </CardLi>
-              <CardLi>
-                <CampaignCard
-                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-                  title="teste"
-                />
-              </CardLi>
-              <CardLi>
-                <CampaignCard
-                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-                  title="teste"
-                />
-              </CardLi>
-              <CardLi>
-                <CampaignCard
-                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-                  title="teste"
-                />
-              </CardLi>
-              <CardLi>
-                <CampaignCard
-                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-                  title="teste"
-                />
-              </CardLi>
             </CardUl>
           </ScrollBox>
         </ListUser>
 
         <ListBox>
-          <TilteAll>Campanhas criadas recentemente</TilteAll>
+          <TitleAll>Campanhas criadas recentemente</TitleAll>
           <ScrollBox>
             <CardUl>
               {campaigns.map((campaign, index) => {
                 return (
-                  <CardLiAll key={campaign.id}>
+                  <CardLiAll
+                    onClick={() => navigate(`/campaign/${campaign.id}`)}
+                    key={campaign.id}
+                  >
                     <CampaignCard
                       image={campaign.img[0]}
                       title={campaign.name}
                       isVolunteer={campaign.type.material}
                       isDonation={campaign.type.financial}
                       description={campaign.description}
-                      requirements={[
-                        "requirements1",
-                        "requirements2",
-                        "requirements3",
-                      ]}
                     />
                   </CardLiAll>
                 );
               })}
-              <CardLi>
-                <CampaignCard
-                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-                  title="teste"
-                  isVolunteer
-                  description="Testando um texto muito grandetestando um texto muito grande testando um texto muito grande testando um texto muito grande"
-                  requirements={[
-                    "requirements1",
-                    "requirements2",
-                    "requirements3",
-                  ]}
-                />
-              </CardLi>
-              <CardLi>
-                <CampaignCard
-                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-                  title="teste"
-                  isVolunteer
-                  description="campanha muito da hora"
-                />
-              </CardLi>
-              <CardLi>
-                <CampaignCard
-                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-                  title="teste"
-                  isVolunteer
-                  description="campanha muito da hora"
-                />
-              </CardLi>
-              <CardLi>
-                <CampaignCard
-                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-                  title="teste"
-                  isVolunteer
-                  description="campanha muito da hora"
-                />
-              </CardLi>
             </CardUl>
           </ScrollBox>
         </ListBox>
@@ -197,7 +132,12 @@ export default function DashboardPF() {
           </HeaderModal>
         }
         children={
-          <StyledForm onSubmit={(event) => event.preventDefault()}>
+          <StyledForm
+            onSubmit={(event) => {
+              event.preventDefault();
+              modal.close();
+            }}
+          >
             <div>
               <label htmlFor="name">Nome completo</label>
               <input
@@ -217,6 +157,15 @@ export default function DashboardPF() {
               />
             </div>
             <div>
+              <label htmlFor="avatar">Avatar</label>
+              <input
+                name="avatar"
+                placeholder={user.img}
+                type="text"
+                onChange={(event) => setAvatar(event.target.value)}
+              />
+            </div>
+            <div>
               <label htmlFor="phone">Telefone de contato</label>
               <input
                 name="phone"
@@ -227,12 +176,14 @@ export default function DashboardPF() {
             </div>
             <div>
               <label htmlFor="gender">Gênero</label>
-              <input
-                name="gender"
-                placeholder={user.gender}
-                type="text"
-                onChange={(event) => setGender(event.target.value)}
-              />
+              <select onChange={(event) => setGender(event.target.value)}>
+                <option>{user.gender}</option>
+                <option>Homem cis</option>
+                <option>Homem trans</option>
+                <option>Mulher cis</option>
+                <option>Mulher trans</option>
+                <option>Prefiro não declarar / Outro</option>
+              </select>
             </div>
             <div>
               <label htmlFor="description">Bio</label>
@@ -248,6 +199,6 @@ export default function DashboardPF() {
           </StyledForm>
         }
       />
-    </Container>
+    </>
   );
 }

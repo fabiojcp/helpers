@@ -1,42 +1,26 @@
 import styled from "styled-components";
-import device from "../../style/devices";
-
-export const Container = styled.div`
-  width: 100%;
-  margin: 0 auto;
-  @media screen and (${device.mobile}) {
-  }
-
-  @media screen and (${device.laptop}) {
-  }
-
-  @media screen and (${device.desktop}) {
-  }
-`;
 
 export const Header = styled.div`
   background: #123571;
-  height: 9vh;
+  height: 8vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 5vw;
 `;
 
 export const Logo = styled.img`
-  height: 50%;
+  height: 2.2rem;
 `;
 
 export const UserBox = styled.div`
   display: flex;
   align-items: center;
-  width: 45px;
-  height: 45px;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
   background-color: white;
   overflow: hidden;
-
-  cursor: pointer;
   img {
     height: 100%;
     width: 100%;
@@ -44,69 +28,63 @@ export const UserBox = styled.div`
 `;
 
 export const ListContainer = styled.div`
-  height: 75vh;
   width: 100vw;
-  margin-top: 3vh;
+  margin-top: 1vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #123571;
-  gap: 20px;
+  gap: 2rem;
 `;
 
 export const ListUser = styled.div`
   width: 90vw;
   border-radius: 16px;
   background: #bee0ff;
-  padding: 10px 0;
-  height: 38%;
+  padding: 0.5rem 0;
   border: 2px solid #82c3ff;
-  @media (min-width: 780px) {
-  }
 `;
 
 export const ScrollBox = styled.div`
   overflow-x: scroll;
-  height: 100%;
 `;
 
 export const CardLi = styled.li`
-  margin-top: 20px;
+  margin-top: 1rem;
   height: 100%;
-  min-width: 310px;
-  width: 310px;
+  min-width: 23rem;
+  width: 23rem;
+  cursor: pointer;
 
   :first-child {
-    margin-left: 20px;
+    margin-left: 2vw;
   }
 `;
 
 export const ListBox = styled.div`
-  width: 100vw;
+  width: 100%;
 `;
 
 export const CardUl = styled.li`
   list-style: none;
-  min-width: 100vw;
   display: flex;
-  height: 80%;
   gap: 20px;
 `;
 
-export const Tilte = styled.h2`
-  padding-left: 20px;
-  font-size: 30px;
+export const Title = styled.h2`
+  padding-left: 2vw;
+  font-size: 2rem;
   font-weight: bold;
 `;
 
 export const CardLiAll = styled.li`
-  margin-top: 20px;
-  height: 100%;
-  min-width: 310px;
-  width: 310px;
+  margin-top: 1rem;
+  min-width: 23rem;
+  width: 23rem;
+  cursor: pointer;
 
   :first-child {
-    margin-left: 20px;
+    margin-left: 2vw;
 
     @media (min-width: 780px) {
       margin-left: 5vw;
@@ -114,24 +92,23 @@ export const CardLiAll = styled.li`
   }
 `;
 
-export const TilteAll = styled.h2`
+export const TitleAll = styled.h2`
   text-align: center;
-  padding-left: 20px;
-  font-size: 30px;
+  font-size: 2rem;
   font-weight: bold;
-
-  @media screen and (${device.laptop}) {
-  }
-
-  @media screen and (${device.desktop}) {
-    padding-left: 100px;
-  }
 `;
 
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   input {
+    font-size: 16px;
+    padding: 3px;
+    border: 2px solid #123571;
+    border-radius: 6px;
+  }
+
+  select {
     font-size: 16px;
     padding: 3px;
     border: 2px solid #123571;

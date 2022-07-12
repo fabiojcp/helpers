@@ -24,6 +24,8 @@ export const NavbarContent = styled(ContentContainer)`
   justify-content: space-between;
 
   padding: 10px 0;
+
+  position: relative;
 `;
 
 export const SideNavButton = styled.button`
@@ -45,4 +47,10 @@ export const SideNavActions = styled.div`
 
   display: flex;
   justify-content: flex-end;
+`;
+
+export const TransparentButton = styled.button`
+  border: none;
+  background-color: transparent;
+  padding: 0;
 `;

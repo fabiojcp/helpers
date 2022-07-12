@@ -411,3 +411,17 @@ export const ContactsList = styled.div`
   flex-direction: column;
   gap: 6px;
 `;
+
+export const ModalBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+`;
+
+export const ModalText = styled.p`
+  font-weight: 600;
+
+  span {
+    font-weight: 400;
+  }
+`;

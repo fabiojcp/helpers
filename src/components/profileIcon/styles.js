@@ -12,6 +12,7 @@ export const ProfileIconContainer = styled.figure`
   background-color: ${({ theme }) => theme.primary[400]};
   border-radius: 50%;
   overflow: hidden;
+  cursor: pointer;
 `;
 
 export const Image = styled.img`

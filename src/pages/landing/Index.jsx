@@ -163,11 +163,12 @@ export default function Landing() {
           {campaigns.map((campaign, index) => {
             return (
               <Card
-                key={index}
+                key={`campaing-${index}`}
                 background={campaign.img[0]}
                 alt={campaign.name}
                 textC={({ theme }) => theme.primary[100]}
                 boxS={({ theme }) => theme.primary[950]}
+                onClick={() => navigate(`/campaign/${campaign.id}`)}
               >
                 <Title>{campaign.name}</Title>
               </Card>

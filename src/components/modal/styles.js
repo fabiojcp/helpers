@@ -13,21 +13,21 @@ export const ModalContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: ${({ theme }) => theme.primary[950]}20;
   backdrop-filter: blur(20px);
 
   z-index: 6000;
 `;
 
 export const ModalArea = styled.aside`
-  background-color: #fff;
-  color: #000;
+  background-color: ${({ theme }) => theme.primary[950]};
+  color: ${({ theme }) => theme.primary[100]};
   border-radius: 15px;
   overflow: hidden;
 
   width: 100%;
   height: fit-content;
-  max-width: 90vmin;
+  max-width: 60vmin;
   min-width: 350px;
 
   font-family: Inter, sans-serif;
@@ -57,10 +57,10 @@ export const ModalHeader = styled.header`
   .modal__closeBtn {
     background-color: transparent;
     border: none;
-    color: #fff;
+    color: ${({ theme }) => theme.primary[950]};
 
     svg {
-      color: #fff;
+      color: ${({ theme }) => theme.primary[950]};
       font-size: 40px;
     }
   }

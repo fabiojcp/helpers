@@ -36,6 +36,20 @@ const CampaignCard = ({
         isDonation ||
         requirements.length > 0) && (
         <Body>
+          {(isVolunteer || isDonation) && (
+            <BadgesList>
+              {isVolunteer && (
+                <li>
+                  <BadgeVolunteer />
+                </li>
+              )}
+              {isDonation && (
+                <li>
+                  <BadgeDonation />
+                </li>
+              )}
+            </BadgesList>
+          )}
           {description && <Description>{description}</Description>}
           {requirements.length > 0 && (
             <>
@@ -57,20 +71,6 @@ const CampaignCard = ({
                 )}
               </RequirementsList>
             </>
-          )}
-          {(isVolunteer || isDonation) && (
-            <BadgesList>
-              {isVolunteer && (
-                <li>
-                  <BadgeVolunteer />
-                </li>
-              )}
-              {isDonation && (
-                <li>
-                  <BadgeDonation />
-                </li>
-              )}
-            </BadgesList>
           )}
         </Body>
       )}
