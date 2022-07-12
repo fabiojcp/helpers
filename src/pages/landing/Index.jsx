@@ -71,14 +71,13 @@ export default function Landing() {
   });
 
   const onSubmit = (data) => {
-    loginUser(data); // eu não tenho certeza se a função de login esta funcionando
-    isLogged && navigate("/dashboard");
+    loginUser(data);
   };
 
   useEffect(() => {
     getCampaigns();
   }, []);
-
+  if (isLogged) {navigate("/dashboard")}
   return (
     <DivMain>
       <Header>
