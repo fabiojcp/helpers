@@ -5,9 +5,11 @@ import { ModalUser } from "./styles";
 
 export function UserMenu({ isMenuOpen, setIsMenuOpen }) {
   const navigate = useNavigate();
-  const { modal } = useContext(UserContext);
+  const { modal, setIsLogged } = useContext(UserContext);
   const logout = () => {
     navigate("/");
+    window.localStorage.clear();
+    setIsLogged(false);
   };
 
   return (

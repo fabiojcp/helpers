@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import Api from "../../services/Api";
 import { toast } from "react-toastify";
-import "../../assets/CSS/scrollbar.css"
+import "../../assets/CSS/scrollbar.css";
 
 export const UserContext = createContext();
 
@@ -137,6 +137,7 @@ export const UserProvider = ({ children }) => {
         isLogged,
         error,
         setError,
+        setIsLogged,
         getUsers,
         getUserById,
         loginUser,
