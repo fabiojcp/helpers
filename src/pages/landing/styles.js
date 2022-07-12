@@ -1,12 +1,16 @@
 import styled from "styled-components";
-import homeImg from "../../assets/imgs/HomeImg.png";
+import device from "../../style/devices";
+
+export const DivMain = styled.div``;
 
 export const First = styled.div`
   height: 100vh;
   width: 100vw;
   background-color: #246097;
   padding: 9vh 10vw 0 10vw;
-  margin: -11vh 0 0 0;
+  @media (${device.laptop}) {
+    margin: -11vh 0 0 0;
+  }
 `;
 export const Header = styled.div`
   display: flex;
@@ -28,9 +32,11 @@ export const Header = styled.div`
     justify-content: center;
     margin: 0;
     border-radius: 0;
-    width: 100%;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
   }
-`
+`;
 
 export const Logo = styled.img`
   height: 80%;
@@ -68,11 +74,15 @@ export const Container = styled.div`
 export const ImgBox = styled.section`
   width: 50%;
   height: 70vh;
-  background: url(${homeImg}) no-repeat center;
+  background: url(${(props) => props.background}) no-repeat center;
   background-size: 70%;
   @media screen and (max-width: 700px) {
     position: absolute;
     width: 120vw;
+    display: none;
+  }
+  @media (${device.laptop}) {
+    display: flex;
   }
 `;
 
@@ -138,14 +148,52 @@ export const P = styled.p`
   margin: 0 0 1vh 0;
 `;
 export const Second = styled.div`
-  height: 40h;
   background: #eef5ff;
   padding: 5vh 10vw 0 10vw;
   color: #123571;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  align-items: center;
+  justify-content: center;
+  height: auto;
   @media screen and (max-width: 700px) {
-    height: auto;
+    display: flex;
+    flex-direction: column-reverse;
   }
 `;
+
+export const Third = styled.div`
+  background: #eef5ff;
+  padding: 0 10vw 0 10vw;
+  color: #123571;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  @media screen and (max-width: 700px) {
+    display: flex;
+    flex-direction: column;
+  }
+`;
+
+export const Fourth = styled.div`
+  background: #eef5ff;
+  padding: 0 10vw 0 10vw;
+  color: #123571;
+`;
+
+export const ImgBoxChilds = styled.div`
+  width: 100%;
+  height: 40vh;
+  background: url(${(props) => props.background}) no-repeat center;
+  background-size: contain;
+  background-position: center;
+  @media screen and (max-width: 700px) {
+  }
+`;
+
+export const Text = styled.div``;
 
 export const SecondTitle = styled.p`
   font-weight: 600;
@@ -170,4 +218,122 @@ export const PopularCampaigns = styled.div`
   }
 `;
 
-export const Third = styled.div``;
+export const Card = styled.div`
+  background: url(${(props) => props.background});
+  box-shadow: inset 0 0 200px ${(props) => props.boxS};
+  margin: 0 1vw 0 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  text-align: center;
+  border-radius: 12px;
+  padding: 0 2vw 2vh 2vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: ${(props) => props.textC};
+  font-size: 0.6rem;
+  font-weight: 900;
+  height: 30vh;
+  min-width: 40vw;
+  @media (${device.laptop}) {
+    height: 50vh;
+    max-width: 20vw;
+    min-width: 20vw;
+    margin: 0 5vh;
+    font-size: 1.5rem;
+  }
+`;
+
+export const Title = styled.p`
+  font-size: 0.8rem;
+  @media (${device.laptop}) {
+    font-size: ${(props) => (props.fontS !== undefined ? props.fontS : "2rem")};
+  }
+`;
+
+export const ScrollBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  background-color: ${({ theme }) => theme.primary[800]};
+  border-radius: 12px;
+  padding: 1vh 2vh;
+  width: 100%;
+  @media (${device.laptop}) {
+    padding: 2vh 5vh;
+  }
+`;
+
+export const TeamCard = styled.div`
+height: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-radius: 12px;
+  padding: 2vw 2vw 2vh 2vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: ${({ theme }) => theme.primary[950]};
+  font-size: 1.5rem;
+  font-weight: 900;
+  background-color: ${({ theme }) => theme.primary[250]};
+  margin: 0 2vh 0 0;
+  @media (${device.laptop}) {
+    height: 27vh;
+    width: 20vw;
+
+    font-size: 1.5rem;
+  }
+`;
+
+export const TeamAvatar = styled.div`
+  background: url(${(props) => props.background});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 10vh;
+  width: 10vh;
+  border-radius: 50%;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 4;
+  margin: 0 0 2vh 0;
+  @media (${device.laptop}) {
+    margin: 0;
+  }
+`;
+
+export const Alin = styled.a`
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  color: ${({ theme }) => theme.primary[950]};
+`;
+
+export const Agit = styled.a`
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  color: ${({ theme }) => theme.primary[950]};
+  :visited {
+    color: ${({ theme }) => theme.primary[850]};
+  }
+`;
+
+export const DivLink = styled.div`
+  height: 10vh;
+  width: 20vh;
+  text-align: center;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: 60% 20% 20%;
+  grid-template-rows: 30% 40% 30%;
+  align-items: center;
+`;
