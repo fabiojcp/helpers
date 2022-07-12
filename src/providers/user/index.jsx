@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 
 export const UserContext = createContext();
 
-
 const toastStyle = {
   position: "top-right",
   autoClose: 2000,
@@ -17,7 +16,9 @@ const toastStyle = {
 };
 
 export const UserProvider = ({ children }) => {
-  const userLocal = JSON.parse(localStorage.getItem("user")) || { accessToken: "" };
+  const userLocal = JSON.parse(localStorage.getItem("user")) || {
+    accessToken: "",
+  };
   const [user, setUser] = useState(userLocal);
 
   const usersLocal = localStorage.getItem("users") || [];
@@ -54,15 +55,21 @@ export const UserProvider = ({ children }) => {
     Api.post(`login`, data)
       .then((response) => {
         localStorage.setItem("user", JSON.stringify(response.data.user));
-        localStorage.setItem("Token", JSON.stringify(response.data.accessToken));
+        localStorage.setItem(
+          "Token",
+          JSON.stringify(response.data.accessToken)
+        );
         setUser(response.data.user);
         setToken(response.data.accessToken);
         setIsLogged(true);
       })
       .catch((error) => {
         setError(error);
-        error.response.data === "Cannot find user" && toast.error("Usuário não encontrado", toastStyle);
-        error.response.data === "Incorrect password" ? toast.error("Senha inválida", toastStyle) : toast.error("Erro ao fazer login", toastStyle);
+        error.response.data === "Cannot find user" &&
+          toast.error("Usuário não encontrado", toastStyle);
+        error.response.data === "Incorrect password"
+          ? toast.error("Senha inválida", toastStyle)
+          : toast.error("Erro ao fazer login", toastStyle);
       });
   };
 
@@ -76,17 +83,17 @@ export const UserProvider = ({ children }) => {
       })
       .catch((error) => {
         setError(error);
-        console.log(error.response.data)
+        console.log(error.response.data);
 
-        toast.error("Este email já está cadastrado!", toastStyle)
+        toast.error("Este email já está cadastrado!", toastStyle);
       });
   };
 
   const editUser = (data) => {
-    Api.patch(`user/${user.id}`, data, { headers: headers })
+    Api.patch(`users/${user.id}`, data, { headers: headers })
       .then((response) => {
-        localStorage.setItem("user", JSON.stringify(response.data.user));
-        setUser(response.data.user);
+        localStorage.setItem("user", JSON.stringify(response.data));
+        setUser(response.data);
       })
       .catch((error) => {
         setError(error);
