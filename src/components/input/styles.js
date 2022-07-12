@@ -11,7 +11,7 @@ export const Container = styled.div`
   input {
     border-radius: 8px;
     border: 2px solid white;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: ${({ theme }) => theme.primary[950]}30;
     padding: 15px 10%;
   }
   label {

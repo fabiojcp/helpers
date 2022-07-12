@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 export const Container = styled.button`
-  background: #cae9ff;
-  color: #123571;
+  background: ${({ theme }) => theme.primary[900]};
+  color: ${({ theme }) => theme.primary[100]};
   border-radius: 3px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid ${({ theme }) => theme.primary[950]}50;
   padding: 15px;
   font-size: 16px;
   font-weight: bolder;
   width: 100%;
   cursor: pointer;
   :hover {
-    background: #82c3ff;
+    background: ${({ theme }) => theme.primary[800]};
   }
 `;

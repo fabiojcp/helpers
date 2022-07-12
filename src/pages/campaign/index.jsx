@@ -43,6 +43,9 @@ import {
 import { ReactComponent as BadgeVolunteer } from "../../assets/imgs/BadgeVolunteer.svg";
 import { ReactComponent as BadgeDonation } from "../../assets/imgs/BadgeDonation.svg";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { DivHeader } from "../registration/style";
+import { Logo } from "../landing/styles";
+import logo from "../../assets/imgs/LogotipoBranca.svg";
 
 export default function Campaign() {
   const [selectedTab, setSelectedTab] = useState(0);
@@ -53,7 +56,7 @@ export default function Campaign() {
   const [modalType, setModalType] = useState("donation");
 
   const { getCampaign } = useContext(CampaignsContext);
-  const { getUserById, modal } = useContext(UserContext);
+  const { getUserById, modal, isLogged } = useContext(UserContext);
   const navigate = useNavigate();
   const params = useParams();
 
@@ -169,7 +172,8 @@ export default function Campaign() {
 
   return (
     <CampaignContainer>
-      <Header fixed={screenWidth >= 1024} />
+      {isLogged && <Header fixed={screenWidth >= 1024} />}
+      {!isLogged && <DivHeader style={{background: "linear-gradient(114.83deg, #246097 0%, #0A2260 99.64%)"}}><Logo src={logo} alt="logo"/><Button onClick={() => navigate(`/`)} style={{position: "absolute", top: "1%", right: "2vh", width: "15%", transform: "scale(0.5)"}}>Voltar</Button></DivHeader>}
       {modalType === "donation" ? (
         <Modal closeable header={<h1>Contribua financeiramente</h1>}>
           <p>Nome da instituição: {campaignOwner?.name}</p>

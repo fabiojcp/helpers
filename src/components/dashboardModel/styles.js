@@ -59,7 +59,6 @@ export const ListUser = styled.div`
   border-radius: 16px;
   background: #bee0ff;
   padding: 10px 0;
-  height: 38%;
   border: 2px solid #82c3ff;
   @media (min-width: 780px) {
   }

@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import Api from "../../services/Api";
 import { toast } from "react-toastify";
+import "../../assets/CSS/scrollbar.css"
 
 export const UserContext = createContext();
 

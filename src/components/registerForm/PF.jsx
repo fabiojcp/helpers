@@ -140,7 +140,7 @@ export default function RegisterPF () {
           <Option>Homem cis</Option>
           <Option>Homem trans</Option>
           <Option>Mulher cis</Option>
-          <Option>Mulher cis</Option>
+          <Option>Mulher trans</Option>
           <Option>Prefiro não declarar / Outro</Option>
         </Select>
       </Input>
