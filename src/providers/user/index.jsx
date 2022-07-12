@@ -99,9 +99,11 @@ export const UserProvider = ({ children }) => {
       .then((response) => {
         localStorage.setItem("user", JSON.stringify(response.data));
         setUser(response.data);
+        toast.success("Cadastro alterado com sucesso!", toastStyle);
       })
       .catch((error) => {
         setError(error);
+        toast.error("Não foi possível alterar o cadastro!", toastStyle);
       });
   };
 

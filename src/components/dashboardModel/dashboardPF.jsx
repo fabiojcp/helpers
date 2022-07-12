@@ -4,7 +4,6 @@ import {
   CardLi,
   CardLiAll,
   CardUl,
-  Container,
   Header,
   HeaderModal,
   ListBox,
@@ -38,7 +37,7 @@ export default function DashboardPF() {
   const [phone, setPhone] = useState(user.contacts.phone);
   const [gender, setGender] = useState(user.gender);
   const [description, setDescription] = useState(user.description);
-  const [avatar, setAvatar] = useState(user.description);
+  const [avatar, setAvatar] = useState(user.img);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -62,7 +61,7 @@ export default function DashboardPF() {
   );
 
   return (
-    <Container>
+    <>
       <Header>
         <Logo src={logo} alt="logo" />
         <div
@@ -158,6 +157,15 @@ export default function DashboardPF() {
               />
             </div>
             <div>
+              <label htmlFor="avatar">Avatar</label>
+              <input
+                name="avatar"
+                placeholder={user.img}
+                type="text"
+                onChange={(event) => setAvatar(event.target.value)}
+              />
+            </div>
+            <div>
               <label htmlFor="phone">Telefone de contato</label>
               <input
                 name="phone"
@@ -185,21 +193,12 @@ export default function DashboardPF() {
                 onChange={(event) => setDescription(event.target.value)}
               />
             </div>
-            <div>
-              <label htmlFor="avatar">Avatar</label>
-              <input
-                name="avatar"
-                placeholder={user.img}
-                type="text"
-                onChange={(event) => setAvatar(event.target.value)}
-              />
-            </div>
             <Button onClick={onSubmit} type="submit">
               Salvar Alterações
             </Button>
           </StyledForm>
         }
       />
-    </Container>
+    </>
   );
 }
