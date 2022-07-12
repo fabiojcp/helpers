@@ -274,7 +274,6 @@ export default function Campaign() {
       );
     }
   }
-
   return (
     <CampaignContainer>
       {renderModal()}
