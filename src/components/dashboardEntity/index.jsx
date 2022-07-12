@@ -18,33 +18,17 @@ import { useContext } from "react";
 import { UserContext } from "../../providers/user";
 import { CampaignsContext } from "../../providers/campaigns";
 import Modal from "../../components/modal";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+
 import  DashboardGraphics  from "../../components/dashboardGraphics";
+import { Link, useNavigate } from "react-router-dom";
+import ModalEntity from "../modalEntity";
 
 export default function DashboardEntity() {
-  const formSchema = yup.object().shape({
-    name: yup.string().min(6).required(),
-    email: yup.string().email().required(),
-    phone: yup.string().min(9).required(),
-    gender: yup.string().min(4).required(),
-    description: yup.string().min(6).required(),
-  });
+  
 
-  const { register, handleSubmit } = useForm({
-    resolver: yupResolver(formSchema),
-  });
-
-  const { user, modal, editUser } = useContext(UserContext);
   const { campaigns } = useContext(CampaignsContext);
 
-  const onSubmit = (data) => {
-    const { phone } = data;
-    const newData = { ...data, contacts: { phone: phone } };
-    console.log(newData);
-    editUser(newData);
-  };
+  const {user, modal} = useContext( UserContext )
 
   console.log(user);
 
@@ -62,66 +46,7 @@ export default function DashboardEntity() {
           <img src={user.img} alt="user" />
         </UserBox>
         </Header>
-        <Modal
-        closeable={true}
-        header={
-          <HeaderModal>
-            <UserBox>
-              <img src={user.img} alt="user" />
-            </UserBox>
-            <h2>Editar perfil</h2>
-          </HeaderModal>
-        }
-        children={
-          <StyledForm onSubmit={handleSubmit(onSubmit)}>
-            <div>
-              <label for="name">Nome completo</label>
-              <input
-                {...register("name")}
-                name="name"
-                placeholder={user.name}
-                type="text"
-              />
-            </div>
-            <div>
-              <label for="email">E-mail</label>
-              <input
-                {...register("email")}
-                name="email"
-                placeholder={user.email}
-                type="text"
-              />
-            </div>
-            <div>
-              <label for="phone">Telefone de contato</label>
-              <input
-                {...register("phone")}
-                name="phone"
-                placeholder={user.contacts.phone}
-                type="text"
-              />
-            </div>
-            <div>
-              <label for="gender">Gênero</label>
-              <input
-                {...register("gender")}
-                name="gender"
-                placeholder={user.gender}
-                type="text"
-              />
-            </div>
-            <div>
-              <label for="description">Bio</label>
-              <input
-                {...register("description")}
-                placeholder={user.description}
-                type="text"
-              />
-            </div>
-            <button type="submit">Salvar Alterações</button>
-          </StyledForm>
-        }
-      />
+        <ModalEntity/>
         <Container>
           <ListUser>
             <h2>Minhas Campanhas</h2>

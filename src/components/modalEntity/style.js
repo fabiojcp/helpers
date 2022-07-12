@@ -15,3 +15,24 @@ export const StyledForm = styled.form`
     margin: 4px;
   }
 `;
+
+export const HeaderModal = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
+
+export const UserBox = styled.div`
+  display: flex;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: white;
+  overflow: hidden;
+  cursor: pointer;
+  img {
+    height: 100%;
+    width: 100%;
+  }
+`;

@@ -156,8 +156,4 @@ export const StyledForm = styled.form`
   }
 `;
 
-export const HeaderModal = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 16px;
-`;
+
