@@ -24,6 +24,7 @@ import { CampaignsContext } from "../../providers/campaigns";
 import { UserContext } from "../../providers/user";
 import Modal from "../modal";
 import Button from "../button";
+import { UserMenu } from "../userMenu";
 
 export default function DashboardPF() {
   const { campaigns, getCampaigns } = useContext(CampaignsContext);
@@ -34,6 +35,8 @@ export default function DashboardPF() {
   const [phone, setPhone] = useState(user.contacts.phone);
   const [gender, setGender] = useState(user.gender);
   const [description, setDescription] = useState(user.description);
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const onSubmit = (data) => {
     const newData = {
@@ -59,12 +62,13 @@ export default function DashboardPF() {
         <Logo src={logo} alt="logo" />
         <div
           onClick={() => {
-            modal.open();
+            setIsMenuOpen(true);
           }}
         >
           <ProfileIcon name={user.name} image={user.img} />
         </div>
       </Header>
+      <UserMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <ListContainer>
         <ListUser>
           <Tilte>Minhas Campanhas</Tilte>
