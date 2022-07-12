@@ -1,11 +1,20 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ButtonGroup } from "./styles";
+import {
+  ButtonGroup,
+  UnderlineLink,
+  HelperCard,
+  HelpersList,
+  ImageStepButton,
+  NoHelpers,
+  ContactsList,
+} from "./styles";
 
 import Button from "../../components/button";
 import Header from "../../components/header";
 import ProfileIcon from "../../components/profileIcon";
 import Shimmer from "../../components/shimmer";
+import Modal from "../../components/modal";
 import { CampaignsContext } from "../../providers/campaigns";
 import { UserContext } from "../../providers/user";
 import {
@@ -31,14 +40,20 @@ import {
   Title,
 } from "./styles";
 
+import { ReactComponent as BadgeVolunteer } from "../../assets/imgs/BadgeVolunteer.svg";
+import { ReactComponent as BadgeDonation } from "../../assets/imgs/BadgeDonation.svg";
+import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+
 export default function Campaign() {
   const [selectedTab, setSelectedTab] = useState(0);
   const [thisCampaign, setThisCampaign] = useState({});
   const [campaignOwner, setCampaignOwner] = useState({});
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [imageStep, setImageStep] = useState(0);
+  const [modalType, setModalType] = useState("donation");
 
   const { getCampaign } = useContext(CampaignsContext);
-  const { getUserById } = useContext(UserContext);
+  const { getUserById, modal } = useContext(UserContext);
   const navigate = useNavigate();
   const params = useParams();
 
@@ -73,6 +88,25 @@ export default function Campaign() {
     return raised.reduce((prev, curr) => prev + curr.total, 0);
   }
 
+  function nextImg() {
+    console.log(imageStep);
+    if (imageStep === thisCampaign.img.length - 1) {
+      setImageStep(0);
+    } else {
+      setImageStep(imageStep + 1);
+    }
+  }
+
+  function prevImg() {
+    console.log(imageStep);
+
+    if (imageStep === 0) {
+      setImageStep(thisCampaign.img.length - 1);
+    } else {
+      setImageStep(imageStep - 1);
+    }
+  }
+
   const tabs = [
     {
       name: "Sobre",
@@ -89,17 +123,46 @@ export default function Campaign() {
     {
       name: "Helpers",
       element: (
-        <>
-          <p>Aba Helpers</p>
-        </>
+        <HelpersList>
+          {thisCampaign?.helpers?.length > 0 ||
+          thisCampaign?.raised?.length > 0 ? (
+            [...thisCampaign?.helpers, ...thisCampaign?.raised].map(
+              (helper) => (
+                <HelperCard>
+                  {helper.total ? <BadgeDonation /> : <BadgeVolunteer />}
+                  <ProfileIcon size={40} name={helper.name} />
+                  <p>
+                    <span>{helper.name}</span>{" "}
+                    {helper.total
+                      ? "doou para esta campanha"
+                      : "apoiou esta campanha"}
+                  </p>
+                </HelperCard>
+              )
+            )
+          ) : (
+            <NoHelpers>Seja um dos primeiros a apoiar esta campanha</NoHelpers>
+          )}
+        </HelpersList>
       ),
     },
     {
       name: "Contato",
       element: (
-        <>
-          <p>Aba Contato</p>
-        </>
+        <ContactsList>
+          <p>
+            E-mail:{" "}
+            <UnderlineLink src={`mailto:${campaignOwner?.email}`}>
+              {campaignOwner?.email}
+            </UnderlineLink>
+          </p>
+          <p>
+            Telefone:{" "}
+            <UnderlineLink src={`tel:${campaignOwner?.contacts?.phone}`}>
+              {campaignOwner?.contacts?.phone}
+            </UnderlineLink>
+          </p>
+        </ContactsList>
       ),
     },
   ];
@@ -107,14 +170,38 @@ export default function Campaign() {
   return (
     <CampaignContainer>
       <Header fixed={screenWidth >= 1024} />
+      {modalType === "donation" ? (
+        <Modal closeable header={<h1>Contribua financeiramente</h1>}>
+          <p>Nome da instituição: {campaignOwner?.name}</p>
+          <p>Banco: {campaignOwner?.donation?.bank}</p>
+          <p>Agência: {campaignOwner?.donation?.agency}</p>
+          <p>Conta: {campaignOwner?.donation?.account}</p>
+          <p>Chave Pix: {campaignOwner?.donation?.pix}</p>
+        </Modal>
+      ) : (
+        <Modal closeable header={<h1>Contribua voluntáriamente</h1>}>
+          <p>Data: {campaignOwner?.volunteer?.date}</p>
+          <p>Endereço: {campaignOwner?.volunteer?.address}</p>
+          <p>
+            Em {campaignOwner?.volunteer?.city} -{" "}
+            {campaignOwner?.volunteer?.state}
+          </p>
+          <Button>Adicionar ao calendário</Button>
+        </Modal>
+      )}
       <MainContainer>
         <Article>
           <CampaignHeader>
             <FigureImage>
-              <img
-                src="https://midias.correiobraziliense.com.br/_midias/jpg/2021/07/09/675x450/1_teletubbies-6750787.jpg"
-                alt="Campanha"
-              />
+              <ImageStepButton left onClick={prevImg}>
+                <FiChevronLeft />
+              </ImageStepButton>
+              {thisCampaign?.img && (
+                <img src={thisCampaign?.img[imageStep]} alt="Campanha" />
+              )}
+              <ImageStepButton right onClick={nextImg}>
+                <FiChevronRight />
+              </ImageStepButton>
             </FigureImage>
           </CampaignHeader>
           <ContentMargin>
@@ -214,9 +301,25 @@ export default function Campaign() {
                     </CampaignArrecadation>
                   )}
                   <ButtonGroup>
-                    {thisCampaign.type?.financial && <Button>Apoiar</Button>}
+                    {thisCampaign.type?.financial && (
+                      <Button
+                        onClick={() => {
+                          setModalType("donation");
+                          modal.open();
+                        }}
+                      >
+                        Apoiar
+                      </Button>
+                    )}
                     {thisCampaign.type?.material && (
-                      <Button>Voluntariar-se</Button>
+                      <Button
+                        onClick={() => {
+                          setModalType("volunteer");
+                          modal.open();
+                        }}
+                      >
+                        Voluntariar-se
+                      </Button>
                     )}
                   </ButtonGroup>
                 </CardSidePanel>

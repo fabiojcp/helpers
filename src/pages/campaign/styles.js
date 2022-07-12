@@ -32,7 +32,7 @@ export const CampaignHeader = styled.header`
 
 export const FigureImage = styled.figure`
   width: 100%;
-  height: fit-content;
+  height: 300px;
   max-height: 300px;
 
   display: flex;
@@ -42,9 +42,11 @@ export const FigureImage = styled.figure`
 
   img {
     width: 100%;
+    height: 100%;
   }
 
   @media (${device.desktop}) {
+    height: 700px;
     max-height: 75vh;
 
     z-index: 1;
@@ -139,6 +141,7 @@ export const Title = styled.h2`
     color: ${({ theme }) => theme.primary[900]};
 
     font-size: 48px;
+    line-height: 50px;
   }
 `;
 
@@ -175,7 +178,7 @@ export const GoalArrecadation = styled.h4`
 `;
 
 export const CampaignArrecadation = styled.div`
-  display: flex;
+  display: none;
   flex-direction: column;
 
   @media (${device.desktop}) {
@@ -186,6 +189,17 @@ export const CampaignArrecadation = styled.div`
       margin-top: 10px;
     }
   }
+
+  ${({ sidePanel }) =>
+    !sidePanel &&
+    css`
+      display: flex;
+
+      @media (${device.desktop}) {
+        display: none;
+        gap: 10px;
+      }
+    `}
 
   ${({ sidePanel }) =>
     sidePanel &&
@@ -306,7 +320,7 @@ export const CardSidePanel = styled.aside`
   bottom: 0;
 
   @media (${device.desktop}) {
-    width: 27.5%;
+    width: 26%;
     height: fit-content;
 
     position: absolute;
@@ -328,4 +342,72 @@ export const CardSidePanel = styled.aside`
       flex-direction: column;
     }
   }
+`;
+
+export const HelpersList = styled.ul`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  overflow-y: auto;
+`;
+
+export const HelperCard = styled.li`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 6px;
+  background-color: ${({ theme }) => theme.primary[850]};
+  border: 1px solid ${({ theme }) => theme.primary[800]};
+
+  padding: 10px;
+`;
+
+export const NoHelpers = styled.h4`
+  font-size: 30px;
+  font-weight: 400;
+  text-align: center;
+
+  color: ${({ theme }) => theme.primary[250]};
+`;
+
+export const ImageStepButton = styled.button`
+  position: absolute;
+
+  border: 1px solid #333;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(20px);
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  padding: 10px;
+
+  ${({ left, right }) => {
+    if (left)
+      return css`
+        left: 5%;
+      `;
+    else if (right)
+      return css`
+        right: 5%;
+      `;
+  }}
+
+  svg {
+    font-size: 20px;
+    color: #fff;
+  }
+`;
+
+export const UnderlineLink = styled.a`
+  text-decoration: underline;
+`;
+
+export const ContactsList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 `;
