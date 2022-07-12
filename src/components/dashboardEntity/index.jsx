@@ -1,17 +1,21 @@
 import logo from "../../assets/imgs/LogotipoBranca.svg";
-import menu from "../../assets/imgs/MenuIcon.svg";
 import Footer from "../../components/footer";
 import { FiPlus } from "react-icons/fi";
 import {
+  CardLi,
+  CardLiAll,
+  CardUl,
   Container,
   Header,
   HeaderModal,
   ListBox,
+  ListContainer,
   ListUser,
   Logo,
-  Menu,
   ScrollBox,
   StyledForm,
+  Title,
+  TitleAll,
   UserBox,
 } from "./styles";
 import { useContext } from "react";
@@ -22,8 +26,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import  DashboardGraphics  from "../../components/dashboardGraphics";
+import { useNavigate } from "react-router-dom"
+import CampaignCard from "../campaignCard"
 
 export default function DashboardEntity() {
+  const navigate = useNavigate()
   const formSchema = yup.object().shape({
     name: yup.string().min(6).required(),
     email: yup.string().email().required(),
@@ -52,7 +59,6 @@ export default function DashboardEntity() {
     return(
       <>
         <Header>
-          <Menu src={menu} alt="" />
           <Logo src={logo} alt="logo" />
           <UserBox
           onClick={() => {
@@ -122,30 +128,33 @@ export default function DashboardEntity() {
           </StyledForm>
         }
       />
-        <Container>
+        <ListContainer>
           <ListUser>
-            <h2>Minhas Campanhas</h2>
+            <Title>Minhas Campanhas</Title>
             <ScrollBox>
-              <ul>
-                <li>
+              <CardUl>
+                <CardLi>
                   <FiPlus style={{ height: "2em", width: "2em" }} />
                   <p>Nova Campanha</p>
-                </li>
+                </CardLi>
                {campaigns.map(campaign => {
                 if (campaign.ownerID === user.id){
                   return (
-                    <li>
-                      <img src={campaign.img[0]} alt={campaign.name}/>
-                      <h4>{campaign.name}</h4>
-                    </li>
+                    <CardLi key={campaign.id} onClick ={() => {navigate(`/campaign/${campaign.id}`)}}>
+                    <CampaignCard
+                      image={campaign.img[0]}
+                      title={campaign.name}
+                    />
+                  </CardLi>
                   )
                 }
                })}
-              </ul>
+              
+              </CardUl>
             </ScrollBox>
           </ListUser>
-          <DashboardGraphics/>
-        </Container>
+          </ListContainer>
+        <DashboardGraphics/>
   
         <Footer light />
       </>
