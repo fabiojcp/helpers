@@ -102,18 +102,13 @@ export default function DashboardPJ() {
             <CardUl>
               {campaigns.map((campaign, index) => {
                 return (
-                  <CardLiAll key={campaign.id}>
+                  <CardLiAll key={campaign.id} onClick={() => navigate(`/campaign/${campaign.id}`)}>
                     <CampaignCard
                       image={campaign.img[0]}
                       title={campaign.name}
                       isVolunteer={campaign.type.material}
                       isDonation={campaign.type.financial}
                       description={campaign.description}
-                      requirements={[
-                        "requirements1",
-                        "requirements2",
-                        "requirements3",
-                      ]}
                     />
                   </CardLiAll>
                 );

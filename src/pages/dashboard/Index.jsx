@@ -14,7 +14,7 @@ export default function Dashboard() {
 
       {user.type === "juridica" && <DashboardPJ />}
 
-      {user.type === "entidade" && <DashboardEntity />}
+      {user.type === "entity" && <DashboardEntity />}
     </>
   );
 }
