@@ -69,7 +69,7 @@ export default function DashboardPJ() {
         <Logo src={logo} alt="logo" />
         <div
           onClick={() => {
-            setIsMenuOpen(true);
+            isMenuOpen ? setIsMenuOpen(false) : setIsMenuOpen(true)
           }}
         >
           <ProfileIcon name={user.name} image={user.img} />

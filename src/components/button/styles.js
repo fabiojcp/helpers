@@ -13,4 +13,7 @@ export const Container = styled.button`
   :hover {
     background: ${({ theme }) => theme.primary[800]};
   }
+  :disabled {
+    background: ${({ theme }) => theme.gray[400]};
+  }
 `;
