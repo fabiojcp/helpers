@@ -48,7 +48,7 @@ export default function RegisterPJ() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const { registerUser, loginUser, isLogged } = useContext(UserContext)
+  const { registerUser, loginUser, isLogged } = useContext(UserContext);
   const navigate = useNavigate();
   function onSubmitFunction(data) {
     registerUser({
@@ -58,13 +58,13 @@ export default function RegisterPJ() {
       type: "juridica",
       img: data.img,
       description: data.bio,
-      contacts : {
+      contacts: {
         phone: data.phone,
         contactPerson: data.answerable,
-        email: data.email
-      }
+        email: data.email,
+      },
     });
-    loginUser({email: data.email, password: data.password});
+    loginUser({ email: data.email, password: data.password });
     isLogged && navigate("/dashboard");
   }
 
@@ -93,7 +93,6 @@ export default function RegisterPJ() {
             id="password"
             {...register("password")}
             onChange={(event) => setPassword(event.target.value)}
-            
           ></input>
           {errors.password && <span>{errors.password.message}</span>}
         </Input>
@@ -104,7 +103,11 @@ export default function RegisterPJ() {
             <EyeInvisibleFilled onClick={changePasswordType} />
           )}
           <label htmlFor="confirmpassword">Repita senha</label>
-          <input type={passwordType} id="confirmpassword" {...register("passwordConfirm")}></input>
+          <input
+            type={passwordType}
+            id="confirmpassword"
+            {...register("passwordConfirm")}
+          ></input>
           {errors.passwordConfirm && (
             <span>{errors.passwordConfirm.message}</span>
           )}
@@ -130,7 +133,7 @@ export default function RegisterPJ() {
       </Input>
       <Input>
         <label htmlFor="phone">Telefone para contato</label>
-        <input type="number" id="phone" {...register("phone")} ></input>
+        <input type="number" id="phone" {...register("phone")}></input>
         {errors.phone && <span>{errors.phone.message}</span>}
       </Input>
       <Bio>
@@ -138,7 +141,9 @@ export default function RegisterPJ() {
         <textarea type="text" rows="8" id="bio" {...register("bio")}></textarea>
         {errors.bio && <span>{errors.bio.message}</span>}
       </Bio>
-      <Button type="submit" onClick={handleSubmit(onSubmitFunction)}>Criar conta</Button>
+      <Button type="submit" onClick={handleSubmit(onSubmitFunction)}>
+        Criar conta
+      </Button>
     </>
   );
 }
