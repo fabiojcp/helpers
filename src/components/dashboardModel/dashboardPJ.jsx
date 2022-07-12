@@ -13,8 +13,8 @@ import {
   Logo,
   ScrollBox,
   StyledForm,
-  Tilte,
-  TilteAll,
+  Title,
+  TitleAll,
   UserBox,
 } from "./styles";
 import { useContext } from "react";
@@ -25,20 +25,27 @@ import CampaignCard from "../campaignCard";
 import ProfileIcon from "../profileIcon";
 import Button from "../button";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function DashboardPJ() {
   const { campaigns, getCampaigns } = useContext(CampaignsContext);
   const { user, modal, editUser } = useContext(UserContext);
 
+  const navigate = useNavigate();
+
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
   const [phone, setPhone] = useState(user.contacts.phone);
+  const [description, setDescription] = useState(user.description);
+  const [avatar, setAvatar] = useState(user.description);
 
   const onSubmit = () => {
     console.log(name);
     const newData = {
       email: email,
       name: name,
+      description: description,
+      img: avatar,
       contacts: {
         phone: phone,
       },
@@ -65,15 +72,18 @@ export default function DashboardPJ() {
       </Header>
       <ListContainer>
         <ListUser>
-          <Tilte>Minhas Campanhas</Tilte>
+          <Title>Minhas Campanhas</Title>
           <ScrollBox>
             <CardUl>
               {helpedCampaigns.map((campaign, index) => {
                 return (
-                  <CardLi key={campaign.id}>
+                  <CardLi
+                    onClick={() => navigate(`/campaign/${campaign.id}`)}
+                    key={campaign.id}
+                  >
                     <CampaignCard
                       image={campaign.img[0]}
-                      title={campaign.description}
+                      title={campaign.name}
                     />
                   </CardLi>
                 );
@@ -120,7 +130,7 @@ export default function DashboardPJ() {
         </ListUser>
 
         <ListBox>
-          <TilteAll>Campanhas criadas recentemente</TilteAll>
+          <TitleAll>Campanhas criadas recentemente</TitleAll>
           <ScrollBox>
             <CardUl>
               {campaigns.map((campaign, index) => {
@@ -128,7 +138,7 @@ export default function DashboardPJ() {
                   <CardLiAll key={campaign.id}>
                     <CampaignCard
                       image={campaign.img[0]}
-                      title={campaign.description}
+                      title={campaign.name}
                       isVolunteer={campaign.type.material}
                       isDonation={campaign.type.financial}
                       description={campaign.description}
@@ -195,7 +205,12 @@ export default function DashboardPJ() {
           </HeaderModal>
         }
         children={
-          <StyledForm onSubmit={(event) => event.preventDefault()}>
+          <StyledForm
+            onSubmit={(event) => {
+              event.preventDefault();
+              modal.close();
+            }}
+          >
             <div>
               <label htmlFor="name">Nome completo</label>
               <input
@@ -221,6 +236,23 @@ export default function DashboardPJ() {
                 placeholder={user.contacts.phone}
                 type="text"
                 onChange={(event) => setPhone(event.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="description">Bio</label>
+              <input
+                placeholder={user.description}
+                type="text"
+                onChange={(event) => setDescription(event.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="avatar">Avatar</label>
+              <input
+                name="avatar"
+                placeholder={user.img}
+                type="text"
+                onChange={(event) => setAvatar(event.target.value)}
               />
             </div>
             <Button onClick={onSubmit} type="submit">
