@@ -32,8 +32,8 @@ export default function DashboardPF() {
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
   const [phone, setPhone] = useState(user.contacts.phone);
-  const [gender, setGender] = useState(user.contacts.phone);
-  const [description, setDescription] = useState(user.contacts.phone);
+  const [gender, setGender] = useState(user.gender);
+  const [description, setDescription] = useState(user.description);
 
   const onSubmit = (data) => {
     const newData = {
@@ -75,7 +75,7 @@ export default function DashboardPF() {
                   <CardLi key={campaign.id}>
                     <CampaignCard
                       image={campaign.img[0]}
-                      title={campaign.description}
+                      title={campaign.name}
                     />
                   </CardLi>
                 );
@@ -130,7 +130,7 @@ export default function DashboardPF() {
                   <CardLiAll key={campaign.id}>
                     <CampaignCard
                       image={campaign.img[0]}
-                      title={campaign.description}
+                      title={campaign.name}
                       isVolunteer={campaign.type.material}
                       isDonation={campaign.type.financial}
                       description={campaign.description}
@@ -202,7 +202,7 @@ export default function DashboardPF() {
               <label htmlFor="name">Nome completo</label>
               <input
                 name="name"
-                value={user.name}
+                placeholder={user.name}
                 type="text"
                 onChange={(event) => setName(event.target.value)}
               />
