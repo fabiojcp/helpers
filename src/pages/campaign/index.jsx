@@ -8,6 +8,8 @@ import {
   ImageStepButton,
   NoHelpers,
   ContactsList,
+  ModalBody,
+  ModalText,
 } from "./styles";
 
 import Button from "../../components/button";
@@ -130,7 +132,11 @@ export default function Campaign() {
               (helper) => (
                 <HelperCard>
                   {helper.total ? <BadgeDonation /> : <BadgeVolunteer />}
-                  <ProfileIcon size={40} name={helper.name} />
+                  <ProfileIcon
+                    size={40}
+                    name={helper.name}
+                    image={helper.img}
+                  />
                   <p>
                     <span>{helper.name}</span>{" "}
                     {helper.total
@@ -167,26 +173,52 @@ export default function Campaign() {
     },
   ];
 
+  const date = new Date(thisCampaign?.date);
+
   return (
     <CampaignContainer>
       <Header fixed={screenWidth >= 1024} />
       {modalType === "donation" ? (
         <Modal closeable header={<h1>Contribua financeiramente</h1>}>
-          <p>Nome da instituição: {campaignOwner?.name}</p>
-          <p>Banco: {campaignOwner?.donation?.bank}</p>
-          <p>Agência: {campaignOwner?.donation?.agency}</p>
-          <p>Conta: {campaignOwner?.donation?.account}</p>
-          <p>Chave Pix: {campaignOwner?.donation?.pix}</p>
+          <ModalBody>
+            <ModalText>
+              Nome da instituição: <span>{campaignOwner?.name}</span>
+            </ModalText>
+            <ModalText>
+              Banco: <span>{thisCampaign?.bankDetails?.bankName}</span>
+            </ModalText>
+            <ModalText>
+              Agência: <span>{thisCampaign?.bankDetails?.agency}</span>
+            </ModalText>
+            <ModalText>
+              Conta: <span>{thisCampaign?.bankDetails?.account}</span>
+            </ModalText>
+            <ModalText>
+              Conta: <span>{thisCampaign?.bankDetails?.accountType}</span>
+            </ModalText>
+            <ModalText>
+              Chave Pix: <span>{thisCampaign?.bankDetails?.pix}</span>
+            </ModalText>
+          </ModalBody>
         </Modal>
       ) : (
         <Modal closeable header={<h1>Contribua voluntáriamente</h1>}>
-          <p>Data: {campaignOwner?.volunteer?.date}</p>
-          <p>Endereço: {campaignOwner?.volunteer?.address}</p>
-          <p>
-            Em {campaignOwner?.volunteer?.city} -{" "}
-            {campaignOwner?.volunteer?.state}
-          </p>
-          <Button>Adicionar ao calendário</Button>
+          <ModalBody>
+            <ModalText>
+              Data:{" "}
+              <span>
+                {date.getDay()}/{date.getMonth()}/{date.getFullYear()}
+              </span>
+            </ModalText>
+            <ModalText>
+              Endereço: <span>{thisCampaign?.address}</span>
+            </ModalText>
+            <ModalText>
+              Em <span>{thisCampaign?.city}</span> -{" "}
+              <span>{thisCampaign?.state}</span>
+            </ModalText>
+            <Button>Adicionar ao calendário</Button>
+          </ModalBody>
         </Modal>
       )}
       <MainContainer>
