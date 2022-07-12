@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { createContext, useState } from "react";
 import Api from "../../services/Api";
 export const CampaignsContext = createContext();
@@ -41,8 +42,8 @@ export const CampaignsProvider = ({ children }) => {
     });
   };
 
-  const editCampaign = (data) => {
-    Api.patch(`campaigns/${data.id}`, data, { headers: headers }).then(() => {
+  const editCampaign = (id, data) => {
+    Api.patch(`campaigns/${id}`, data, { headers: headers }).then(() => {
       getCampaigns();
     });
   };
