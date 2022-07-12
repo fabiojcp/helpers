@@ -67,19 +67,19 @@ export const ListUser = styled.div`
     height: 90%;
     border: 3px dotted #123571;
     min-width: 250px;
-    max-width:250px;
+    max-width: 250px;
     border-radius: 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     font-weight: bold;
-    padding-bottom : 15px;
+    padding-bottom: 15px;
   }
 
-  img{
+  img {
     width: 100%;
-    height:50%;
+    height: 50%;
     border-radius: 16px;
   }
 `;

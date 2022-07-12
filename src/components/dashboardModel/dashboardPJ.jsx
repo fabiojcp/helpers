@@ -25,6 +25,7 @@ import CampaignCard from "../campaignCard";
 import ProfileIcon from "../profileIcon";
 import Button from "../button";
 import { useState } from "react";
+import { UserMenu } from "../userMenu";
 import { useNavigate } from "react-router-dom";
 
 export default function DashboardPJ() {
@@ -38,6 +39,8 @@ export default function DashboardPJ() {
   const [phone, setPhone] = useState(user.contacts.phone);
   const [description, setDescription] = useState(user.description);
   const [avatar, setAvatar] = useState(user.description);
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const onSubmit = () => {
     console.log(name);
@@ -64,12 +67,13 @@ export default function DashboardPJ() {
         <Logo src={logo} alt="logo" />
         <div
           onClick={() => {
-            modal.open();
+            setIsMenuOpen(true);
           }}
         >
           <ProfileIcon name={user.name} image={user.img} />
         </div>
       </Header>
+      <UserMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <ListContainer>
         <ListUser>
           <Title>Minhas Campanhas</Title>
