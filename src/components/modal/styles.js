@@ -27,7 +27,7 @@ export const ModalArea = styled.aside`
 
   width: 100%;
   height: fit-content;
-  max-width: 90vmin;
+  max-width: 60vmin;
   min-width: 350px;
 
   font-family: Inter, sans-serif;
