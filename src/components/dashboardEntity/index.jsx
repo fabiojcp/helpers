@@ -57,7 +57,7 @@ export default function DashboardEntity() {
           <Logo src={logo} alt="logo" />
           <UserBox
             onClick={() => {
-              setIsMenuOpen(true);
+              isMenuOpen ? setIsMenuOpen(false) : setIsMenuOpen(true)
             }}
           >
             <img src={user.img} alt="user" />

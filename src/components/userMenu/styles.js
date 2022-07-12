@@ -8,8 +8,10 @@ export const ModalUser = styled.div`
   right: 20px;
   background-color: #49628f;
   padding: 6px;
-  border-radius: 10px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
   z-index: 1;
+  
   p {
     margin: 6px;
     color: #d9d9d9;
