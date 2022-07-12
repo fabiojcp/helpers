@@ -22,14 +22,14 @@ import { useContext } from "react";
 import { UserContext } from "../../providers/user";
 import { CampaignsContext } from "../../providers/campaigns";
 import Modal from "../../components/modal";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+
 import  DashboardGraphics  from "../../components/dashboardGraphics";
+
+import { Link, useNavigate } from "react-router-dom";
+import ModalEntity from "../modalEntity";
 import { useNavigate } from "react-router-dom"
 import CampaignCard from "../campaignCard"
 import { UserMenu } from "../userMenu";
-
 
 export default function DashboardEntity() {
   const navigate = useNavigate()
@@ -45,16 +45,11 @@ export default function DashboardEntity() {
     resolver: yupResolver(formSchema),
   });
 
-  const { user, modal, editUser } = useContext(UserContext);
+
   const { campaigns } = useContext(CampaignsContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const onSubmit = (data) => {
-    const { phone } = data;
-    const newData = { ...data, contacts: { phone: phone } };
-    console.log(newData);
-    editUser(newData);
-  };
+  const {user, modal} = useContext( UserContext )
 
   if (user.type === "entity") {
     return (
@@ -70,6 +65,9 @@ export default function DashboardEntity() {
           </UserBox>
           <UserMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         </Header>
+
+        <ModalEntity/>
+
         <Modal
         closeable={true}
         header={
@@ -190,6 +188,7 @@ export default function DashboardEntity() {
             </StyledForm>
           }
         />
+
         <Container>
           <ListUser>
             <Title>Minhas Campanhas</Title>

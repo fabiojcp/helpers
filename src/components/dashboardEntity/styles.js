@@ -136,8 +136,10 @@ export const StyledForm = styled.form`
     flex-direction: column;
     margin: 4px;
   }
-`
+`;
+
 export const HeaderModal = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;`
+
