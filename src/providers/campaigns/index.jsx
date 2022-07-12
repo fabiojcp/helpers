@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { createContext, useState } from "react";
 import Api from "../../services/Api";
 export const CampaignsContext = createContext();
@@ -9,7 +10,7 @@ export const CampaignsProvider = ({ children }) => {
 
   const user = JSON.parse(localStorage.getItem("user")) || { accessToken: "" };
 
-  const token = user.accessToken || "";
+  const token = JSON.parse(localStorage.getItem("Token")) || [];
 
   const headers = {
     "Content-type": "application/JSON",
@@ -33,7 +34,7 @@ export const CampaignsProvider = ({ children }) => {
 
   const addCampaign = (data) => {
     Api.post(
-      `campaigns`,
+      `/campaigns`,
       { ...data, ownerID: user.id },
       { headers: headers }
     ).then(() => {
@@ -41,8 +42,8 @@ export const CampaignsProvider = ({ children }) => {
     });
   };
 
-  const editCampaign = (data) => {
-    Api.patch(`campaigns/${data.id}`, data, { headers: headers }).then(() => {
+  const editCampaign = (id, data) => {
+    Api.patch(`/campaigns/${id}`, data, { headers: headers }).then(() => {
       getCampaigns();
     });
   };

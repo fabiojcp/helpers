@@ -1,19 +1,50 @@
+import { useContext } from "react";
+
 import ProfileIcon from "../profileIcon";
 import { ReactComponent as AppLogo } from "../../assets/imgs/LogotipoBranca.svg";
+import { UserContext } from "../../providers/user";
+import { UserMenu } from "../userMenu";
 
-import { HeaderNavbar, NavbarContent, SideNavActions } from "./styles";
+import {
+  HeaderNavbar,
+  NavbarContent,
+  SideNavActions,
+  TransparentButton,
+} from "./styles";
+import { useNavigate } from "react-router-dom";
 
-const Header = ({ fixed = false, children }) => {
+const Header = ({
+  fixed = false,
+  menuOpen,
+  setMenuOpen,
+  setModalType,
+  children,
+}) => {
+  const navigate = useNavigate();
+  const { isLogged, user } = useContext(UserContext);
+
   return (
     <HeaderNavbar $fixed={fixed}>
       <NavbarContent>
-        <AppLogo className="logo" />
+        <TransparentButton
+          onClick={() => (isLogged ? navigate("/dashboard") : navigate("/"))}
+        >
+          <AppLogo className="logo" />
+        </TransparentButton>
         <SideNavActions>
           {children}
-          <ProfileIcon
-            image="http://afernandes.adv.br/wp-content/uploads/Team-Member-3.jpg"
-            name="Carlos Umberto"
-          />
+          {isLogged && (
+            <>
+              <TransparentButton
+                onClick={() => {
+                  setMenuOpen(!menuOpen);
+                  setModalType("edit");
+                }}
+              >
+                <ProfileIcon image={user.img} name={user.name} />
+              </TransparentButton>
+            </>
+          )}
         </SideNavActions>
       </NavbarContent>
     </HeaderNavbar>

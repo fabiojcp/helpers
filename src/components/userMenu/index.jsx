@@ -3,7 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../providers/user";
 import { ModalUser } from "./styles";
 
-export function UserMenu({ isMenuOpen, setIsMenuOpen }) {
+export function UserMenu({
+  isMenuOpen,
+  setIsMenuOpen,
+  gapValue,
+  setModalType,
+}) {
   const navigate = useNavigate();
   const { modal } = useContext(UserContext);
   const logout = () => {
@@ -12,10 +17,11 @@ export function UserMenu({ isMenuOpen, setIsMenuOpen }) {
 
   return (
     isMenuOpen && (
-      <ModalUser>
+      <ModalUser gap={gapValue}>
         <button
           onClick={() => {
             setIsMenuOpen(false);
+            if (setModalType) setModalType("edit");
             modal.open();
           }}
         >

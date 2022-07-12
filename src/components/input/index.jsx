@@ -1,7 +1,7 @@
 import { Container } from "./styles";
 
-function Input({ children }) {
-  return <Container>{children}</Container>;
+function Input({ children, dark }) {
+  return <Container $dark={dark}>{children}</Container>;
 }
 
 export default Input;

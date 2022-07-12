@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   font-weight: bold;
@@ -20,4 +20,16 @@ export const Container = styled.div`
   input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
+
+  ${({ $dark }) =>
+    $dark &&
+    css`
+      input {
+        border-color: ${({ theme }) => theme.primary[100]};
+      }
+
+      label {
+        color: ${({ theme }) => theme.primary[100]};
+      }
+    `}
 `;

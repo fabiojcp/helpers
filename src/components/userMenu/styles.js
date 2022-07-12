@@ -5,6 +5,7 @@ export const ModalUser = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
+  ${({ gap }) => gap && `bottom: ${gap}px;`}
   right: 20px;
   background-color: #49628f;
   padding: 6px;

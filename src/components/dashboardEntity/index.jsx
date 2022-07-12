@@ -62,8 +62,8 @@ export default function DashboardEntity() {
           >
             <img src={user.img} alt="user" />
           </UserBox>
+          <UserMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         </Header>
-        <UserMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         <Modal
           closeable={true}
           header={
