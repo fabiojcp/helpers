@@ -58,7 +58,7 @@ export default function DashboardPJ() {
 
   const helpedCampaigns = campaigns.filter(
     (campaign) =>
-      campaign.helpers.filter((helper) => helper.id === user.id).length > 0
+      campaign.raised.filter((helper) => helper.id === user.id).length > 0
   );
 
   return (
@@ -92,43 +92,6 @@ export default function DashboardPJ() {
                   </CardLi>
                 );
               })}
-
-              <CardLi>
-                <CampaignCard
-                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-                  title="teste"
-                />
-              </CardLi>
-              <CardLi>
-                <CampaignCard
-                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-                  title="teste"
-                />
-              </CardLi>
-              <CardLi>
-                <CampaignCard
-                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-                  title="teste"
-                />
-              </CardLi>
-              <CardLi>
-                <CampaignCard
-                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-                  title="teste"
-                />
-              </CardLi>
-              <CardLi>
-                <CampaignCard
-                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-                  title="teste"
-                />
-              </CardLi>
-              <CardLi>
-                <CampaignCard
-                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-                  title="teste"
-                />
-              </CardLi>
             </CardUl>
           </ScrollBox>
         </ListUser>
@@ -155,43 +118,6 @@ export default function DashboardPJ() {
                   </CardLiAll>
                 );
               })}
-              <CardLi>
-                <CampaignCard
-                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-                  title="teste"
-                  isVolunteer
-                  description="Testando um texto muito grandetestando um texto muito grande testando um texto muito grande testando um texto muito grande"
-                  requirements={[
-                    "requirements1",
-                    "requirements2",
-                    "requirements3",
-                  ]}
-                />
-              </CardLi>
-              <CardLi>
-                <CampaignCard
-                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-                  title="teste"
-                  isVolunteer
-                  description="campanha muito da hora"
-                />
-              </CardLi>
-              <CardLi>
-                <CampaignCard
-                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-                  title="teste"
-                  isVolunteer
-                  description="campanha muito da hora"
-                />
-              </CardLi>
-              <CardLi>
-                <CampaignCard
-                  image="https://epipoca.com.br/wp-content/uploads/2021/02/a222ba9abf0c42fabe55298c2a764460.jpg"
-                  title="teste"
-                  isVolunteer
-                  description="campanha muito da hora"
-                />
-              </CardLi>
             </CardUl>
           </ScrollBox>
         </ListBox>
