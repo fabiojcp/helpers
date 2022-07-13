@@ -20,3 +20,43 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #123571;
 }
+
+#reactgooglegraph-1 {
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 0 1vw 1vh 0;
+}
+#reactgooglegraph-2 {
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 0 1vw 1vh 0;
+}
+@media (max-width: 720px) {
+  #reactgooglegraph-1 {
+    width: 40vw;
+  }
+  #reactgooglegraph-2 {
+    width: 40vw;
+  }
+
+}
+
+@media (min-width: 760px) {
+
+  #reactgooglegraph-1 {
+    width: 25vw;
+  }
+  #reactgooglegraph-2 {
+    width: 25vw;
+  }
+}
+
+@media (min-width: 760px) {
+
+  #reactgooglegraph-1 {
+
+  }
+  #reactgooglegraph-2 {
+
+  }
+}

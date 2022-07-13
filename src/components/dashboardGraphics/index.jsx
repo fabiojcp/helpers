@@ -102,12 +102,14 @@ export default function DashboardGraphics() {
         chartType="PieChart"
         data={data}
         options={options}
-        height={"30vh"}
+        height={"@media (min-width: 760px) {30vh}"}
+        width={"@media (max-width: 720px) {40vw}"}
       />
 
       <Chart
         chartType="ColumnChart"
-        height={"30vh"}
+        height={"@media (min-width: 760px) {30vh}"}
+        width={"@media (max-width: 720px) {40vw}"}
         data={data2}
         options={options2}
       />

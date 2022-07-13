@@ -33,6 +33,9 @@ export const ModalArea = styled.aside`
   font-family: Inter, sans-serif;
   font-size: 1.2rem;
   font-weight: 500;
+  @media (max-width: 768px) {
+    transform: scale(0.8);
+  }
 `;
 
 export const ModalHeader = styled.header`
