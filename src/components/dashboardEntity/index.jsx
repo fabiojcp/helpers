@@ -63,7 +63,7 @@ export default function DashboardEntity() {
         <Logo src={logo} alt="logo" />
         <div
           onClick={() => {
-            modal ? setIsMenuOpen(false) : setIsMenuOpen(true);
+            isMenuOpen ? setIsMenuOpen(false) : setIsMenuOpen(true);
           }}
         >
           <ProfileIcon name={user.name} image={user.img} />

@@ -38,7 +38,7 @@ export default function DashboardPJ() {
   const [email, setEmail] = useState(user.email);
   const [phone, setPhone] = useState(user.contacts.phone);
   const [description, setDescription] = useState(user.description);
-  const [avatar, setAvatar] = useState(user.description);
+  const [avatar, setAvatar] = useState(user.img);
   const [contact, setContact] = useState(user.contacts.contactPerson);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);

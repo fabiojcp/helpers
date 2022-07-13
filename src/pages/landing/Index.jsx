@@ -77,7 +77,7 @@ export default function Landing() {
   useEffect(() => {
     getCampaigns();
   }, []);
-  if (isLogged) {navigate("/dashboard")}
+
   return (
     <DivMain>
       <Header>
@@ -107,7 +107,7 @@ export default function Landing() {
               </Input>
               <Button type="submit">Entrar</Button>
               <span>
-                Não tem uma conta? <Link to={"/register"}>Cadastrar-se</Link>
+                Não tem uma conta? <Link to={"/register"} style={{color: "#82C3FF", visited: "color:#82C3FF"}}>Cadastrar-se</Link>
               </span>
             </StyledForm>
           </FormBox>

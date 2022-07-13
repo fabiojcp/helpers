@@ -65,19 +65,20 @@ export default function RegisterEntity() {
       contacts : {
         phone: data.phone,
         contactPerson: data.answerable,
-        email: data.email
+        email: data.email,
+        bankDetails: {
+          bankName: data.bank,
+          agency: data.ag,
+          account: data.cc,
+          accountType: data.accountType,
+          pix: data.pix
+        }
       },
-      bankDetails: {
-        bankName: data.bank,
-        agency: data.ag,
-        account: data.cc,
-        accountType: data.accountType
-      }
+
     });
     loginUser({ email: data.email, password: data.password });
-    isLogged && navigate("/dashboard");
   }
-
+  if (isLogged) {navigate("/dashboard")}
   return (
     <>
       <Input>
@@ -134,10 +135,10 @@ export default function RegisterEntity() {
         scoreWordStyle={{ color: "white" }}
       />
       <Input>
-        <label htmlFor="avatar" {...register("img")}>
+        <label htmlFor="avatar" >
           Avatar (url)
         </label>
-        <input type="text" id="avatar"></input>
+        <input type="text" id="avatar" {...register("img")}></input>
         {errors.img && <span>{errors.img.message}</span>}
       </Input>
       <Input>

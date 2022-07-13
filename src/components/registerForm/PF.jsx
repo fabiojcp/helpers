@@ -53,15 +53,17 @@ export default function RegisterPF () {
       password: data.password,
       type: "fisica",
       gender: data.gender,
-      img: data.img,
+      img: data.avatar,
       description: data.bio,
-      phone: data.phone
+      contacts: {
+        phone: data.phone
+      }      
     });
     loginUser({email: data.email, password: data.password});
     isLogged && navigate("/dashboard");
   }
 
-
+  if (isLogged) {navigate("/dashboard")}
 
   return (
     <>
