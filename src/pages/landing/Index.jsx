@@ -78,6 +78,10 @@ export default function Landing() {
     getCampaigns();
   }, []);
 
+  if (isLogged) {
+    navigate("/dashboard");
+  }
+
   return (
     <DivMain>
       <Header>
