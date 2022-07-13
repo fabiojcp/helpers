@@ -186,6 +186,7 @@ export default function Campaign() {
       const helpers = [...thisCampaign.helpers, user];
 
       editCampaign(params.id, { helpers: [...helpers] });
+      toast.success("Obrigado por apoiar", toastStyle);
     }
   }
 
@@ -199,6 +200,7 @@ export default function Campaign() {
     ];
 
     editCampaign(params.id, { raised: [...raised] });
+    toast.success("Obrigado por apoiar", toastStyle);
   }
 
   const date = new Date(thisCampaign?.date);
@@ -236,7 +238,7 @@ export default function Campaign() {
                 id="quantity"
               />
             </Input>
-            <Button onClick={() => supportCampaign(user, quantity)}>
+            <Button onClick={() => {supportCampaign(user, quantity); modal.close()}}>
               Apoiar
             </Button>
           </ModalBody>
@@ -259,7 +261,7 @@ export default function Campaign() {
               Em <span>{thisCampaign?.city}</span> -{" "}
               <span>{thisCampaign?.state}</span>
             </ModalText>
-            <Button onClick={() => volunteerCampaign(user)}>
+            <Button onClick={() => {volunteerCampaign(user); modal.close()}}>
               Confirmar presença
             </Button>
           </ModalBody>
@@ -276,6 +278,7 @@ export default function Campaign() {
         setMenuOpen={setUserMenuOpen}
         setModalType={setModalType}
       >
+        
         {!isLogged && <Button onClick={() => navigate("/")}>Voltar</Button>}
       </Header>
       <MainContainer>

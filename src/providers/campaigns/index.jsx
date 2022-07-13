@@ -1,7 +1,20 @@
 import { useEffect } from "react";
 import { createContext, useState } from "react";
+import { toast } from "react-toastify";
 import Api from "../../services/Api";
 export const CampaignsContext = createContext();
+
+
+export const toastStyle = {
+  position: "top-right",
+  autoClose: 2000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+  toastId: 1,
+};
 
 export const CampaignsProvider = ({ children }) => {
   const campaignsLocal = JSON.parse(localStorage.getItem("campaigns")) || [];
@@ -39,6 +52,7 @@ export const CampaignsProvider = ({ children }) => {
       { headers: headers }
     ).then(() => {
       getCampaigns();
+      toast.success("Campanha criada com sucesso", toastStyle);
     });
   };
 

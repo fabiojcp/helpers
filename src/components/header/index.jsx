@@ -11,7 +11,7 @@ import {
   SideNavActions,
   TransparentButton,
 } from "./styles";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Header = ({
   fixed = false,
@@ -22,6 +22,7 @@ const Header = ({
 }) => {
   const navigate = useNavigate();
   const { isLogged, user } = useContext(UserContext);
+  const location = useLocation();
 
   return (
     <HeaderNavbar $fixed={fixed}>
@@ -41,7 +42,13 @@ const Header = ({
                   setModalType("edit");
                 }}
               >
-                <ProfileIcon image={user.img} name={user.name} />
+                <div
+                  onClick={() => {
+                    location.pathname.includes("campaign") && navigate("/dashboard");
+                  }}
+                >
+                  <ProfileIcon image={user.img} name={user.name} />
+                </div>
               </TransparentButton>
             </>
           )}

@@ -25,7 +25,7 @@ export const UserProvider = ({ children }) => {
   const usersLocal = localStorage.getItem("users") || [];
   const [users, setUsers] = useState(usersLocal);
 
-  const tokenLocal = user.accessToken || "";
+  const tokenLocal = JSON.parse(localStorage.getItem("Token")) || [];
   const [token, setToken] = useState(tokenLocal);
 
   const [isLogged, setIsLogged] = useState(false);
@@ -91,8 +91,6 @@ export const UserProvider = ({ children }) => {
       })
       .catch((error) => {
         setError(error);
-        console.log(error.response.data);
-
         toast.error("Este email já está cadastrado!", toastStyle);
       });
   };
