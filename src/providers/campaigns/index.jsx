@@ -34,8 +34,8 @@ export const CampaignsProvider = ({ children }) => {
 
   const addCampaign = (data) => {
     Api.post(
-      `/campaigns`,
-      { ...data, ownerID: user.id },
+      `/campaigns/`,
+      data,
       { headers: headers }
     ).then(() => {
       getCampaigns();

@@ -34,6 +34,9 @@ export const UserProvider = ({ children }) => {
   // Modal
   const [modalOpen, setModalOpen] = useState(false);
   const [canCloseModal, setCanCloseModal] = useState(true);
+  // Modal Campaign
+  const [modalOpenCampaign, setModalOpenCampaign] = useState(false);
+  const [canCloseModalCampaign, setCanCloseModalCampaign] = useState(true);
 
   useEffect(() => {
     if (localStorage.getItem("Token")) setIsLogged(true);
@@ -134,6 +137,20 @@ export const UserProvider = ({ children }) => {
     },
   };
 
+  const modalNewCampaign = {
+    isOpen: modalOpenCampaign,
+    isCloseable: canCloseModalCampaign,
+    open: () => {
+      setModalOpenCampaign(true);
+    },
+    close: () => {
+      setModalOpenCampaign(false);
+    },
+    closeable: (value) => {
+      setCanCloseModalCampaign(value);
+    },
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -151,6 +168,7 @@ export const UserProvider = ({ children }) => {
         editUser,
         deleteUser,
         modal,
+        modalNewCampaign,
       }}
     >
       {children}
