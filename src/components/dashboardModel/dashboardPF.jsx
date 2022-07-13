@@ -62,7 +62,7 @@ export default function DashboardPF() {
 
   const helpedCampaigns = campaigns.filter(
     (campaign) =>
-      campaign.helpers.filter((helper) => helper.id === user.id).length > 0
+      {return (campaign.helpers.filter((helper) => helper.id === user.id).length > 0 || campaign.raised.filter((raised) => raised.id === user.id).length > 0 )}
   );
 
   return (
