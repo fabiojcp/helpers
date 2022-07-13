@@ -1,4 +1,4 @@
-import Modal from "../modal/index";
+import Modal from "../modalCampaign/index";
 import { StyledForm, HeaderModal, UserBox, Type, Bio } from "./style.js";
 import { UserContext } from "../../providers/user";
 import { useContext } from "react";
@@ -40,7 +40,7 @@ export default function ModalCreateCampaign({setIsModalOpen}) {
       children={
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
           <div>
-            <label for="name">Nome do Projeto</label>
+            <label for="name">Nome da campanha</label>
             <input
               {...register("name")}
               name="name"
