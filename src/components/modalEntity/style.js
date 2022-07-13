@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const StyledForm = styled.form`
   display: flex;
@@ -13,6 +13,15 @@ export const StyledForm = styled.form`
     display: flex;
     flex-direction: column;
     margin: 4px;
+  }
+  textarea {
+    font-size: 16px;
+    padding: 3px;
+    border: 2px solid #123571;
+    border-radius: 6px;
+    resize: none;
+    font-family: Arial;
+    width: 100%;
   }
 `;
 
