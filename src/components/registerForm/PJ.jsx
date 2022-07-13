@@ -56,7 +56,7 @@ export default function RegisterPJ() {
       name: data.name,
       password: data.password,
       type: "juridica",
-      img: data.img,
+      img: data.avatar,
       description: data.bio,
       contacts: {
         phone: data.phone,
@@ -65,9 +65,8 @@ export default function RegisterPJ() {
       },
     });
     loginUser({ email: data.email, password: data.password });
-    isLogged && navigate("/dashboard");
   }
-
+  if (isLogged) {navigate("/dashboard")}
   return (
     <>
       <Input>
