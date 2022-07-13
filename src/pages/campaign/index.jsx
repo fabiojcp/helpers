@@ -66,7 +66,6 @@ export default function Campaign() {
     if (!params.id) return navigate("/dashboard");
 
     getCampaign(params.id).then((data) => {
-      console.log("Dados da campanha:", data);
       setThisCampaign(data);
     });
   }, []);
@@ -78,7 +77,6 @@ export default function Campaign() {
   useEffect(() => {
     thisCampaign?.ownerID &&
       getUserById(thisCampaign.ownerID).then((data) => {
-        console.log("Dados do dono da campanha:", data);
         setCampaignOwner(data);
       });
   }, [thisCampaign]);
@@ -98,7 +96,6 @@ export default function Campaign() {
   }
 
   function nextImg() {
-    console.log(imageStep);
     if (imageStep === thisCampaign.img.length - 1) {
       setImageStep(0);
     } else {
@@ -107,8 +104,6 @@ export default function Campaign() {
   }
 
   function prevImg() {
-    console.log(imageStep);
-
     if (imageStep === 0) {
       setImageStep(thisCampaign.img.length - 1);
     } else {
@@ -195,8 +190,6 @@ export default function Campaign() {
   }
 
   function supportCampaign(user, quantity) {
-    console.log(user, quantity);
-
     const raised = [
       ...thisCampaign.raised,
       {

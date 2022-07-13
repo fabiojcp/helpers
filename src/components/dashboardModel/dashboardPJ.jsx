@@ -27,6 +27,7 @@ import Button from "../button";
 import { useState } from "react";
 import { UserMenu } from "../userMenu";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function DashboardPJ() {
   const { campaigns, getCampaigns } = useContext(CampaignsContext);
@@ -44,7 +45,6 @@ export default function DashboardPJ() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const onSubmit = () => {
-    console.log(name);
     const newData = {
       email: email,
       name: name,
@@ -58,6 +58,10 @@ export default function DashboardPJ() {
     editUser(newData);
   };
 
+  useEffect(() => {
+    getCampaigns();
+  }, []);
+
   const helpedCampaigns = campaigns.filter(
     (campaign) =>
       campaign.raised.filter((helper) => helper.id === user.id).length > 0
@@ -69,7 +73,7 @@ export default function DashboardPJ() {
         <Logo src={logo} alt="logo" />
         <div
           onClick={() => {
-            isMenuOpen ? setIsMenuOpen(false) : setIsMenuOpen(true)
+            isMenuOpen ? setIsMenuOpen(false) : setIsMenuOpen(true);
           }}
         >
           <ProfileIcon name={user.name} image={user.img} />
@@ -169,14 +173,6 @@ export default function DashboardPJ() {
               />
             </div>
             <div>
-              <label htmlFor="description">Bio</label>
-              <input
-                placeholder={user.description}
-                type="text"
-                onChange={(event) => setDescription(event.target.value)}
-              />
-            </div>
-            <div>
               <label htmlFor="phone">Telefone de contato</label>
               <input
                 name="phone"
@@ -194,6 +190,16 @@ export default function DashboardPJ() {
                 onChange={(event) => setContact(event.target.value)}
               />
             </div>
+            <div>
+              <label htmlFor="description">Bio</label>
+              <textarea
+                rows={6}
+                placeholder={user.description}
+                type="text"
+                onChange={(event) => setDescription(event.target.value)}
+              />
+            </div>
+
             <Button onClick={onSubmit} type="submit">
               Salvar Alterações
             </Button>

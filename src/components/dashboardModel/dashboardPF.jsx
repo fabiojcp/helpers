@@ -25,6 +25,7 @@ import Modal from "../modal";
 import Button from "../button";
 import { UserMenu } from "../userMenu";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function DashboardPF() {
   const { campaigns, getCampaigns } = useContext(CampaignsContext);
@@ -55,6 +56,10 @@ export default function DashboardPF() {
     editUser(newData);
   };
 
+  useEffect(() => {
+    getCampaigns();
+  }, []);
+
   const helpedCampaigns = campaigns.filter(
     (campaign) =>
       campaign.helpers.filter((helper) => helper.id === user.id).length > 0
@@ -66,14 +71,14 @@ export default function DashboardPF() {
         <Logo src={logo} alt="logo" />
         <div
           onClick={() => {
-            isMenuOpen ? setIsMenuOpen(false) : setIsMenuOpen(true)
+            isMenuOpen ? setIsMenuOpen(false) : setIsMenuOpen(true);
           }}
         >
           <ProfileIcon name={user.name} image={user.img} />
         </div>
       </Header>
       <UserMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-      
+
       <ListContainer>
         <ListUser>
           <Title>Minhas Campanhas</Title>
@@ -188,7 +193,8 @@ export default function DashboardPF() {
             </div>
             <div>
               <label htmlFor="description">Bio</label>
-              <input
+              <textarea
+                rows={6}
                 placeholder={user.description}
                 type="text"
                 onChange={(event) => setDescription(event.target.value)}
