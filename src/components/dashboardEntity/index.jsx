@@ -1,71 +1,79 @@
 import logo from "../../assets/imgs/LogotipoBranca.svg";
 import Footer from "../../components/footer";
-import { FiPlus } from "react-icons/fi";
-import {
-  Header,
-  HeaderModal,
-  ListBox,
-  ListUser,
-  Logo,
-  Menu,
-  ScrollBox,
-  StyledForm,
-  UserBox,
-} from "./styles";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../providers/user";
 import { CampaignsContext } from "../../providers/campaigns";
-import Modal from "../../components/modal";
-
 import DashboardGraphics from "../../components/dashboardGraphics";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ModalEntity from "../modalEntity";
-import ModalCreateCampaign from "../modalCreateCampaign";
+import CampaignCard from "../campaignCard";
+import {
+  Header,
+  ListUser,
+  Title,
+  ScrollBox,
+  CardUl,
+  CardLi,
+  ListContainer,
+  UserBox,
+  Logo,
+} from "../dashboardModel/styles";
+import Plus from "../../assets/imgs/plus.png";
+import { UserMenu } from "../userMenu";
+import ProfileIcon from "../../components/profileIcon";
 
 export default function DashboardEntity() {
+  const navigate = useNavigate();
   const { campaigns } = useContext(CampaignsContext);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user } = useContext(UserContext);
 
-  const { user, modal } = useContext(UserContext);
+  return (
+    <>
+      
 
-  if (user.type === "entity") {
-    return (
-      <>
-        <Header>
-          <Logo src={logo} alt="logo" />
-          <UserBox
-            onClick={() => {
-              modal.open();
-            }}
-          >
-            <img src={user.img} alt="user" />
-          </UserBox>
-        </Header>
-
+      <Header>
+        <Logo src={logo} alt="logo" />
+        <div
+          onClick={() => {
+            isMenuOpen ? setIsMenuOpen(false) : setIsMenuOpen(true);
+          }}
+        >
+          <ProfileIcon name={user.name} image={user.img} />
+        </div>
+      </Header>
+      <UserMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+      
+      <ModalEntity />
+      <ListContainer>
         <ListUser>
-          <h2>Minhas Campanhas</h2>
+          <Title>Minhas Campanhas</Title>
           <ScrollBox>
-            <ul>
-              <li>
-                <FiPlus style={{ height: "2em", width: "2em" }} />
-                <p>Nova Campanha</p>
-              </li>
-              {campaigns.map((campaign) => {
-                if (campaign.ownerID === user.id) {
-                  return (
-                    <li>
-                      <img src={campaign.img[0]} alt={campaign.name} />
-                      <h4>{campaign.name}</h4>
-                    </li>
-                  );
-                }
+            <CardUl>
+              <CardLi>
+                <CampaignCard image={Plus} title="Nova Campanha" />
+              </CardLi>
+              {campaigns.map((campaign, index) => {
+                return (
+                  <CardLi
+                    onClick={() => navigate(`/campaign/${campaign.id}`)}
+                    key={campaign.id}
+                  >
+                    <CampaignCard
+                      image={campaign.img[0]}
+                      title={campaign.name}
+                    />
+                  </CardLi>
+                );
               })}
-            </ul>
+            </CardUl>
           </ScrollBox>
         </ListUser>
-        <DashboardGraphics />
-
-        <Footer light />
-      </>
-    );
-  }
+        <ListUser style={{ width: "60%" }}>
+          <DashboardGraphics />
+        </ListUser>
+      </ListContainer>
+      <Footer light />
+    </>
+  );
 }
