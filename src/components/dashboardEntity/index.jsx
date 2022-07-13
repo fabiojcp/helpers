@@ -82,18 +82,19 @@ export default function DashboardEntity() {
                 <CampaignCard image={Plus} title="Nova Campanha" />
               </CardLi>
               {campaigns.map((campaign, index) => {
-                return (
-                  <CardLi
-                    onClick={() => navigate(`/campaign/${campaign.id}`)}
-                    key={campaign.id}
-                  >
-                    <CampaignCard
-                      image={campaign.img[0]}
-                      title={campaign.name}
-                    />
-                  </CardLi>
-                );
-              })}
+                if(campaign.ownerId == user.id) {
+                  return (
+                    <CardLi
+                      onClick={() => navigate(`/campaign/${campaign.id}`)}
+                      key={campaign.id}
+                    >
+                      <CampaignCard
+                        image={campaign.img[0]}
+                        title={campaign.name}
+                      />
+                    </CardLi>
+                  );
+                }})}
             </CardUl>
           </ScrollBox>
         </ListUser>
