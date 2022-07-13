@@ -2,7 +2,7 @@
 
 ## Sobre o projeto:
 
-Este projeto é a entrega final do curso de front-end da [Kenzye](https://github.com/Kenzie-Academy-Brasil-Developers)
+Este projeto é a entrega final do curso de front-end da [Kenzie](https://github.com/Kenzie-Academy-Brasil-Developers)
 
 ## Objetivo:
 
