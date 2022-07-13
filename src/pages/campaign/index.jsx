@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import Button from "../../components/button";
-import Header from "../../components/header";
+import HeaderCampaign from "../../components/headerCampaign";
 import ProfileIcon from "../../components/profileIcon";
 import Shimmer from "../../components/shimmer";
 import Modal from "../../components/modal";
@@ -277,14 +277,14 @@ export default function Campaign() {
   return (
     <CampaignContainer>
       {renderModal()}
-      <Header
+      <HeaderCampaign
         fixed={screenWidth >= 1024}
         menuOpen={userMenuOpen}
         setMenuOpen={setUserMenuOpen}
         setModalType={setModalType}
       >
-        {!isLogged && <Button onClick={() => navigate("/")}>Voltar</Button>}
-      </Header>
+        {!isLogged && <Button onClick={() => navigate("/dashboard")}>Voltar</Button>}
+      </HeaderCampaign>
       <MainContainer>
         <Article>
           <CampaignHeader>
