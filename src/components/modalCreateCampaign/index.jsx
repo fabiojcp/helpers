@@ -8,7 +8,7 @@ import * as yup from "yup";
 import Button from "../button";
 import { CampaignsContext } from "../../providers/campaigns";
 
-export default function ModalCreateCampaign() {
+export default function ModalCreateCampaign({setIsModalOpen}) {
   const formSchema = yup.object().shape({
     name: yup.string().min(6).required(),
     description: yup.string().min(6).required(),
@@ -21,7 +21,7 @@ export default function ModalCreateCampaign() {
     resolver: yupResolver(formSchema),
   });
 
-  const { user, modal } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const { addCampaign } = useContext(CampaignsContext);
   const onSubmit = (data) => {
     console.log(data);

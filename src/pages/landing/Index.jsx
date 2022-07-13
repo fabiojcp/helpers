@@ -87,7 +87,7 @@ export default function Landing() {
             <Smooth href="#second">Sobre o projeto</Smooth>
             <Smooth href="#third">Deduzindo impostos</Smooth>
             <Smooth href="#fourth">Campanhas populares</Smooth>
-            <Smooth href="#fifth">Sobre a equipe</Smooth>
+            <Smooth href="#fifth">Equipe</Smooth>
           </Nav>
         ) : null}
       </Header>
@@ -176,7 +176,7 @@ export default function Landing() {
         </ScrollBox>
       </Fourth>
       <Fourth id="fifth">
-        <SecondTitle>Sobre a equipe</SecondTitle>
+        <SecondTitle>Equipe</SecondTitle>
         <ScrollBox>
           {team.map((user, index) => {
             return (

@@ -20,7 +20,7 @@ export const Header = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  background: ${({theme}) => theme.primary[950]}40;
+  background: ${({theme}) => theme.gray[700]}95;
   border-radius: 8px;
   padding: 1vh 20px;
   color: white;
